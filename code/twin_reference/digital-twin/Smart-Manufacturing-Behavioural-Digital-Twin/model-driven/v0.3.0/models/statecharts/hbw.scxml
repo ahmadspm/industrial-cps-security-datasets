@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="HBW High-Bay Warehouse" initial="idle">
+  <state id="idle"><onentry><log label="actuator" expr="'HBW.all.stop'"/></onentry><transition event="command.store" target="fetch_container"/><transition event="command.fetch" target="fetch_wp"/><transition event="fault.*" target="fault"/></state>
+  <state id="fetch_container"><onentry><log label="actuator" expr="'HBW.crane.fetch_container'"/></onentry><transition event="sensor.container_at_input" target="store_wp"/></state>
+  <state id="store_wp"><onentry><log label="actuator" expr="'HBW.conveyor.store_workpiece'"/></onentry><transition event="sensor.workpiece_stored" target="store_container"/></state>
+  <state id="fetch_wp"><onentry><log label="actuator" expr="'HBW.crane.fetch_workpiece'"/></onentry><transition event="sensor.workpiece_at_output" target="fetch_wp_wait"/></state>
+  <state id="fetch_wp_wait"><onentry><log label="outcome" expr="'HBW.workpiece.ready_for_vgr'"/></onentry><transition event="vgr.pick_confirmed" target="store_container"/></state>
+  <state id="store_container"><onentry><log label="actuator" expr="'HBW.crane.store_container'"/></onentry><transition event="sensor.container_stored" target="complete"/></state>
+  <state id="complete"><onentry><log label="outcome" expr="'HBW.operation.complete'"/></onentry><transition event="internal.reset" target="idle"/></state>
+  <state id="fault"><onentry><log label="actuator" expr="'HBW.safe_stop'"/></onentry><transition event="command.reset" target="idle"/></state>
+</scxml>
+

@@ -1,0 +1,22 @@
+{
+  "id": "VGR-NOMINAL-TRANSFER-001",
+  "description": "Home the VGR, pick one workpiece, place it at the target and return ready.",
+  "expected_final_state": "ready",
+  "events": [
+    "command.start",
+    "sensor.x_reference",
+    "sensor.z_reference",
+    "sensor.rotation_reference",
+    "command.pick",
+    "sensor.pick_height",
+    "sensor.vacuum_detected",
+    "sensor.z_reference",
+    "sensor.target_rotation",
+    "sensor.place_height",
+    "sensor.vacuum_released",
+    "sensor.z_reference",
+    "sensor.rotation_reference",
+    "internal.reset"
+  ]
+}
+

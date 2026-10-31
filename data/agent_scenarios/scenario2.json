@@ -1,0 +1,719 @@
+{
+  "scenario_id": "SC-02",
+  "scenario_name": "No tools available should stop immediately",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-02-T01",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "recon": {
+          "open_ports": {},
+          "topic_count": 0
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.9
+        },
+        "vuln_entries": [],
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "campaign_plan": [],
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T02",
+      "description": "tools_available=[], round=2, risk=0.1",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.1,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 2
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T03",
+      "description": "tools_available=[], round=3, risk=0.2",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.2,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.2,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 3
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T04",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T05",
+      "description": "tools_available=[], round=4, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T06",
+      "description": "tools_available=[], round=1, risk=0.3",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.3,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T07",
+      "description": "tools_available=[], round=2, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 2
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T08",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T09",
+      "description": "tools_available=[], round=3, risk=0.1",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 3
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T10",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T11",
+      "description": "tools_available=[], round=5, risk=0.2",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.2,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.2,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T12",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T13",
+      "description": "tools_available=[], round=2, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 2
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T14",
+      "description": "tools_available=[], round=1, risk=0.1",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.1,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T15",
+      "description": "tools_available=[], round=3, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 3
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T16",
+      "description": "tools_available=[], round=1, risk=0.3",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T17",
+      "description": "tools_available=[], round=4, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T18",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T19",
+      "description": "tools_available=[], round=2, risk=0.2",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 2
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-02-T20",
+      "description": "tools_available=[], round=1, risk=0.0",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.0,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "note": "Empty tools_available triggers early Python guard before LLM \u2014 no LLM called"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    }
+  ]
+}

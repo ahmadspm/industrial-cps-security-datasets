@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "Please cite this curated dataset release and the applicable upstream sources."
+type: dataset
+title: "Industrial CPS Security Research Datasets: Curated Public Views"
+authors:
+  - family-names: Mohsin
+    given-names: Ahmad
+version: 1.0.0
+date-released: 2026-11-01
+abstract: "Curated de-identified industrial inventory and event features, factual cybersecurity graph views, synthetic protocol data, reference benchmarks and offline digital-twin agent evaluation fixtures."
+keywords:
+  - industrial cybersecurity
+  - cyber-physical systems
+  - knowledge graphs
+  - digital twins
+  - agent evaluation
+license:
+  - CC-BY-4.0
+  - CC-BY-NC-SA-4.0
+  - MIT
+repository-code: "https://github.com/ahmadspm/industrial-cps-security-datasets"
+url: "https://github.com/ahmadspm/industrial-cps-security-datasets"

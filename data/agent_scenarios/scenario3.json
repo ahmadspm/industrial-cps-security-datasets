@@ -1,0 +1,1523 @@
+{
+  "scenario_id": "SC-03",
+  "scenario_name": "High detection risk accumulated \u2192 stop",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-03-T01",
+      "description": "3 rounds with detection_risk=0.86, tool=BrokerFloodTool",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT"
+          },
+          "topic_count": 8
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.6
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool",
+          "BrokerInfoProbeTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.4,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.88
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.35,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.91
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.3,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.93
+          }
+        ],
+        "simulation_running": true,
+        "campaign_plan": [],
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.86",
+          "note": "Hard guard: accumulated risk 0.86 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T02",
+      "description": "4 rounds with detection_risk=0.9, tool=ConnectionStormTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.88,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.9",
+          "note": "Hard guard: accumulated risk 0.9 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T03",
+      "description": "5 rounds with detection_risk=0.92, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.92",
+          "note": "Hard guard: accumulated risk 0.92 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T04",
+      "description": "3 rounds with detection_risk=0.88, tool=TopicHijackTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.88,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.88",
+          "note": "Hard guard: accumulated risk 0.88 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T05",
+      "description": "4 rounds with detection_risk=0.95, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.95",
+          "note": "Hard guard: accumulated risk 0.95 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T06",
+      "description": "5 rounds with detection_risk=0.91, tool=FalseStateInjector_hbw",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.88,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.91",
+          "note": "Hard guard: accumulated risk 0.91 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T07",
+      "description": "3 rounds with detection_risk=0.87, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.87",
+          "note": "Hard guard: accumulated risk 0.87 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T08",
+      "description": "4 rounds with detection_risk=0.93, tool=ConnectionStormTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_MPO": 0.88
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.93",
+          "note": "Hard guard: accumulated risk 0.93 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T09",
+      "description": "3 rounds with detection_risk=0.96, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.96",
+          "note": "Hard guard: accumulated risk 0.96 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T10",
+      "description": "5 rounds with detection_risk=0.89, tool=AckSpoofTool_vgr",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.88,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "AckSpoofTool_vgr",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "AckSpoofTool_vgr",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "AckSpoofTool_vgr",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "AckSpoofTool_vgr",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "AckSpoofTool_vgr",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.89",
+          "note": "Hard guard: accumulated risk 0.89 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T11",
+      "description": "4 rounds with detection_risk=0.94, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.94",
+          "note": "Hard guard: accumulated risk 0.94 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T12",
+      "description": "3 rounds with detection_risk=0.97, tool=ConnectionStormTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_SLD": 0.88
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.97",
+          "note": "Hard guard: accumulated risk 0.97 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T13",
+      "description": "5 rounds with detection_risk=0.86, tool=TopicHijackTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "TopicHijackTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.86",
+          "note": "Hard guard: accumulated risk 0.86 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T14",
+      "description": "4 rounds with detection_risk=0.91, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.88,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.91",
+          "note": "Hard guard: accumulated risk 0.91 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T15",
+      "description": "3 rounds with detection_risk=0.98, tool=FalseStateInjector_hbw",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.98",
+          "note": "Hard guard: accumulated risk 0.98 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T16",
+      "description": "5 rounds with detection_risk=0.88, tool=ConnectionStormTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.88,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.88",
+          "note": "Hard guard: accumulated risk 0.88 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T17",
+      "description": "4 rounds with detection_risk=0.92, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.92",
+          "note": "Hard guard: accumulated risk 0.92 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T18",
+      "description": "3 rounds with detection_risk=0.99, tool=AckSpoofTool_hbw",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.88,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "AckSpoofTool_hbw",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "AckSpoofTool_hbw",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "AckSpoofTool_hbw",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.99",
+          "note": "Hard guard: accumulated risk 0.99 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T19",
+      "description": "5 rounds with detection_risk=0.87, tool=BrokerFloodTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 5,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 6
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.87",
+          "note": "Hard guard: accumulated risk 0.87 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    },
+    {
+      "id": "SC-03-T20",
+      "description": "4 rounds with detection_risk=0.93, tool=ConnectionStormTool",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.88,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 4,
+            "tool": "ConnectionStormTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": true,
+        "current_round": 5
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "stop",
+          "detection_risk": ">= 0.93",
+          "note": "Hard guard: accumulated risk 0.93 > 0.85 \u2192 stop before LLM"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "source": "stop_decision"
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+factory:
+  testbed: fischertechnik Training Factory Industry 4.0 24V
+  controller: Siemens S7-1500
+  runtime_mode: simulation
+
+stations:
+  - DSI
+  - VGR
+  - HBW
+  - MPO
+  - SLD
+  - DSO
+
+protocols:
+  plc_gateway: OPC UA
+  connected_factory: MQTT
+
+safety:
+  physical_writes_enabled: false
+  external_network_scanning_enabled: false
+

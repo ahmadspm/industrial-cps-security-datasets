@@ -1,0 +1,1139 @@
+{
+  "scenario_id": "SC-15",
+  "scenario_name": "Reflect stops campaign when detection_risk > 0.85",
+  "endpoint": "/reflect",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "evaluate_outcome",
+    "decide_continuation"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-15-T01",
+      "description": "detection_risk=0.86>0.85, score=0.4",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.35,
+        "metrics": {
+          "rate_score": 0.95,
+          "silence_score": 0.1,
+          "topic_score": 0.85,
+          "error_msgs": 22
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.45,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.88
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.4,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.91
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.35,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.93
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.86",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T02",
+      "description": "detection_risk=0.9>0.85, score=0.5",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.5,
+        "metrics": {
+          "detection_risk": 0.9
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.9,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.9",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T03",
+      "description": "detection_risk=0.92>0.85, score=0.6",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.6,
+        "metrics": {
+          "detection_risk": 0.92
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.92",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T04",
+      "description": "detection_risk=0.88>0.85, score=0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.45,
+        "metrics": {
+          "detection_risk": 0.88
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.88",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T05",
+      "description": "detection_risk=0.95>0.85, score=0.55",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.55,
+        "metrics": {
+          "detection_risk": 0.95
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.95,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.95",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T06",
+      "description": "detection_risk=0.91>0.85, score=0.65",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.65,
+        "metrics": {
+          "detection_risk": 0.91
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.91",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T07",
+      "description": "detection_risk=0.87>0.85, score=0.4",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.4,
+        "metrics": {
+          "detection_risk": 0.87
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.87",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T08",
+      "description": "detection_risk=0.93>0.85, score=0.5",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.5,
+        "metrics": {
+          "detection_risk": 0.93
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.93",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T09",
+      "description": "detection_risk=0.96>0.85, score=0.6",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.6,
+        "metrics": {
+          "detection_risk": 0.96
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.96,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.96",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T10",
+      "description": "detection_risk=0.89>0.85, score=0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.45,
+        "metrics": {
+          "detection_risk": 0.89
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.89,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.89",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T11",
+      "description": "detection_risk=0.94>0.85, score=0.55",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.55,
+        "metrics": {
+          "detection_risk": 0.94
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.94,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.94",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T12",
+      "description": "detection_risk=0.97>0.85, score=0.65",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.65,
+        "metrics": {
+          "detection_risk": 0.97
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.97,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.97",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T13",
+      "description": "detection_risk=0.86>0.85, score=0.4",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.4,
+        "metrics": {
+          "detection_risk": 0.86
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.86",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T14",
+      "description": "detection_risk=0.91>0.85, score=0.5",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.5,
+        "metrics": {
+          "detection_risk": 0.91
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.91,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.91",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T15",
+      "description": "detection_risk=0.98>0.85, score=0.6",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.6,
+        "metrics": {
+          "detection_risk": 0.98
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.98,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.98",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T16",
+      "description": "detection_risk=0.88>0.85, score=0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.45,
+        "metrics": {
+          "detection_risk": 0.88
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.88",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T17",
+      "description": "detection_risk=0.92>0.85, score=0.55",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.55,
+        "metrics": {
+          "detection_risk": 0.92
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.92,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.92",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T18",
+      "description": "detection_risk=0.99>0.85, score=0.65",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.65,
+        "metrics": {
+          "detection_risk": 0.99
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.99,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.99",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T19",
+      "description": "detection_risk=0.87>0.85, score=0.4",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.4,
+        "metrics": {
+          "detection_risk": 0.87
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.87,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.87",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    },
+    {
+      "id": "SC-15-T20",
+      "description": "detection_risk=0.93>0.85, score=0.5",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerFloodTool",
+        "score": 0.5,
+        "metrics": {
+          "detection_risk": 0.93
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.93,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": ">= 0.93",
+          "outcome_summary_contains": [
+            "detection",
+            "risk",
+            "abort",
+            "stop"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": "stop",
+          "stop_reason_not_empty": true,
+          "note": "Hard guard: effective_risk > 0.85 \u2192 stop before calling LLM"
+        }
+      },
+      "expected_final": {
+        "campaign_decision": "stop",
+        "stop_reason_not_empty": true
+      }
+    }
+  ]
+}

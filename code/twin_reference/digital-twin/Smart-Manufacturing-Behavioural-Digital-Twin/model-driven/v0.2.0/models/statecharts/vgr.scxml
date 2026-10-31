@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml"
+       version="1.0"
+       name="VGR Vacuum Gripper Robot"
+       initial="operational">
+  <state id="operational" initial="idle">
+    <transition event="command.stop" target="stopped"/>
+    <transition event="fault.*" target="fault"/>
+
+    <state id="idle">
+      <onentry><log label="actuator" expr="'VGR.all.stop'"/></onentry>
+      <transition event="command.start" target="home_horizontal"/>
+    </state>
+
+    <state id="home_horizontal">
+      <onentry><log label="actuator" expr="'VGR.axis_x.reverse'"/></onentry>
+      <transition event="sensor.x_reference" target="home_vertical"/>
+    </state>
+
+    <state id="home_vertical">
+      <onentry><log label="actuator" expr="'VGR.axis_z.up'"/></onentry>
+      <transition event="sensor.z_reference" target="home_rotation"/>
+    </state>
+
+    <state id="home_rotation">
+      <onentry><log label="actuator" expr="'VGR.axis_r.clockwise'"/></onentry>
+      <transition event="sensor.rotation_reference" target="ready"/>
+    </state>
+
+    <state id="ready">
+      <onentry><log label="actuator" expr="'VGR.all.stop'"/></onentry>
+      <transition event="command.pick" target="lower_to_pick"/>
+    </state>
+
+    <state id="lower_to_pick">
+      <onentry><log label="actuator" expr="'VGR.axis_z.down'"/></onentry>
+      <transition event="sensor.pick_height" target="vacuum_on"/>
+    </state>
+
+    <state id="vacuum_on">
+      <onentry><log label="actuator" expr="'VGR.vacuum.on'"/></onentry>
+      <transition event="sensor.vacuum_detected" target="lift_workpiece"/>
+      <transition event="timer.vacuum_timeout" target="fault"/>
+    </state>
+
+    <state id="lift_workpiece">
+      <onentry><log label="actuator" expr="'VGR.axis_z.up'"/></onentry>
+      <transition event="sensor.z_reference" target="rotate_to_target"/>
+    </state>
+
+    <state id="rotate_to_target">
+      <onentry><log label="actuator" expr="'VGR.axis_r.counterclockwise'"/></onentry>
+      <transition event="sensor.target_rotation" target="lower_to_place"/>
+    </state>
+
+    <state id="lower_to_place">
+      <onentry><log label="actuator" expr="'VGR.axis_z.down'"/></onentry>
+      <transition event="sensor.place_height" target="vacuum_off"/>
+    </state>
+
+    <state id="vacuum_off">
+      <onentry><log label="actuator" expr="'VGR.vacuum.off'"/></onentry>
+      <transition event="sensor.vacuum_released" target="lift_clear"/>
+    </state>
+
+    <state id="lift_clear">
+      <onentry><log label="actuator" expr="'VGR.axis_z.up'"/></onentry>
+      <transition event="sensor.z_reference" target="return_rotation"/>
+    </state>
+
+    <state id="return_rotation">
+      <onentry><log label="actuator" expr="'VGR.axis_r.clockwise'"/></onentry>
+      <transition event="sensor.rotation_reference" target="complete"/>
+    </state>
+
+    <state id="complete">
+      <onentry><log label="outcome" expr="'VGR.transfer.complete'"/></onentry>
+      <transition event="internal.reset" target="ready"/>
+    </state>
+  </state>
+
+  <state id="stopped">
+    <onentry><log label="actuator" expr="'VGR.all.stop'"/></onentry>
+    <transition event="command.reset" target="home_horizontal"/>
+  </state>
+
+  <state id="fault">
+    <onentry><log label="actuator" expr="'VGR.safe_stop'"/></onentry>
+    <transition event="command.acknowledge" target="home_horizontal"/>
+  </state>
+</scxml>
+

@@ -1,0 +1,10 @@
+{
+  "source":"v0.6.4/evidence/experiment-matrix.json",
+  "experiments":[
+    {"profile":"delay-jitter","degraded":true,"findings":["STALE_OBSERVATION"]},
+    {"profile":"loss","degraded":true,"findings":["MESSAGE_LOSS","SEQUENCE_GAP"]},
+    {"profile":"duplication","degraded":true,"findings":["DUPLICATE_SUPPRESSED"]},
+    {"profile":"reordering","degraded":true,"findings":["OUT_OF_ORDER","SEQUENCE_GAP","STALE_OBSERVATION"]},
+    {"profile":"broker-disconnection","degraded":true,"findings":["MESSAGE_LOSS","SEQUENCE_GAP"]}
+  ]
+}

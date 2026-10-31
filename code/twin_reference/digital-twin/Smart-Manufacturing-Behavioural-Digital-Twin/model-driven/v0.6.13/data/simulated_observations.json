@@ -1,0 +1,32 @@
+{
+  "schema":"aoa.simulated-observations/1.0",
+  "snapshot_id":"dt-snapshot-0613",
+  "captured_at":"2026-09-03T00:00:00Z",
+  "source":"controlled-digital-twin-fixture",
+  "assets":{
+    "plc":{"kind":"virtual PLC shadow","zone":"cell-control","state":"RUN","dependencies":["opcua","profinet"]},
+    "iot_gateway":{"kind":"virtual gateway","zone":"operations","state":"healthy","dependencies":["opcua","mqtt"]},
+    "mqtt_broker":{"kind":"virtual broker","zone":"operations","state":"healthy","dependencies":["mqtt"]},
+    "txt_controller":{"kind":"virtual TXT shadow","zone":"cell-control","state":"healthy","dependencies":["mqtt"]},
+    "hmi":{"kind":"virtual HMI","zone":"operations","state":"available","dependencies":["http"]},
+    "vgr":{"kind":"station twin","state":"IDLE","dependencies":["plc"]},
+    "hbw":{"kind":"station twin","state":"READY","dependencies":["plc"]},
+    "mpo":{"kind":"station twin","state":"READY","dependencies":["plc"]},
+    "sld":{"kind":"station twin","state":"READY","dependencies":["plc"]},
+    "dsi":{"kind":"station twin","state":"WAITING","dependencies":["txt_controller"]},
+    "dso":{"kind":"station twin","state":"WAITING","dependencies":["txt_controller"]},
+    "digital_twin":{"kind":"behavioural Digital Twin","state":"synchronised","dependencies":["mqtt","postgresql"]}
+  },
+  "services":{
+    "plc":[{"service":"opcua","port":4840,"status":"declared"}],
+    "iot_gateway":[{"service":"opcua-client","status":"declared"},{"service":"mqtt-client","status":"declared"}],
+    "mqtt_broker":[{"service":"mqtt","port":1883,"status":"simulated"}],
+    "txt_controller":[{"service":"mqtt-client","status":"declared"}],
+    "hmi":[{"service":"http","port":8080,"status":"simulated"}],
+    "digital_twin":[{"service":"evidence-api","status":"fixture-only"}]
+  },
+  "opcua":{"plc":{"endpoint":"opc.tcp://plc-shadow:4840","security_mode":"SignAndEncrypt","namespaces":["Factory","Stations"]},"iot_gateway":{"role":"client","subscription":"read-only","source":"plc-shadow"}},
+  "mqtt":{"mqtt_broker":{"topics":["factory/state","factory/evidence"],"qos":[1,2],"retained_policy":"metadata-only"},"iot_gateway":{"role":"publisher","topics":["factory/state"]},"digital_twin":{"role":"subscriber","topics":["factory/state","factory/evidence"]}},
+  "flows":{"plc-to-gateway":{"protocol":"opcua","direction":"plc->iot_gateway","observation":"recorded metadata flow"},"gateway-to-broker":{"protocol":"mqtt","direction":"iot_gateway->mqtt_broker","observation":"recorded telemetry flow"},"broker-to-twin":{"protocol":"mqtt","direction":"mqtt_broker->digital_twin","observation":"recorded evidence flow"},"txt-to-broker":{"protocol":"mqtt","direction":"txt_controller->mqtt_broker","observation":"recorded station telemetry"}},
+  "configurations":{"plc":{"write_access":false,"approved_protocols":["opcua","profinet"]},"iot_gateway":{"write_access":false,"approved_protocols":["opcua","mqtt"]},"mqtt_broker":{"anonymous_access":false,"approved_topics":["factory/state","factory/evidence"]},"txt_controller":{"write_access":false,"approved_protocols":["mqtt"]},"hmi":{"write_access":false,"approved_protocols":["http"]},"digital_twin":{"mode":"read-only-evidence"},"vgr":{"control":"disabled"},"hbw":{"control":"disabled"},"mpo":{"control":"disabled"},"sld":{"control":"disabled"},"dsi":{"control":"disabled"},"dso":{"control":"disabled"}}
+}

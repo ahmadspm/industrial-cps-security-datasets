@@ -1,0 +1,42 @@
+[
+  {
+    "source": "I5.0 Datasets/asset_vulnerabilities_enterprise.csv",
+    "reason": "Unverified vulnerability assertions omitted from validated public inventory"
+  },
+  {
+    "source": "I5.0 Datasets/asset_vulnerabilities_OT.csv",
+    "reason": "Unverified vulnerability assertions omitted from validated public inventory"
+  },
+  {
+    "source": "KG2/Node-and-relation/AUTHENTICATES.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/CONTROLS.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/HOST_ASSET.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/SUGGESTED_TACTIC.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/account_node.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/credential_node.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/product_domain_map.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  },
+  {
+    "source": "KG2/Node-and-relation/product_merged_with_type.csv",
+    "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+  }
+]

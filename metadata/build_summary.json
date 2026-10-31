@@ -1,0 +1,375 @@
+{
+  "benchmarks": {
+    "cti-ate.tsv": {
+      "source": 60,
+      "released": 60,
+      "excluded_label_ambiguity": 0
+    },
+    "cti-rcm-2021.tsv": {
+      "source": 1000,
+      "released": 991,
+      "excluded_label_ambiguity": 9
+    },
+    "cti-rcm.tsv": {
+      "source": 1000,
+      "released": 996,
+      "excluded_label_ambiguity": 4
+    }
+  },
+  "training_records": 358,
+  "synthetic_records": 10220,
+  "operational_event_records": 14124,
+  "operational_trace_files": 29,
+  "graph": {
+    "ATTACKABLE": {
+      "source_rows": 68,
+      "released_rows": 68,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "ATTACKABLE2": {
+      "source_rows": 136,
+      "released_rows": 136,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "BELONG_TO": {
+      "source_rows": 968,
+      "released_rows": 968,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "CAN_ALSO_BE": {
+      "source_rows": 27,
+      "released_rows": 27,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "CAN_PRECEDE": {
+      "source_rows": 143,
+      "released_rows": 143,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "COMMUNICATES_WITH": {
+      "source_rows": 120,
+      "released_rows": 120,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_CAPEC": {
+      "source_rows": 1212,
+      "released_rows": 897,
+      "unmatched_reference_rows_excluded": 315,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_CAPEC_CONSEQUENCE": {
+      "source_rows": 811,
+      "released_rows": 617,
+      "unmatched_reference_rows_excluded": 194,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_COMPONENT": {
+      "source_rows": 53,
+      "released_rows": 53,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_CONSEQUENCE": {
+      "source_rows": 1202,
+      "released_rows": 1202,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_CWE": {
+      "source_rows": 257125,
+      "released_rows": 243002,
+      "unmatched_reference_rows_excluded": 14123,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_CWE_MITIGATION": {
+      "source_rows": 1737,
+      "released_rows": 1737,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_DETECTION_METHOD": {
+      "source_rows": 746,
+      "released_rows": 746,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_MODE_OF_INTRODUCTION": {
+      "source_rows": 1258,
+      "released_rows": 1258,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "HAS_VULNERABILITY": {
+      "source_rows": 14909,
+      "released_rows": 14756,
+      "unmatched_reference_rows_excluded": 153,
+      "derived_duplicate_rows_removed": 0
+    },
+    "IS_CHILD_OF": {
+      "source_rows": 1153,
+      "released_rows": 1153,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "IS_PEER_OF": {
+      "source_rows": 95,
+      "released_rows": 95,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "LOCATED_IN": {
+      "source_rows": 2431,
+      "released_rows": 2431,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "MEASURES": {
+      "source_rows": 20,
+      "released_rows": 20,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "MITIGATES": {
+      "source_rows": 1752,
+      "released_rows": 1752,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "REQUIRES": {
+      "source_rows": 13,
+      "released_rows": 13,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "RUNS": {
+      "source_rows": 50,
+      "released_rows": 50,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "STARTS_WITH": {
+      "source_rows": 3,
+      "released_rows": 3,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "USES_PROTOCOL": {
+      "source_rows": 153,
+      "released_rows": 54,
+      "unmatched_reference_rows_excluded": 99,
+      "derived_duplicate_rows_removed": 0
+    },
+    "USE_MALWARE": {
+      "source_rows": 1053,
+      "released_rows": 1053,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "USE_TECHNIQUE": {
+      "source_rows": 4066,
+      "released_rows": 4066,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "actuator_node": {
+      "source_rows": 15,
+      "released_rows": 15,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "alert_node": {
+      "source_rows": 10,
+      "released_rows": 10,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "capecConsequence_node": {
+      "source_rows": 811,
+      "released_rows": 811,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "capec_node": {
+      "source_rows": 399,
+      "released_rows": 296,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 103
+    },
+    "component_node": {
+      "source_rows": 53,
+      "released_rows": 53,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cve_node": {
+      "source_rows": 291577,
+      "released_rows": 291577,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cweConsequence_node": {
+      "source_rows": 1202,
+      "released_rows": 1202,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cweDetection_node": {
+      "source_rows": 746,
+      "released_rows": 746,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cweMitigation_node": {
+      "source_rows": 1737,
+      "released_rows": 1737,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cweModeOfIntroduction_node": {
+      "source_rows": 1258,
+      "released_rows": 1258,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "cwe_node": {
+      "source_rows": 969,
+      "released_rows": 969,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "event_node": {
+      "source_rows": 25,
+      "released_rows": 25,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "group_node": {
+      "source_rows": 168,
+      "released_rows": 168,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "host_node": {
+      "source_rows": 128,
+      "released_rows": 128,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "machine_node": {
+      "source_rows": 10,
+      "released_rows": 10,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "malware_node": {
+      "source_rows": 555,
+      "released_rows": 555,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "mitigation_node": {
+      "source_rows": 96,
+      "released_rows": 96,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "processVariable_node": {
+      "source_rows": 10,
+      "released_rows": 10,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "product_node": {
+      "source_rows": 4668,
+      "released_rows": 4668,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "protocol_node": {
+      "source_rows": 9,
+      "released_rows": 9,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "sensor_node": {
+      "source_rows": 20,
+      "released_rows": 20,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "software_node": {
+      "source_rows": 10,
+      "released_rows": 10,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "tactic_node": {
+      "source_rows": 26,
+      "released_rows": 26,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "technique_node": {
+      "source_rows": 762,
+      "released_rows": 762,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    },
+    "zone_node": {
+      "source_rows": 6,
+      "released_rows": 6,
+      "unmatched_reference_rows_excluded": 0,
+      "derived_duplicate_rows_removed": 0
+    }
+  },
+  "excluded_tables": [
+    {
+      "source": "I5.0 Datasets/asset_vulnerabilities_enterprise.csv",
+      "reason": "Unverified vulnerability assertions omitted from validated public inventory"
+    },
+    {
+      "source": "I5.0 Datasets/asset_vulnerabilities_OT.csv",
+      "reason": "Unverified vulnerability assertions omitted from validated public inventory"
+    },
+    {
+      "source": "KG2/Node-and-relation/AUTHENTICATES.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/CONTROLS.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/HOST_ASSET.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/SUGGESTED_TACTIC.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/account_node.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/credential_node.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/product_domain_map.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    },
+    {
+      "source": "KG2/Node-and-relation/product_merged_with_type.csv",
+      "reason": "Sensitive account/credential, inferred-label, redundant or untyped relation table omitted"
+    }
+  ],
+  "release_boundary": "Curated public views only; no private repository history, raw account tables, network identifiers, diagnostic logs, screenshots or original bundles",
+  "excluded_benchmark_records": 13
+}

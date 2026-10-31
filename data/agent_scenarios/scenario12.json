@@ -1,0 +1,1183 @@
+{
+  "scenario_id": "SC-12",
+  "scenario_name": "ReAct agent must reject hallucinated tool names",
+  "endpoint": "/decide_react",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "_react_analyze_recon",
+    "_run_react_loop"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-12-T01",
+      "description": "ReAct must not select 'GhostTool' \u2014 not in tools_available",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT"
+          },
+          "topic_count": 8
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.85,
+          "TXT_HBW": 0.6
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "BrokerFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "campaign_plan": [],
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "must_not_select": "GhostTool",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "tool_must_not_be": "GhostTool"
+      }
+    },
+    {
+      "id": "SC-12-T02",
+      "description": "ReAct must not select 'FakeMQTT' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "must_not_select": "FakeMQTT",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "tool_must_not_be": "FakeMQTT"
+      }
+    },
+    {
+      "id": "SC-12-T03",
+      "description": "ReAct must not select 'HypotheticalExploit' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "must_not_select": "HypotheticalExploit",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "tool_must_not_be": "HypotheticalExploit"
+      }
+    },
+    {
+      "id": "SC-12-T04",
+      "description": "ReAct must not select 'SpoofStation' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool"
+          ],
+          "must_not_select": "SpoofStation",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "tool_must_not_be": "SpoofStation"
+      }
+    },
+    {
+      "id": "SC-12-T05",
+      "description": "ReAct must not select 'NotARealTool' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "must_not_select": "NotARealTool",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "tool_must_not_be": "NotARealTool"
+      }
+    },
+    {
+      "id": "SC-12-T06",
+      "description": "ReAct must not select 'MagicHack' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool"
+          ],
+          "must_not_select": "MagicHack",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool"
+        ],
+        "tool_must_not_be": "MagicHack"
+      }
+    },
+    {
+      "id": "SC-12-T07",
+      "description": "ReAct must not select 'FakePLC' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "must_not_select": "FakePLC",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "tool_must_not_be": "FakePLC"
+      }
+    },
+    {
+      "id": "SC-12-T08",
+      "description": "ReAct must not select 'PhantomBroker' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool"
+          ],
+          "must_not_select": "PhantomBroker",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "tool_must_not_be": "PhantomBroker"
+      }
+    },
+    {
+      "id": "SC-12-T09",
+      "description": "ReAct must not select 'GhostTool' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "must_not_select": "GhostTool",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "tool_must_not_be": "GhostTool"
+      }
+    },
+    {
+      "id": "SC-12-T10",
+      "description": "ReAct must not select 'FakeMQTT' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "must_not_select": "FakeMQTT",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "tool_must_not_be": "FakeMQTT"
+      }
+    },
+    {
+      "id": "SC-12-T11",
+      "description": "ReAct must not select 'HypotheticalExploit' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "must_not_select": "HypotheticalExploit",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "tool_must_not_be": "HypotheticalExploit"
+      }
+    },
+    {
+      "id": "SC-12-T12",
+      "description": "ReAct must not select 'SpoofStation' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool"
+          ],
+          "must_not_select": "SpoofStation",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "tool_must_not_be": "SpoofStation"
+      }
+    },
+    {
+      "id": "SC-12-T13",
+      "description": "ReAct must not select 'NotARealTool' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "must_not_select": "NotARealTool",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "tool_must_not_be": "NotARealTool"
+      }
+    },
+    {
+      "id": "SC-12-T14",
+      "description": "ReAct must not select 'MagicHack' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool"
+          ],
+          "must_not_select": "MagicHack",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool"
+        ],
+        "tool_must_not_be": "MagicHack"
+      }
+    },
+    {
+      "id": "SC-12-T15",
+      "description": "ReAct must not select 'FakePLC' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "must_not_select": "FakePLC",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "tool_must_not_be": "FakePLC"
+      }
+    },
+    {
+      "id": "SC-12-T16",
+      "description": "ReAct must not select 'PhantomBroker' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool"
+          ],
+          "must_not_select": "PhantomBroker",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "tool_must_not_be": "PhantomBroker"
+      }
+    },
+    {
+      "id": "SC-12-T17",
+      "description": "ReAct must not select 'GhostTool' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "must_not_select": "GhostTool",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "tool_must_not_be": "GhostTool"
+      }
+    },
+    {
+      "id": "SC-12-T18",
+      "description": "ReAct must not select 'FakeMQTT' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "must_not_select": "FakeMQTT",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool"
+        ],
+        "tool_must_not_be": "FakeMQTT"
+      }
+    },
+    {
+      "id": "SC-12-T19",
+      "description": "ReAct must not select 'HypotheticalExploit' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "must_not_select": "HypotheticalExploit",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "tool_must_not_be": "HypotheticalExploit"
+      }
+    },
+    {
+      "id": "SC-12-T20",
+      "description": "ReAct must not select 'SpoofStation' \u2014 not in tools_available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "history": [],
+        "simulation_running": false,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "_react_analyze_recon": {
+          "next_action": "attack",
+          "detection_risk": 0.0
+        },
+        "_run_react_loop": {
+          "tool_must_be_in_or_empty": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool"
+          ],
+          "must_not_select": "SpoofStation",
+          "note": "ReAct loop validates tool against tools_available after each LLM call"
+        }
+      },
+      "expected_final": {
+        "tool_in_available_or_empty": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool"
+        ],
+        "tool_must_not_be": "SpoofStation"
+      }
+    }
+  ]
+}

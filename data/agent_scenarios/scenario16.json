@@ -1,0 +1,1014 @@
+{
+  "scenario_id": "SC-16",
+  "scenario_name": "technique_id must always be valid MITRE format",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-16-T01",
+      "description": "top=MQTT_BROKER(0.88) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT",
+            "4840": "OPC-UA"
+          },
+          "topic_count": 12
+        },
+        "vuln_scores": {
+          "TXT_VGR": 0.9,
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.6
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "AckSpoofTool_vgr",
+          "VGRCommandInjector",
+          "BrokerInfoProbeTool",
+          "BrokerFloodTool",
+          "FalseStateInjector_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "campaign_plan": [],
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T02",
+      "description": "top=TXT_HBW(0.82) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.82,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T03",
+      "description": "top=TXT_VGR(0.85) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.85,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T04",
+      "description": "top=OpcuaServer(0.83) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.83,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T05",
+      "description": "top=TXT_MPO(0.79) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_MPO": 0.79
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T06",
+      "description": "top=TXT_SLD(0.76) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_SLD": 0.76
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T07",
+      "description": "top=Dashboard(0.72) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T08",
+      "description": "top=Historian(0.7) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "Historian": 0.7
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T09",
+      "description": "top=IOT_GATEWAY(0.7) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "IOT_GATEWAY": 0.7
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T10",
+      "description": "top=MQTT_BROKER(0.91) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.91,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T11",
+      "description": "top=TXT_HBW(0.8) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.8,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T12",
+      "description": "top=TXT_VGR(0.84) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.84,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T13",
+      "description": "top=MQTT_BROKER(0.87) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.87,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T14",
+      "description": "top=OpcuaServer(0.86) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.86,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T15",
+      "description": "top=TXT_MPO(0.81) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_MPO": 0.81
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T16",
+      "description": "top=MQTT_BROKER(0.89) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.89,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T17",
+      "description": "top=TXT_HBW(0.77) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.77,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T18",
+      "description": "top=TXT_VGR(0.83) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.83,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T19",
+      "description": "top=MQTT_BROKER(0.93) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.93,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    },
+    {
+      "id": "SC-16-T20",
+      "description": "top=OpcuaServer(0.84) \u2014 technique must be T#### or T####.###",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.84,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "generate_mitre_plan": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "must_match_target_category": true,
+          "note": "generate_mitre_plan must output a valid MITRE ATT&CK technique ID"
+        },
+        "select_tool": {
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "note": "select_tool must also output a valid technique_id"
+        }
+      },
+      "expected_final": {
+        "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+      }
+    }
+  ]
+}

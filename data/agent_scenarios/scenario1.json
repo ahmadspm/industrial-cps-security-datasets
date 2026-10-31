@@ -1,0 +1,1385 @@
+{
+  "scenario_id": "SC-01",
+  "scenario_name": "Fresh campaign should proceed",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-01-T01",
+      "description": "Fresh campaign, top=MQTT_BROKER(0.88), round=1, no history",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT",
+            "4840": "OPC-UA"
+          },
+          "topic_count": 12
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.85,
+          "TXT_HBW": 0.65,
+          "TXT_VGR": 0.6
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "BrokerFloodTool",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "campaign_plan": [],
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "MQTT_BROKER",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T02",
+      "description": "Fresh campaign, top=TXT_HBW(0.82), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.82,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_HBW",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_HBW",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T03",
+      "description": "Fresh campaign, top=TXT_VGR(0.85), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.85,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_VGR",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_VGR",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T04",
+      "description": "Fresh campaign, top=TXT_MPO(0.79), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_MPO": 0.79
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_MPO",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_MPO",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T05",
+      "description": "Fresh campaign, top=TXT_SLD(0.76), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_SLD": 0.76
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_SLD",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_SLD",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T06",
+      "description": "Fresh campaign, top=OpcuaServer(0.83), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.83,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "OpcuaServer",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "OpcuaServer",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T07",
+      "description": "Fresh campaign, top=Dashboard(0.72), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "Dashboard",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "Dashboard",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T08",
+      "description": "Fresh campaign, top=Historian(0.7), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "Historian": 0.7
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "Historian",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "Historian",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T09",
+      "description": "Fresh campaign, top=IOT_GATEWAY(0.7), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "IOT_GATEWAY": 0.7
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "IOT_GATEWAY",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "IOT_GATEWAY",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T10",
+      "description": "Fresh campaign, top=WIFI_AP(0.72), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "WIFI_AP": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "WIFI_AP",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "WIFI_AP",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T11",
+      "description": "Fresh campaign, top=MQTT_BROKER(0.91), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.91,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "MQTT_BROKER",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T12",
+      "description": "Fresh campaign, top=TXT_HBW(0.8), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.8,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_HBW",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_HBW",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T13",
+      "description": "Fresh campaign, top=TXT_VGR(0.84), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.84,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_VGR",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_VGR",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T14",
+      "description": "Fresh campaign, top=TXT_MPO(0.81), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_MPO": 0.81
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_MPO",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_MPO",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T15",
+      "description": "Fresh campaign, top=TXT_SLD(0.78), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72,
+          "TXT_SLD": 0.78
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_SLD",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_SLD",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T16",
+      "description": "Fresh campaign, top=OpcuaServer(0.86), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.86,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "OpcuaServer",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "OpcuaServer",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T17",
+      "description": "Fresh campaign, top=MQTT_BROKER(0.87), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.87,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "MQTT_BROKER",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T18",
+      "description": "Fresh campaign, top=TXT_HBW(0.77), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.77,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_HBW",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_HBW",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T19",
+      "description": "Fresh campaign, top=TXT_VGR(0.89), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.7,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.89,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "TXT_VGR",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "TXT_VGR",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    },
+    {
+      "id": "SC-01-T20",
+      "description": "Fresh campaign, top=MQTT_BROKER(0.93), round=1, no history",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.93,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool",
+          "FalseStateInjector_hbw",
+          "FalseStateInjector_mpo",
+          "AckSpoofTool_hbw",
+          "AckSpoofTool_vgr",
+          "InventoryPoisonTool_full",
+          "InventoryPoisonTool_empty",
+          "WorkpieceColorSpoofer",
+          "StationLockerTool_vgr",
+          "StationLockerTool_hbw",
+          "VGRCommandInjector",
+          "MessageReplayTool_hbw"
+        ],
+        "history": [],
+        "simulation_running": true,
+        "current_round": 1
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": 0.0,
+          "note": "No history \u2192 risk=0.0 \u2192 must choose attack, not stop"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$",
+          "causal_chain_starts_at": "MQTT_BROKER",
+          "severity": [
+            "Low",
+            "Medium",
+            "High"
+          ]
+        },
+        "select_tool": {
+          "tool_must_be_in": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool",
+            "ConnectionStormTool",
+            "BrokerFloodTool",
+            "OPCUAReadFloodTool",
+            "FalseStateInjector_hbw",
+            "FalseStateInjector_mpo",
+            "AckSpoofTool_hbw",
+            "AckSpoofTool_vgr",
+            "InventoryPoisonTool_full",
+            "InventoryPoisonTool_empty",
+            "WorkpieceColorSpoofer",
+            "StationLockerTool_vgr",
+            "StationLockerTool_hbw",
+            "VGRCommandInjector",
+            "MessageReplayTool_hbw"
+          ],
+          "tool_must_not_be_empty": true
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_empty": true
+      }
+    }
+  ]
+}

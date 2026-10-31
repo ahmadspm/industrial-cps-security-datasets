@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="MPO Multi-Processing Station" initial="idle">
+  <state id="idle"><onentry><log label="actuator" expr="'MPO.all.stop'"/></onentry><transition event="command.process" target="burn"/><transition event="fault.*" target="fault"/></state>
+  <state id="burn"><onentry><log label="actuator" expr="'MPO.oven.on'"/></onentry><transition event="timer.burn_complete" target="vgr_transport"/><transition event="timer.oven_timeout" target="fault"/></state>
+  <state id="vgr_transport"><onentry><log label="actuator" expr="'MPO.turntable.to_saw'"/></onentry><transition event="sensor.at_saw" target="table_saw"/></state>
+  <state id="table_saw"><onentry><log label="actuator" expr="'MPO.saw.on'"/></onentry><transition event="timer.saw_complete" target="table_belt"/></state>
+  <state id="table_belt"><onentry><log label="actuator" expr="'MPO.belt.forward'"/></onentry><transition event="sensor.at_eject" target="eject"/></state>
+  <state id="eject"><onentry><log label="actuator" expr="'MPO.ejector.extend'"/></onentry><transition event="sensor.ejected" target="transport"/></state>
+  <state id="transport"><onentry><log label="outcome" expr="'MPO.workpiece.processed'"/></onentry><transition event="vgr.pick_confirmed" target="complete"/></state>
+  <state id="complete"><transition event="internal.reset" target="idle"/></state>
+  <state id="fault"><onentry><log label="actuator" expr="'MPO.safe_stop'"/></onentry><transition event="command.reset" target="idle"/></state>
+</scxml>
+

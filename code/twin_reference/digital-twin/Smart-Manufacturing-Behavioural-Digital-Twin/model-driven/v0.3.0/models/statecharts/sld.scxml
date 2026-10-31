@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="SLD Sorting Line" initial="idle">
+  <state id="idle"><onentry><log label="actuator" expr="'SLD.conveyor.stop'"/></onentry><transition event="command.sort" target="start"/><transition event="fault.*" target="fault"/></state>
+  <state id="start"><onentry><log label="actuator" expr="'SLD.conveyor.forward'"/></onentry><transition event="sensor.entry" target="color_detection"/></state>
+  <state id="color_detection"><onentry><log label="actuator" expr="'SLD.colour_sensor.sample'"/></onentry><transition event="sensor.colour_detected" target="start_count"/><transition event="timer.colour_timeout" target="fault"/></state>
+  <state id="start_count"><onentry><log label="actuator" expr="'SLD.encoder.reset'"/></onentry><transition event="encoder.started" target="check_count"/></state>
+  <state id="check_count"><transition event="route.white" target="ejection_white"/><transition event="route.red" target="ejection_red"/><transition event="route.blue" target="ejection_blue"/></state>
+  <state id="ejection_white"><onentry><log label="actuator" expr="'SLD.ejector.white'"/></onentry><transition event="sensor.ejected" target="sorted"/></state>
+  <state id="ejection_red"><onentry><log label="actuator" expr="'SLD.ejector.red'"/></onentry><transition event="sensor.ejected" target="sorted"/></state>
+  <state id="ejection_blue"><onentry><log label="actuator" expr="'SLD.ejector.blue'"/></onentry><transition event="sensor.ejected" target="sorted"/></state>
+  <state id="sorted"><onentry><log label="outcome" expr="'SLD.workpiece.sorted'"/></onentry><transition event="internal.reset" target="idle"/></state>
+  <state id="fault"><onentry><log label="actuator" expr="'SLD.safe_stop'"/></onentry><transition event="command.reset" target="idle"/></state>
+</scxml>
+

@@ -1,0 +1,1154 @@
+{
+  "scenario_id": "SC-11",
+  "scenario_name": "Strong score + low risk \u2192 escalate or continue",
+  "endpoint": "/reflect",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "evaluate_outcome",
+    "decide_continuation"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-11-T01",
+      "description": "score=0.75>0.75, risk=0.15<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 3,
+        "tool": "FalseStateInjector_hbw",
+        "score": 0.75,
+        "metrics": {
+          "rate_score": 0.3,
+          "silence_score": 0.8,
+          "topic_score": 0.65,
+          "error_msgs": 1
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.52,
+            "technique": "T0861",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.18
+          },
+          {
+            "round": 2,
+            "tool": "FalseStateInjector_hbw",
+            "score": 0.65,
+            "technique": "T0832",
+            "target_node": "TXT_HBW",
+            "detection_risk": 0.25
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.15",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T02",
+      "description": "score=0.8>0.75, risk=0.2<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.8,
+        "metrics": {
+          "detection_risk": 0.2
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.75,
+            "detection_risk": 0.2
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.76,
+            "detection_risk": 0.2
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.77,
+            "detection_risk": 0.2
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.2",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T03",
+      "description": "score=0.85>0.75, risk=0.1<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.85,
+        "metrics": {
+          "detection_risk": 0.1
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.7999999999999999,
+            "detection_risk": 0.1
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.8099999999999999,
+            "detection_risk": 0.1
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.82,
+            "detection_risk": 0.1
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.1",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T04",
+      "description": "score=0.78>0.75, risk=0.18<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.78,
+        "metrics": {
+          "detection_risk": 0.18
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.73,
+            "detection_risk": 0.18
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.74,
+            "detection_risk": 0.18
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.75,
+            "detection_risk": 0.18
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.18",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T05",
+      "description": "score=0.9>0.75, risk=0.08<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.9,
+        "metrics": {
+          "detection_risk": 0.08
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.85,
+            "detection_risk": 0.08
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.86,
+            "detection_risk": 0.08
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.87,
+            "detection_risk": 0.08
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.08",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T06",
+      "description": "score=0.82>0.75, risk=0.22<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.82,
+        "metrics": {
+          "detection_risk": 0.22
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.7699999999999999,
+            "detection_risk": 0.22
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.7799999999999999,
+            "detection_risk": 0.22
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.7899999999999999,
+            "detection_risk": 0.22
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.22",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T07",
+      "description": "score=0.88>0.75, risk=0.12<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.88,
+        "metrics": {
+          "detection_risk": 0.12
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.83,
+            "detection_risk": 0.12
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.84,
+            "detection_risk": 0.12
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.85,
+            "detection_risk": 0.12
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.12",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T08",
+      "description": "score=0.76>0.75, risk=0.16<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.76,
+        "metrics": {
+          "detection_risk": 0.16
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.71,
+            "detection_risk": 0.16
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.72,
+            "detection_risk": 0.16
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.73,
+            "detection_risk": 0.16
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.16",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T09",
+      "description": "score=0.92>0.75, risk=0.05<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.92,
+        "metrics": {
+          "detection_risk": 0.05
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.87,
+            "detection_risk": 0.05
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.88,
+            "detection_risk": 0.05
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.89,
+            "detection_risk": 0.05
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.05",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T10",
+      "description": "score=0.83>0.75, risk=0.19<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.83,
+        "metrics": {
+          "detection_risk": 0.19
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.7799999999999999,
+            "detection_risk": 0.19
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.7899999999999999,
+            "detection_risk": 0.19
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.7999999999999999,
+            "detection_risk": 0.19
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.19",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T11",
+      "description": "score=0.77>0.75, risk=0.14<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.77,
+        "metrics": {
+          "detection_risk": 0.14
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.72,
+            "detection_risk": 0.14
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.73,
+            "detection_risk": 0.14
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.74,
+            "detection_risk": 0.14
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.14",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T12",
+      "description": "score=0.86>0.75, risk=0.11<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.86,
+        "metrics": {
+          "detection_risk": 0.11
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.8099999999999999,
+            "detection_risk": 0.11
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.82,
+            "detection_risk": 0.11
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.83,
+            "detection_risk": 0.11
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.11",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T13",
+      "description": "score=0.91>0.75, risk=0.07<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.91,
+        "metrics": {
+          "detection_risk": 0.07
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.86,
+            "detection_risk": 0.07
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.87,
+            "detection_risk": 0.07
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.88,
+            "detection_risk": 0.07
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.07",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T14",
+      "description": "score=0.79>0.75, risk=0.21<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.79,
+        "metrics": {
+          "detection_risk": 0.21
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.74,
+            "detection_risk": 0.21
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.75,
+            "detection_risk": 0.21
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.76,
+            "detection_risk": 0.21
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.21",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T15",
+      "description": "score=0.87>0.75, risk=0.13<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.87,
+        "metrics": {
+          "detection_risk": 0.13
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.82,
+            "detection_risk": 0.13
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.83,
+            "detection_risk": 0.13
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.84,
+            "detection_risk": 0.13
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.13",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T16",
+      "description": "score=0.81>0.75, risk=0.17<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.81,
+        "metrics": {
+          "detection_risk": 0.17
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.76,
+            "detection_risk": 0.17
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.77,
+            "detection_risk": 0.17
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.78,
+            "detection_risk": 0.17
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.17",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T17",
+      "description": "score=0.93>0.75, risk=0.06<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.93,
+        "metrics": {
+          "detection_risk": 0.06
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.88,
+            "detection_risk": 0.06
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.89,
+            "detection_risk": 0.06
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.9,
+            "detection_risk": 0.06
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.06",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T18",
+      "description": "score=0.84>0.75, risk=0.2<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.84,
+        "metrics": {
+          "detection_risk": 0.2
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.7899999999999999,
+            "detection_risk": 0.2
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.7999999999999999,
+            "detection_risk": 0.2
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.8099999999999999,
+            "detection_risk": 0.2
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.2",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T19",
+      "description": "score=0.76>0.75, risk=0.16<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.76,
+        "metrics": {
+          "detection_risk": 0.16
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.71,
+            "detection_risk": 0.16
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.72,
+            "detection_risk": 0.16
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.73,
+            "detection_risk": 0.16
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.16",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    },
+    {
+      "id": "SC-11-T20",
+      "description": "score=0.89>0.75, risk=0.09<0.25 \u2192 escalate/continue",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.89,
+        "metrics": {
+          "detection_risk": 0.09
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.84,
+            "detection_risk": 0.09
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.85,
+            "detection_risk": 0.09
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.86,
+            "detection_risk": 0.09
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.09",
+          "outcome_summary_contains": [
+            "success",
+            "effective",
+            "high score",
+            "impact"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "escalate",
+            "continue"
+          ],
+          "note": "High score + low risk \u2192 LLM should choose escalate or continue"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "escalate",
+          "continue"
+        ]
+      }
+    }
+  ]
+}

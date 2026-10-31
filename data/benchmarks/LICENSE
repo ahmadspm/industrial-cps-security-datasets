@@ -1,0 +1,23 @@
+CTIBench-derived benchmark views
+
+These files are adapted from CTIBench by Md Tanvirul Alam, Dipkamal Bhusal,
+Le Nguyen and Nidhi Rastogi, distributed by the AI4Sec CTIBench project.
+
+License: Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0), not the collection's default CC BY 4.0.
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+Original dataset and attribution:
+https://huggingface.co/datasets/AI4Sec/cti-bench
+https://github.com/maveryn/cti-bench
+Alam, M. T., Bhusal, D., Nguyen, L., & Rastogi, N. (2024).
+CTIBench: A benchmark for evaluating LLMs in cyber threat intelligence.
+Advances in Neural Information Processing Systems, 37, 50805–50825.
+https://arxiv.org/abs/2406.07599
+
+Changes: reference URL fields removed; pattern-based identifier treatment;
+13 records from five ambiguous description/label groups excluded; source
+record ordinals and explicit reference-label status added. Task labels are
+not independently certified. Retain the original attribution, source license
+and change notice in further adaptations. No endorsement is implied.

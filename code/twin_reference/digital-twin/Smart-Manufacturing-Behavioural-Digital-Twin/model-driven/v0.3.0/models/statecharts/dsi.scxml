@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="DSI Delivery and Input" initial="idle">
+  <state id="idle"><onentry><log label="actuator" expr="'DSI.conveyor.stop'"/></onentry><transition event="sensor.workpiece_present" target="nfc_read"/><transition event="fault.*" target="fault"/></state>
+  <state id="nfc_read"><onentry><log label="actuator" expr="'DSI.nfc.read'"/></onentry><transition event="nfc.valid" target="ready_for_pick"/><transition event="nfc.invalid timer.nfc_timeout" target="fault"/></state>
+  <state id="ready_for_pick"><onentry><log label="outcome" expr="'DSI.workpiece.available'"/></onentry><transition event="vgr.pick_confirmed" target="released"/></state>
+  <state id="released"><transition event="sensor.clear" target="idle"/></state>
+  <state id="fault"><onentry><log label="actuator" expr="'DSI.safe_stop'"/></onentry><transition event="command.reset" target="idle"/></state>
+</scxml>
+

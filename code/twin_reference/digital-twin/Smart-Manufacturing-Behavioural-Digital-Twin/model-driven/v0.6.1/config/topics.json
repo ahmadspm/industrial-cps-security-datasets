@@ -1,0 +1,15 @@
+{
+  "state_topics": {
+    "dps_input":"f/i/state/dsi",
+    "dps_output":"f/i/state/dso",
+    "vgr":"f/i/state/vgr",
+    "hbw":"f/i/state/hbw",
+    "mpo":"f/i/state/mpo",
+    "sld":"f/i/state/sld"
+  },
+  "factory_topics": ["f/i/stock","f/i/order","f/o/order","f/i/nfc/ds","f/o/nfc/ds","f/i/alert","f/o/state/ack"],
+  "txt_topics": ["i/bme680","i/ldr","i/cam","i/ptu/pos","o/ptu","c/bme680","c/ldr","c/cam"],
+  "low_level_topics": ["fl/vgr/do","fl/hbw/ack","fl/mpo/ack","fl/sld/ack","fl/ssc/joy","fl/i/nfc/ds","fl/o/nfc/ds"],
+  "default_qos": 1,
+  "retain_state_topics": true
+}

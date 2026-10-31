@@ -1,0 +1,1578 @@
+{
+  "scenario_id": "SC-04",
+  "scenario_name": "Loud tool swapped to stealth on high risk",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-04-T01",
+      "description": "loud=BrokerFloodTool, stealth=BrokerInfoProbeTool, risk=0.72",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT"
+          },
+          "topic_count": 10
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.92,
+          "TXT_HBW": 0.5
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "BrokerFloodTool",
+          "BrokerInfoProbeTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.38,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.89
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.34,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.92
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.3,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.94
+          }
+        ],
+        "simulation_running": false,
+        "campaign_plan": [],
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.72"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T02",
+      "description": "loud=ConnectionStormTool, stealth=BrokerInfoProbeTool, risk=0.75",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.75"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T03",
+      "description": "loud=BrokerFloodTool, stealth=RetainedMessagePoisonTool, risk=0.7",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T04",
+      "description": "loud=ConnectionStormTool, stealth=TopicHijackTool, risk=0.78",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.78"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T05",
+      "description": "loud=BrokerFloodTool, stealth=BrokerInfoProbeTool, risk=0.8",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.8"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T06",
+      "description": "loud=ConnectionStormTool, stealth=RetainedMessagePoisonTool, risk=0.73",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.73"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T07",
+      "description": "loud=BrokerFloodTool, stealth=TopicHijackTool, risk=0.76",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.76"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T08",
+      "description": "loud=ConnectionStormTool, stealth=BrokerInfoProbeTool, risk=0.71",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.71"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T09",
+      "description": "loud=BrokerFloodTool, stealth=RetainedMessagePoisonTool, risk=0.82",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.82"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T10",
+      "description": "loud=ConnectionStormTool, stealth=TopicHijackTool, risk=0.74",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.74"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T11",
+      "description": "loud=BrokerFloodTool, stealth=BrokerInfoProbeTool, risk=0.77",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.77,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.77,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.77,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.77"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T12",
+      "description": "loud=ConnectionStormTool, stealth=RetainedMessagePoisonTool, risk=0.79",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.79"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T13",
+      "description": "loud=BrokerFloodTool, stealth=TopicHijackTool, risk=0.83",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.83"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T14",
+      "description": "loud=ConnectionStormTool, stealth=BrokerInfoProbeTool, risk=0.7",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T15",
+      "description": "loud=BrokerFloodTool, stealth=RetainedMessagePoisonTool, risk=0.81",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.81"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T16",
+      "description": "loud=ConnectionStormTool, stealth=TopicHijackTool, risk=0.72",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.72,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.72,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.72,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.72"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T17",
+      "description": "loud=BrokerFloodTool, stealth=BrokerInfoProbeTool, risk=0.74",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.74"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T18",
+      "description": "loud=ConnectionStormTool, stealth=RetainedMessagePoisonTool, risk=0.86",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "RetainedMessagePoisonTool",
+          "BrokerInfoProbeTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.86"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T19",
+      "description": "loud=BrokerFloodTool, stealth=TopicHijackTool, risk=0.7",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "TopicHijackTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "ConnectionStormTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "BrokerFloodTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "BrokerFloodTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    },
+    {
+      "id": "SC-04-T20",
+      "description": "loud=ConnectionStormTool, stealth=BrokerInfoProbeTool, risk=0.88",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerInfoProbeTool",
+          "RetainedMessagePoisonTool",
+          "TopicHijackTool",
+          "BrokerFloodTool",
+          "OPCUAReadFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.88"
+        },
+        "generate_mitre_plan": {
+          "target_node": "MQTT_BROKER",
+          "technique_id_pattern": "^T\\d{4}(\\.\\d+)*$"
+        },
+        "select_tool": {
+          "tool_must_not_be": "ConnectionStormTool"
+        },
+        "risk_check": {
+          "action": "swap",
+          "from": "ConnectionStormTool",
+          "to_one_of": [
+            "BrokerInfoProbeTool",
+            "RetainedMessagePoisonTool",
+            "TopicHijackTool"
+          ],
+          "note": "risk_check is deterministic Python \u2014 swaps loud\u2192stealth when risk>0.60"
+        }
+      },
+      "expected_final": {
+        "stop": false,
+        "tool_not_in": [
+          "OPCUAReadFloodTool",
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ]
+      }
+    }
+  ]
+}

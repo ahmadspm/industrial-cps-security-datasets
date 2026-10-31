@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "smart-manufacturing-behavioural-digital-twin"
+version = "0.1.1"
+description = "Behavioural Digital Twin kernel for the fischertechnik Training Factory Industry 4.0 24 V"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+dependencies = []
+
+[project.scripts]
+smart-factory-dt = "smart_factory_dt.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

@@ -1,0 +1,14 @@
+user gateway
+topic read i/#
+topic read f/o/#
+topic write f/i/#
+topic write fl/#
+
+user twin
+topic read f/i/#
+topic read i/#
+
+user txt
+topic write i/#
+topic read c/#
+topic read o/#

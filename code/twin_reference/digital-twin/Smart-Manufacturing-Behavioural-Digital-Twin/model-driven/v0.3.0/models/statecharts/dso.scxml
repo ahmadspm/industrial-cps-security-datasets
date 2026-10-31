@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0" name="DSO Delivery and Output" initial="idle">
+  <state id="idle"><onentry><log label="actuator" expr="'DSO.output.clear'"/></onentry><transition event="vgr.place_confirmed" target="workpiece_received"/><transition event="fault.*" target="fault"/></state>
+  <state id="workpiece_received"><transition event="sensor.output_present" target="order_complete"/></state>
+  <state id="order_complete"><onentry><log label="outcome" expr="'DSO.order.complete'"/></onentry><transition event="operator.remove" target="clearing"/></state>
+  <state id="clearing"><transition event="sensor.clear" target="idle"/></state>
+  <state id="fault"><onentry><log label="actuator" expr="'DSO.safe_stop'"/></onentry><transition event="command.reset" target="idle"/></state>
+</scxml>
+

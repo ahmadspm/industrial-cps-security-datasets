@@ -1,0 +1,1162 @@
+{
+  "scenario_id": "SC-17",
+  "scenario_name": "Stable mid-range campaign \u2192 continue or escalate",
+  "endpoint": "/reflect",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "evaluate_outcome",
+    "decide_continuation"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-17-T01",
+      "description": "stable improving 0.55\u21920.61, risk=0.3<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.48,
+        "metrics": {
+          "rate_score": 0.35,
+          "silence_score": 0.72,
+          "topic_score": 0.55,
+          "error_msgs": 0
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.4,
+            "technique": "T0861",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.18
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.44,
+            "technique": "T1565",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.22
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.47,
+            "technique": "T1565",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.25
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.3",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T02",
+      "description": "stable improving 0.58\u21920.64, risk=0.35<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.6399999999999999,
+        "metrics": {
+          "detection_risk": 0.35
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.58,
+            "detection_risk": 0.35
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.6,
+            "detection_risk": 0.35
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.62,
+            "detection_risk": 0.35
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.35",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T03",
+      "description": "stable improving 0.60\u21920.66, risk=0.25<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.6599999999999999,
+        "metrics": {
+          "detection_risk": 0.25
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.6,
+            "detection_risk": 0.25
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.62,
+            "detection_risk": 0.25
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.64,
+            "detection_risk": 0.25
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.25",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T04",
+      "description": "stable improving 0.52\u21920.58, risk=0.4<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.5800000000000001,
+        "metrics": {
+          "detection_risk": 0.4
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.52,
+            "detection_risk": 0.4
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.54,
+            "detection_risk": 0.4
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.56,
+            "detection_risk": 0.4
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.4",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T05",
+      "description": "stable improving 0.65\u21920.71, risk=0.28<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.71,
+        "metrics": {
+          "detection_risk": 0.28
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.65,
+            "detection_risk": 0.28
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.67,
+            "detection_risk": 0.28
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.6900000000000001,
+            "detection_risk": 0.28
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.28",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T06",
+      "description": "stable improving 0.57\u21920.63, risk=0.38<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.6299999999999999,
+        "metrics": {
+          "detection_risk": 0.38
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.57,
+            "detection_risk": 0.38
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.59,
+            "detection_risk": 0.38
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.61,
+            "detection_risk": 0.38
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.38",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T07",
+      "description": "stable improving 0.62\u21920.68, risk=0.32<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.6799999999999999,
+        "metrics": {
+          "detection_risk": 0.32
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.62,
+            "detection_risk": 0.32
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.64,
+            "detection_risk": 0.32
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.66,
+            "detection_risk": 0.32
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.32",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T08",
+      "description": "stable improving 0.54\u21920.60, risk=0.42<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.6000000000000001,
+        "metrics": {
+          "detection_risk": 0.42
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.54,
+            "detection_risk": 0.42
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.56,
+            "detection_risk": 0.42
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.5800000000000001,
+            "detection_risk": 0.42
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.42",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T09",
+      "description": "stable improving 0.68\u21920.74, risk=0.22<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.74,
+        "metrics": {
+          "detection_risk": 0.22
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.68,
+            "detection_risk": 0.22
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.7000000000000001,
+            "detection_risk": 0.22
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.7200000000000001,
+            "detection_risk": 0.22
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.22",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T10",
+      "description": "stable improving 0.59\u21920.65, risk=0.36<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.6499999999999999,
+        "metrics": {
+          "detection_risk": 0.36
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.59,
+            "detection_risk": 0.36
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.61,
+            "detection_risk": 0.36
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.63,
+            "detection_risk": 0.36
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.36",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T11",
+      "description": "stable improving 0.56\u21920.62, risk=0.31<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.6200000000000001,
+        "metrics": {
+          "detection_risk": 0.31
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.56,
+            "detection_risk": 0.31
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.5800000000000001,
+            "detection_risk": 0.31
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.6000000000000001,
+            "detection_risk": 0.31
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.31",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T12",
+      "description": "stable improving 0.63\u21920.69, risk=0.27<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.69,
+        "metrics": {
+          "detection_risk": 0.27
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.63,
+            "detection_risk": 0.27
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.65,
+            "detection_risk": 0.27
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.67,
+            "detection_risk": 0.27
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.27",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T13",
+      "description": "stable improving 0.51\u21920.57, risk=0.43<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.5700000000000001,
+        "metrics": {
+          "detection_risk": 0.43
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.51,
+            "detection_risk": 0.43
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.53,
+            "detection_risk": 0.43
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.55,
+            "detection_risk": 0.43
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.43",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T14",
+      "description": "stable improving 0.66\u21920.72, risk=0.24<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.72,
+        "metrics": {
+          "detection_risk": 0.24
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.66,
+            "detection_risk": 0.24
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.68,
+            "detection_risk": 0.24
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.7000000000000001,
+            "detection_risk": 0.24
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.24",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T15",
+      "description": "stable improving 0.53\u21920.59, risk=0.39<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.5900000000000001,
+        "metrics": {
+          "detection_risk": 0.39
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.53,
+            "detection_risk": 0.39
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.55,
+            "detection_risk": 0.39
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.5700000000000001,
+            "detection_risk": 0.39
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.39",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T16",
+      "description": "stable improving 0.61\u21920.67, risk=0.33<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.6699999999999999,
+        "metrics": {
+          "detection_risk": 0.33
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.61,
+            "detection_risk": 0.33
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.63,
+            "detection_risk": 0.33
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.65,
+            "detection_risk": 0.33
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.33",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T17",
+      "description": "stable improving 0.64\u21920.70, risk=0.26<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.7,
+        "metrics": {
+          "detection_risk": 0.26
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.64,
+            "detection_risk": 0.26
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.66,
+            "detection_risk": 0.26
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.68,
+            "detection_risk": 0.26
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.26",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T18",
+      "description": "stable improving 0.50\u21920.56, risk=0.45<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "RetainedMessagePoisonTool",
+        "score": 0.56,
+        "metrics": {
+          "detection_risk": 0.45
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.5,
+            "detection_risk": 0.45
+          },
+          {
+            "round": 2,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.52,
+            "detection_risk": 0.45
+          },
+          {
+            "round": 3,
+            "tool": "RetainedMessagePoisonTool",
+            "score": 0.54,
+            "detection_risk": 0.45
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.45",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T19",
+      "description": "stable improving 0.67\u21920.73, risk=0.23<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "BrokerInfoProbeTool",
+        "score": 0.73,
+        "metrics": {
+          "detection_risk": 0.23
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.67,
+            "detection_risk": 0.23
+          },
+          {
+            "round": 2,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.6900000000000001,
+            "detection_risk": 0.23
+          },
+          {
+            "round": 3,
+            "tool": "BrokerInfoProbeTool",
+            "score": 0.7100000000000001,
+            "detection_risk": 0.23
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.23",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    },
+    {
+      "id": "SC-17-T20",
+      "description": "stable improving 0.58\u21920.64, risk=0.37<0.45",
+      "input": {
+        "round_n": 4,
+        "tool": "TopicHijackTool",
+        "score": 0.6399999999999999,
+        "metrics": {
+          "detection_risk": 0.37
+        },
+        "history": [
+          {
+            "round": 1,
+            "tool": "TopicHijackTool",
+            "score": 0.58,
+            "detection_risk": 0.37
+          },
+          {
+            "round": 2,
+            "tool": "TopicHijackTool",
+            "score": 0.6,
+            "detection_risk": 0.37
+          },
+          {
+            "round": 3,
+            "tool": "TopicHijackTool",
+            "score": 0.62,
+            "detection_risk": 0.37
+          }
+        ],
+        "campaign_plan": []
+      },
+      "expected_llm_outputs": {
+        "evaluate_outcome": {
+          "detection_risk": "~0.37",
+          "outcome_summary_contains": [
+            "stable",
+            "improving",
+            "consistent",
+            "progress"
+          ]
+        },
+        "decide_continuation": {
+          "campaign_decision": [
+            "continue",
+            "escalate"
+          ],
+          "note": "Stable improving scores + moderate risk \u2192 continue or escalate"
+        }
+      },
+      "expected_final": {
+        "campaign_decision_in": [
+          "continue",
+          "escalate"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+protocol_id,layer,port,ics_specific
+entity_609ea4c6f1aadfa2,"[""C1_to_P0"", ""C2_to_C1""]",44818,True
+entity_b28b77c8fb1231da,"[""C2_to_C1"", ""C3_to_C2"", ""L3.5_to_C3"", ""L4_to_L3.5""]",443,False
+entity_8e200e3138e24d39,"[""L3.5_to_C3""]",1883,False
+entity_f5399b61afe574cb,"[""L3.5_to_C3""]",8883,False
+entity_429db09037c463fe,"[""C1_to_P0""]",502,False
+entity_9d00336181fa4078,"[""C2_to_C1"", ""C3_to_C2"", ""L3.5_to_C3""]",4840,True
+entity_1f5742352637de11,"[""L4_to_L3.5""]",3389,False
+entity_f3610bf52544cb66,"[""C2_to_C1""]",102,True
+entity_65b49b6270ea79cd,"[""C3_to_C2"", ""L4_to_L3.5""]",22,False

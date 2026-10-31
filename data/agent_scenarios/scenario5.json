@@ -1,0 +1,1151 @@
+{
+  "scenario_id": "SC-05",
+  "scenario_name": "Loud tool with no stealth alternative \u2192 abort",
+  "endpoint": "/decide",
+  "rule": "See test descriptions \u2014 20 variations of the core rule",
+  "langgraph_nodes_under_test": [
+    "assess",
+    "generate_mitre_plan",
+    "select_tool",
+    "risk_check"
+  ],
+  "test_count": 20,
+  "tests": [
+    {
+      "id": "SC-05-T01",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.72, no stealth available",
+      "input": {
+        "recon": {
+          "open_ports": {
+            "1883": "MQTT"
+          },
+          "topic_count": 9
+        },
+        "vuln_scores": {
+          "MQTT_BROKER": 0.91,
+          "TXT_HBW": 0.48
+        },
+        "vuln_entries": [],
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.36,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.9
+          },
+          {
+            "round": 2,
+            "tool": "ConnectionStormTool",
+            "score": 0.32,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.93
+          },
+          {
+            "round": 3,
+            "tool": "ConnectionStormTool",
+            "score": 0.28,
+            "technique": "T1498",
+            "target_node": "MQTT_BROKER",
+            "detection_risk": 0.95
+          }
+        ],
+        "simulation_running": false,
+        "campaign_plan": [],
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.72"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T02",
+      "description": "only loud tools=['ConnectionStormTool', 'BrokerFloodTool'], risk=0.75, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.75,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.75"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T03",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.8, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.8,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.8"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T04",
+      "description": "only loud tools=['ConnectionStormTool'], risk=0.7, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T05",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.78, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.78,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.78"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T06",
+      "description": "only loud tools=['ConnectionStormTool'], risk=0.82, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.82,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.82"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T07",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.73, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.73,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.73"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T08",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.76, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.76,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.76"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T09",
+      "description": "only loud tools=['ConnectionStormTool', 'BrokerFloodTool'], risk=0.71, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.71,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.71"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T10",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.88, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.88"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T11",
+      "description": "only loud tools=['ConnectionStormTool'], risk=0.74, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.74"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T12",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.79, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.79,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.79"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T13",
+      "description": "only loud tools=['ConnectionStormTool'], risk=0.83, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.83,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.83"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T14",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.7, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T15",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.81, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.81,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.81"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T16",
+      "description": "only loud tools=['ConnectionStormTool'], risk=0.86, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.86,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.86"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T17",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.74, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.74,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.74"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T18",
+      "description": "only loud tools=['BrokerFloodTool', 'ConnectionStormTool'], risk=0.88, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool",
+          "ConnectionStormTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.88,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.88"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T19",
+      "description": "only loud tools=['ConnectionStormTool', 'BrokerFloodTool'], risk=0.7, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "ConnectionStormTool",
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.7,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.7"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    },
+    {
+      "id": "SC-05-T20",
+      "description": "only loud tools=['BrokerFloodTool'], risk=0.85, no stealth available",
+      "input": {
+        "vuln_scores": {
+          "MQTT_BROKER": 0.88,
+          "TXT_HBW": 0.67,
+          "TXT_VGR": 0.68,
+          "TXT_DS": 0.64,
+          "OpcuaServer": 0.7,
+          "Dashboard": 0.72
+        },
+        "tools_available": [
+          "BrokerFloodTool"
+        ],
+        "history": [
+          {
+            "round": 1,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.85,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 2,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.85,
+            "target_node": "MQTT_BROKER"
+          },
+          {
+            "round": 3,
+            "tool": "BrokerFloodTool",
+            "score": 0.5,
+            "detection_risk": 0.85,
+            "target_node": "MQTT_BROKER"
+          }
+        ],
+        "simulation_running": false,
+        "current_round": 4
+      },
+      "expected_llm_outputs": {
+        "assess": {
+          "next_action": "attack",
+          "detection_risk": "~0.85"
+        },
+        "risk_check": {
+          "action": "abort",
+          "note": "No stealthy alternative in tools_available \u2192 risk_check returns abort"
+        }
+      },
+      "expected_final": {
+        "stop": true,
+        "tool": ""
+      }
+    }
+  ]
+}
