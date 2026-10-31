@@ -15,6 +15,10 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 | `data/agent_scenarios` | 400 expected-decision test cases in 20 scenarios | Expected decisions, not 400 newly executed agent outcomes |
 | `code/twin_reference` | Models, configurations, fixtures and tests needed for offline replay | Derived reference implementation |
 
+## Research guide
+
+See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [published articles](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
+
 ## Quick start
 
 Use Python 3.11 or later. Validation requires only the standard library:
