@@ -30,8 +30,10 @@ The pinned G1 source requests citation of:
 
 Nandiya, P., Mohsin, A., Ibrahim, A., Sarker, I. H., & Janicke, H. (2026). BRIDG-ICS: AI-grounded knowledge graphs for intelligent threat analytics in Industry 5.0 cyber-physical systems. Cybersecurity, 9, 167. https://doi.org/10.1186/s42400-026-00597-0
 
-The pinned G2 source requests citation of its manuscript:
+The custodian identifies the associated G2 research article as NeuroGraph:
 
-Nandiya, P., Mohsin, A., Sarker, I. H., Ibrahim, A., & Janicke, H. (2026). NeuroGraph: An AI graph-driven neuro-symbolic framework for explainable threat reasoning in advanced manufacturing. Manuscript (status as stated in the pinned source; not a new publication-status verification).
+Nandiya, P., Mohsin, A., Ibrahim, A., Sarker, I. H., & Janicke, H. (2026). NeuroGraph: An AI graph-driven neuro-symbolic framework for explainable threat reasoning in advanced manufacturing. https://arxiv.org/abs/2609.00604
+
+This co-authored article is distinct from the third-party CTIBench source. Additional co-authored work, HySecTwin resources and the supplied behavioural-DT/agentic-AI manuscript are documented in [the author research guide](docs/RELATED_PUBLICATIONS.md). The benchmark source attribution and license remain unchanged.
 
 Python dependency packages are installed separately for replay and retain their own licenses.

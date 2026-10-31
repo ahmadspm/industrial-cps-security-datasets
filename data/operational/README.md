@@ -17,6 +17,8 @@ Split whole traces or coherent sessions rather than random rows. Establish sampl
 
 These are observation-derived features, not a complete packet capture, a labelled attack corpus or certified physical ground truth. `ok` is an available source boolean, not a universal malicious/benign label. Anomaly observations alone do not prove a cyberattack, and supervised attack-detection claims require separately verified event labels.
 
-## Published connection
+## Connection to the author's research
 
-[P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides related published industrial threat-modelling context. It is not asserted to be the direct publication source of these exact 29 reduced traces. Use the [dataset card](../../docs/DATASET_CARD.md) and [provenance register](../../metadata/provenance.csv) for the release's observation and transformation boundaries.
+[P4: HySecTwin](../../docs/RELATED_PUBLICATIONS.md#p4-hysectwin) is the custodian's co-authored semantic digital-twin/hybrid-reasoning project. Its [repository](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling) and [reasoning reproducibility package](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling/tree/main/Reproducibility) are relevant to deterministic/fuzzy monitoring and contextual security reasoning.
+
+The 29 reduced traces here are not asserted to reproduce the complete HySecTwin experiments or original physical-to-twin latency measurements. Semantic rule replay would require an appropriate, separately supplied signal/ontology mapping; pseudonymous tokens alone do not recover equipment semantics. [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides complementary industrial threat-modelling context. See the [dataset card](../../docs/DATASET_CARD.md) and [provenance register](../../metadata/provenance.csv).

@@ -38,6 +38,8 @@ Report decision agreement against the supplied references, policy-violation rate
 
 These cases contain expected outputs. They are not 400 observed physical attacks, not ground truth for attack success, and not by themselves an execution harness for the original G4 endpoints. The separate `code/twin_reference` implementation has its own fixtures; its reported tests must not be presented as execution of these 400 cases.
 
-## Published connection
+## Connection to the author's research
 
-[P3: Human–AI collaboration with trusted autonomy](../../docs/RELATED_PUBLICATIONS.md#p3-human-ai-collaboration-with-trusted-autonomy) provides relevant published methodology for studying autonomy and human oversight. The scenarios originate from the pinned G4 project; P3 is not their direct dataset source and its SOC results are not attributed to these files.
+[P5: Autonomous cyber-physical security assessment](../../docs/RELATED_PUBLICATIONS.md#p5-autonomous-cyber-physical-security-assessment) is the author-supplied manuscript on a behavioural manufacturing twin and cooperative agentic AI, including AOA/ASBIO. Its data/code statement points to the G4 source project from which these scenario files originate. Cite the manuscript according to its supplied version/status until a publisher citation or public full-text URL is provided. The 400 expected-decision fixtures do not by themselves reproduce the manuscript's live-model or production-impact results.
+
+[P3: Human-AI collaboration with trusted autonomy](../../docs/RELATED_PUBLICATIONS.md#p3-human-ai-collaboration-with-trusted-autonomy) is the custodian's related published methodology for autonomy, trust and oversight. Its SOC case study is distinct from these industrial fixtures.

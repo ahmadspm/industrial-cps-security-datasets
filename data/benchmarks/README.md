@@ -22,8 +22,8 @@ Use [description-group identifiers](../../metadata/benchmark_split_groups.csv) t
 
 The curated counts and transformations differ from the original benchmark. A measured result on this release must identify this version rather than claim an exact reproduction of the original paper's scores. Reference accuracy does not independently prove factual correctness.
 
-## Published article and license
+## Author research, third-party source and license
 
-[P2: CTIBench](../../docs/RELATED_PUBLICATIONS.md#p2-ctibench) is the published source benchmark article. [P1](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) is relevant industrial graph context for proposed Graph-RAG experiments, not the source of these CTIBench tasks.
+[P2: NeuroGraph](../../docs/RELATED_PUBLICATIONS.md#p2-neurograph) is the custodian's co-authored article relevant to graph-grounded CTI reasoning and benchmark evaluation. [T1: CTIBench](../../docs/RELATED_PUBLICATIONS.md#t1-ctibench--third-party-benchmark-source), by Alam and colleagues, is the external source of the underlying tasks. These are different research and attribution roles. The transformed release counts must not be treated as an exact rerun of either article.
 
 This directory retains **CC BY-NC-SA 4.0**, including non-commercial and share-alike conditions. See [LICENSE](LICENSE) and retain the original creators' attribution and this adaptation notice.

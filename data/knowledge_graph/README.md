@@ -30,6 +30,6 @@ Remove target and derived/inverse target relations from training views when test
 
 ## Published connection and limits
 
-[P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides the associated published industrial graph/threat-analysis framework. [P2](../../docs/RELATED_PUBLICATIONS.md#p2-ctibench) supplies relevant CTI evaluation tasks through the separate benchmark folder.
+[P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides the associated industrial graph/threat-analysis framework. [P2: NeuroGraph](../../docs/RELATED_PUBLICATIONS.md#p2-neurograph) is the custodian's co-authored work on graph-grounded query generation, retrieval and explainable threat reasoning. [T1: CTIBench](../../docs/RELATED_PUBLICATIONS.md#t1-ctibench--third-party-benchmark-source) is a separate third-party evaluation source, not an article by the custodian.
 
 Endpoint validity establishes structural membership, not the truth of a vulnerability, inferred exploit or mitigation effect. Historical CVSS/EPSS/KEV attributes require updating before operational use. Synthetic `ATTACKABLE` values remain modelling inputs. This graph is not a packet capture or a set of verified compromises.

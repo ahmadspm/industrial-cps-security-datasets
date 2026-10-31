@@ -15,8 +15,8 @@ Use a separately held-out task set and prevent instruction/entity/description le
 
 Cypher validity alone is insufficient: a query can be syntactically valid yet address the wrong entities or return unsupported results. Execution-based evaluation requires the appropriate schema and graph instance, and safety/authorization controls if any database is used.
 
-## Source and published context
+## Source and author research
 
-The pairs originate from the pinned G2 project identified in [source metadata](../../metadata/sources.csv). No published article is asserted as the direct source or independent validation of these exact pairs.
+The pairs originate from the pinned G2 project identified in [source metadata](../../metadata/sources.csv). [P2: NeuroGraph](../../docs/RELATED_PUBLICATIONS.md#p2-neurograph) is the custodian's associated co-authored article on graph-grounded neuro-symbolic reasoning and query generation. The public deduplicated file is a transformed release view; exact equivalence to the paper's complete training configuration is not asserted.
 
-[P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides related graph/threat-analysis context. [P2: CTIBench](../../docs/RELATED_PUBLICATIONS.md#p2-ctibench) provides a separate published CTI evaluation setting. These links are research context; evaluation still needs a defensible separation from training.
+[P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) supplies related graph/threat-analysis context. [T1: CTIBench](../../docs/RELATED_PUBLICATIONS.md#t1-ctibench--third-party-benchmark-source) is an external evaluation dataset source and is not the custodian's article. Evaluation needs a defensible separation from training.

@@ -30,3 +30,5 @@ Use this folder with [knowledge_graph](../knowledge_graph/README.md) for context
 [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) is relevant published work on integrated industrial security graphs and threat analysis. The public tables are curated release views; the article is not a certification of every released attribute or proposed study.
 
 Counts and schemas describe a recorded inventory, not a live scan. Missing services, devices or paths must not be interpreted as proof that they do not exist. Source lineage is in [provenance](../../metadata/provenance.csv).
+
+[P4: HySecTwin](../../docs/RELATED_PUBLICATIONS.md#p4-hysectwin) provides an additional author project for semantic asset/context modelling and hybrid security reasoning. Its source repository is separate from the de-identified inventory files supplied here.

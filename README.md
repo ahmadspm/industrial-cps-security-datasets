@@ -17,7 +17,7 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 
 ## Research guide
 
-See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [published articles](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
+See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 
 ## Quick start
 

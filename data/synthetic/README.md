@@ -35,3 +35,5 @@ The three attackability files are alternative source views, not guaranteed indep
 ## Published connection
 
 [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) is the associated published framework for industrial graph analytics and modelled threat/risk analysis. Source-specific transformations and counts are recorded in [provenance](../../metadata/provenance.csv). Combine with [inventory](../inventory/README.md) and [knowledge_graph](../knowledge_graph/README.md) after validating identifier joins.
+
+[P4: HySecTwin](../../docs/RELATED_PUBLICATIONS.md#p4-hysectwin) provides a related author project for controlled deterministic/fuzzy security-reasoning experiments. The synthetic logs here are not asserted to be its complete benchmark or original measurement series.
