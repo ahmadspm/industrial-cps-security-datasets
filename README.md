@@ -6,9 +6,7 @@
 [![License scopes](assets/badges/licenses.svg)](metadata/licenses.csv)
 [![Research articles](assets/badges/research.svg)](docs/RELATED_PUBLICATIONS.md)
 
-A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation.
-
-**Release v1.0.0 — 1 November 2026.** Public views are derived from private source inputs. Raw operational logs, account/credential tables, screenshots, private identifiers and the source repository's earlier history are not part of this release.
+A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation. Public views are derived from private source inputs. Raw operational logs, account/credential tables, screenshots, private identifiers and the source repository's earlier history are not part of this release.
 
 | Directory | Contents | Evidence class |
 |---|---|---|
