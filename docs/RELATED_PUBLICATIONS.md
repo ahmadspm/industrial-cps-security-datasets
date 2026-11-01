@@ -10,11 +10,11 @@ This guide distinguishes **work co-authored by Ahmad Mohsin** from **third-party
 | [P2: NeuroGraph](#p2-neurograph) | Author-reported acceptance in International Journal of Information Security; linked arXiv version | [NeuroGraph: An AI Graph-Driven Neuro-Symbolic Framework for Explainable Threat Reasoning in Advanced Manufacturing](https://arxiv.org/abs/2609.00604) | Neuro-symbolic AI; Graph-RAG; evidence-grounded threat reasoning; explainability |
 | [P3: Trusted autonomy](#p3-human-ai-collaboration-with-trusted-autonomy) | ACM Transactions on Internet Technology, 2026 | [A Unified Framework for Human–AI Collaboration in Security Operations Centers with Trusted Autonomy](https://doi.org/10.1145/3837073) | Human-AI collaboration; trust calibration; autonomy; security operations |
 | [P4: HySecTwin](#p4-hysectwin) | Linked arXiv version and author project; journal metadata not supplied | [HySecTwin: A Knowledge-Driven Digital Twin Framework Augmented with Hybrid Reasoning for Cyber-Physical Systems](https://arxiv.org/abs/2605.11682) | Semantic digital twins; hybrid reasoning; fuzzy inference; CPS security monitoring |
-| [P5: Autonomous assessment](#p5-autonomous-cyber-physical-security-assessment) | Author-supplied manuscript; public full-text link not supplied | [Autonomous Cyber-Physical Security Assessment in Smart Manufacturing with a Behavioural Digital Twin and Agentic AI](#p5-autonomous-cyber-physical-security-assessment) | Behavioural digital twins; cooperative agents; autonomous security assessment; manufacturing resilience |
+| [P5: Autonomous assessment](#p5-autonomous-cyber-physical-security-assessment) | Research manuscript | [Autonomous Cyber-Physical Security Assessment in Smart Manufacturing with a Behavioural Digital Twin and Agentic AI](#p5-autonomous-cyber-physical-security-assessment) | Behavioural digital twins; cooperative agents; autonomous security assessment; manufacturing resilience |
 | [P6: Lifecycle foundations](#p6-shift-left-and-shift-right-foundations) | IEEE TPS-ISA, 2023 | [Digital Twins and the Future of Their Use Enabling Shift Left and Shift Right Cybersecurity Operations](https://doi.org/10.1109/TPS-ISA58951.2023.00042) | Security digital twins; shift-left/shift-right; design-time and runtime security |
 | [P7: AI/XAI review](#p7-ai-and-explainable-ai-review) | ICT Express, 2024 | [Explainable AI for cybersecurity automation, intelligence and trustworthiness in digital twin: Methods, taxonomy, challenges and prospects](https://doi.org/10.1016/j.icte.2024.05.007) | Explainable AI; security analytics; automation; trustworthiness |
 | [P8: Security and privacy](#p8-digital-twin-security-and-privacy) | Foundations of Digital Twins, 2026 | [Security risks and privacy challenges in digital twins](https://doi.org/10.1016/B978-0-443-43896-7.00016-9) | Lifecycle security; privacy engineering; secure architecture; governance |
-| [P9: Railway virtual twin](#p9-railway-virtual-twin) | KES 2026 work; author-supplied bibliographic attribution | [A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems](https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems) | Secure-by-design; virtual twins; AI-assisted threat modelling; railway OT |
+| [P9: Railway virtual twin](#p9-railway-virtual-twin) | KES 2026 | [A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems](https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems) | Secure-by-design; virtual twins; AI-assisted threat modelling; railway OT |
 
 These are distinct article/version records. A linked preprint, repository or supplied manuscript is not automatically a publisher's version of record. The transformed public datasets are not asserted to reproduce every input or result of these articles.
 
@@ -50,7 +50,7 @@ The repository supplies semantic modelling, digital-twin artefacts, deterministi
 
 ## P5: Autonomous cyber-physical security assessment
 
-Nandiya, P., Mohsin, A., Lohmann, G., Ekelhart, A., Sarker, I. H., & Janicke, H. (n.d.). *Autonomous cyber-physical security assessment in smart manufacturing with a behavioural digital twin and agentic AI*. Author-supplied manuscript.
+Nandiya, P., Mohsin, A., Lohmann, G., Ekelhart, A., Sarker, I. H., & Janicke, H. (n.d.). *Autonomous cyber-physical security assessment in smart manufacturing with a behavioural digital twin and agentic AI*. Research manuscript.
 
 [Source project identified in the manuscript](https://github.com/ahmadspm/Digital-TwinAutonomous-CPS-Security-Testing) (access depends on the source repository's visibility).
 
@@ -78,7 +78,7 @@ This programme began in 2023 with the shift-left/shift-right security digital-tw
 
 Mohsin, A., Janicke, H., Nepal, S., & Holmes, D. (2023). Digital Twins and the Future of Their Use Enabling Shift Left and Shift Right Cybersecurity Operations. In *2023 5th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)* (pp. 277–286). IEEE. https://doi.org/10.1109/TPS-ISA58951.2023.00042
 
-[September 2023 preprint](https://arxiv.org/abs/2309.13612) | [Author-supplied IEEE link](https://ieeexplore.ieee.org/abstract/document/10431655)
+[September 2023 preprint](https://arxiv.org/abs/2309.13612) | [IEEE record](https://ieeexplore.ieee.org/abstract/document/10431655)
 
 Foundational lifecycle framing for security digital twins, connecting design-time analysis with operational security. It motivates the guide's distinction between structural design experiments and observed/runtime analysis.
 
@@ -100,6 +100,6 @@ Lifecycle and architecture context for security, privacy and smart-factory resea
 
 ## P9: Railway virtual twin
 
-Neupane, N., Mohsin, A., Sarker, I. H., Sikos, L. F., & Janicke, H. (2026). *A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems*. KES 2026 work; attribution supplied by the author. [Supplied ResearchGate record](https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems).
+Neupane, N., Mohsin, A., Sarker, I. H., Sikos, L. F., & Janicke, H. (2026). *A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems*. KES 2026. [ResearchGate record](https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems).
 
-A related transport-OT research application. Final publisher DOI and pagination were not independently retrievable for this edition and are not invented. This citation does not imply that railway data are released here.
+A related transport-OT research application. This citation does not imply that railway data are released here.
