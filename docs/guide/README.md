@@ -1,6 +1,6 @@
 # Researcher guide source
 
-The root `RESEARCHERS_GUIDE.pdf` contains 27 pages and 14 figures. Figures 3-14 were redesigned with the built-in image-generation system. Figure 2 includes a photorealistic AI-generated infrastructure strip representing water, energy and manufacturing; these are illustrative scenes, not photographs of identified facilities or dataset collection sites.
+The root `RESEARCHERS_GUIDE.pdf` contains 30 pages and 14 figures. Figures 3-14 were redesigned with the built-in image-generation system. Figure 2 includes a photorealistic AI-generated infrastructure strip representing water, energy and manufacturing; these are illustrative scenes, not photographs of identified facilities or dataset collection sites.
 
 When Ghostscript is installed, the build also optimizes the PDF with JPEG quality 92 and no image downsampling. Original PNG assets remain intact. Without Ghostscript, the larger direct compiler output is retained.
 

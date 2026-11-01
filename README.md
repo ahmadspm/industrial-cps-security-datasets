@@ -17,13 +17,13 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 | `data/synthetic` | 10,220 synthetic protocol/attackability records | Synthetic, not physical attack ground truth |
 | `data/benchmarks` | 60 CTI-ATE, 996 CTI-RCM and 991 CTI-RCM-2021 records | Upstream reference labels; 13 ambiguous records excluded |
 | `data/training` | 358 unique instruction/output records | Training material, not held-out evaluation |
-| `data/operational` | 14,124 reduced event-feature records from 29 traces | De-identified observations; no physical-fidelity certification |
+| `data/operational` | 14,124 reduced event-feature records from 27 traces | De-identified observations; no physical-fidelity certification |
 | `data/agent_scenarios` | 400 expected-decision test cases in 20 scenarios | Expected decisions, not 400 newly executed agent outcomes |
 | `code/twin_reference` | Models, configurations, fixtures and tests needed for offline replay | Derived reference implementation |
 
 ## Research guide
 
-Read the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 27-page academic guide with fourteen figures, including twelve redesigned image-generated scientific diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, three opening pages illustrating CPS, critical infrastructure, digital twins and governed agentic AI, study protocols, loading examples and reproducibility guidance.
+Read the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 30-page academic guide with fourteen figures, including twelve redesigned image-generated scientific diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, three opening pages illustrating CPS, critical infrastructure, digital twins and governed agentic AI, study protocols, loading examples and reproducibility guidance.
 
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 
@@ -48,6 +48,10 @@ This research programme began in **2023** with the [shift-left/shift-right secur
 | [P9: Railway virtual twin](docs/RELATED_PUBLICATIONS.md#p9-railway-virtual-twin) | KES 2026 work; author-supplied bibliographic attribution | [A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems](https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems) | Secure-by-design; virtual twins; AI-assisted threat modelling; railway OT |
 
 The titles link to the article or its documented manuscript record. Research themes describe the scholarly focus; publication/version details remain explicit. [Article records and project links](docs/RELATED_PUBLICATIONS.md) · [BibTeX references](docs/references.bib). CTIBench is listed separately as a third-party data source, with its original attribution and license retained.
+
+## Research protocols and reproducibility
+
+Use the [research question–dataset matrix](docs/RESEARCH_QUESTIONS.md) to select inputs, methods and metrics. The [three runnable starter experiments](examples/README.md) include fixed group partitions and measured baselines for event rarity, graph mapping and expected agent decisions. The [archiving guide](docs/ARCHIVING.md) explains versioned citation and the remaining Zenodo DOI activation step.
 
 ## Quick start
 

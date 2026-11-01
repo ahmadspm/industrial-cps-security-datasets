@@ -1,0 +1,21 @@
+name: Publish curated v1.0.0
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release.yml']
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/validate_release.py
+      - run: python examples/check_starters.py
+      - name: Create versioned release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create v1.0.0 RESEARCHERS_GUIDE.pdf --target "$GITHUB_SHA" --title "Industrial CPS Security Datasets v1.0.0" --notes-file docs/RELEASE_v1.0.0.md

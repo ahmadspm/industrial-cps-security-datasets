@@ -46,12 +46,14 @@ def safe_value(v):
     if v is None or isinstance(v,(bool,int,float)):return True
     if isinstance(v,list):return all(safe_value(x) for x in v)
     return bool(re.fullmatch(r'state_[0-9a-f]{16}',v))
-event_path=ROOT/'data/operational/event_features.jsonl.gz';count=0
+event_path=ROOT/'data/operational/event_features.jsonl.gz';count=0;trace_ids=set()
 with gzip.open(event_path,'rt') as f:
     for line in f:
-        row=json.loads(line);count+=1
+        row=json.loads(line);count+=1;trace_ids.add(row['trace_id'])
         if not safe_value(row['value']) or not safe_value(row['previous_value']):errors.append('Uncontrolled operational text value')
 checks['operational_feature_records']=count
+checks['operational_distinct_trace_ids']=len(trace_ids)
+if len(trace_ids)!=27:errors.append('Released operational trace ID count changed')
 ip=re.compile(r'(?<![\d.])(?:\d{1,3}\.){3}\d{1,3}(?![\d.])');allowed=ipaddress.ip_network('198.18.0.0/15');secret=re.compile(r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\b(?:ghp_|github_pat_|hf_)[A-Za-z0-9_]{20,}|\bsk-[A-Za-z0-9_-]{24,}')
 for p in ROOT.rglob('*'):
     if not p.is_file() or any(x in p.parts for x in ['.git','__pycache__']):continue

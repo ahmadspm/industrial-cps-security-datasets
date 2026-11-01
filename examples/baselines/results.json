@@ -1,0 +1,34 @@
+{
+  "agents": {
+    "continue_recall": 0.0,
+    "excluded_cases_without_boolean_stop": 220,
+    "interpretation": "Only explicit boolean expected_final.stop is scored. This is a constant decision baseline, not an executed agent or a safety result.",
+    "predictor": "always stop",
+    "split_rule": "Held-out families SC-02, SC-06, SC-14, SC-18; explicit selection includes stop and continue families",
+    "stop_agreement": 0.6666666666666666,
+    "test_cases_with_boolean_stop": 60,
+    "test_stop_prevalence": 0.6666666666666666
+  },
+  "anomaly": {
+    "interpretation": "Event rarity flags, not attack precision/recall. No verified attack labels.",
+    "test_events": 420,
+    "test_flag_rate": 0.023809523809523808,
+    "test_traces": 6,
+    "threshold_train_p95": 0.7401488616462346,
+    "train_events": 13704,
+    "train_traces": 21,
+    "unseen_event_class_rate": 0.009523809523809525
+  },
+  "graph": {
+    "hit_at_1": 0.1675794333303159,
+    "hit_at_5": 0.40379741106182676,
+    "interpretation": "Frequency baseline against upstream mappings, not validated exploitation. No other graph relations are supplied to the predictor.",
+    "mrr": 0.28679108524570246,
+    "task": "Predict source-reference CWE membership for held-out CVE groups using training-only CWE popularity",
+    "test_cves": 44188,
+    "train_cves": 177848
+  },
+  "protocol": "cps-starter-v1",
+  "scope": "Exploratory baselines; no physical security or attack detection claims",
+  "split_rule": "SHA256(cps-starter-v1:<group>) modulo 5; 0=test"
+}

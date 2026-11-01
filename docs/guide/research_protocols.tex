@@ -1,0 +1,58 @@
+\clearpage\section{Intellectual development and research positioning}
+The following schematic traces related research themes. Arrows indicate conceptual development, not a claim that each publication used the present public subset or that its experiments are reproducible from this collection alone.
+
+\begin{center}
+\begin{tikzpicture}[node distance=9mm]
+\node[block,design,text width=128mm] (origin) {\textbf{2023: lifecycle security foundations [15]}\\Shift-left design analysis and shift-right operational security};
+\node[block,input,text width=128mm,below=of origin] (review) {\textbf{2024: AI and explainable-AI review [16]}\\Methods, taxonomy, interpretability and trustworthiness};
+\node[block,method,text width=128mm,below=of review] (extension) {\textbf{Subsequent research strands [1--4,17,18]}\\Hybrid reasoning and graph-grounded LLMs\\Trusted autonomy, security/privacy and railway virtual twins};
+\node[block,evaluation,text width=128mm,below=of extension] (resource) {\textbf{Present public research collection}\\Structural, synthetic, observational and expected-decision evidence};
+\node[block,output,text width=128mm,below=of resource] (studies) {\textbf{Further independently evaluated studies}\\Declared hypotheses, held-out groups, baselines and bounded claims};
+\draw[arr](origin)--(review);\draw[arr](review)--(extension);\draw[arr](extension)--(resource);\draw[arr](resource)--(studies);
+\end{tikzpicture}
+\end{center}
+\textbf{How to cite the connection.} Cite the 2023 work when discussing lifecycle security, the review when discussing AI/XAI methods, and the relevant later article when adopting its method. Cite the dataset version for the specific public inputs used. Intellectual lineage and empirical provenance serve different purposes.
+
+\textbf{What this resource adds.} The collection assembles selected representations and fixtures with provenance, component licensing and reproducibility guidance. Demonstrating a new security capability requires a separately specified experiment. In particular, neither architectural relevance nor a related publication supplies missing incident labels or physical validation.
+
+\clearpage\section{Research question--data--evaluation matrix}
+Each question must be evaluated at the level supported by its evidence. An editable companion matrix is available in the repository at\newline \texttt{docs/RESEARCH\_QUESTIONS.md}.
+
+\begingroup\footnotesize\renewcommand{\arraystretch}{1.32}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{31mm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule\textbf{Question and inputs} & \textbf{Method and evaluation} & \textbf{Suitability and limit}\\\midrule
+Monitoring allocation: inventory and flows & Boundary-aware versus degree-based placement; weighted coverage at fixed cost & Structural comparison; service-loss reduction unmeasured\\
+CWE prediction: graph mappings & Typed model versus training-label popularity; whole-CVE holdout; Hit@k and MRR & Upstream mapping recovery; remove target/inverse edges\\
+Grounded CTI: benchmarks and graph & Retrieval versus no retrieval; grouped descriptions; exact match, unsupported identifiers and coverage & Requires overlap audit and controlled model settings\\
+Event novelty: operational traces & Rarity versus transitions; whole-trace holdout; flag and unseen-class rates & Exploratory; verified attack labels absent\\
+Query generalization: training pairs & Base versus adapted model; new template-disjoint test set; semantic agreement & New evaluation set required\\
+Decision governance: agent fixtures & Guarded versus unguarded policy; family holdout; class recall and prohibited-decision rate & Expected-decision agreement; no physical safety inference\\
+Evidence robustness: derived variants & Clean versus declared perturbations; paired decision-change rates & New perturbation protocol required\\
+Analyst triage: verified evidence joins & Controlled study; task accuracy, review time and confidence calibration & New participant evidence and valid joins required\\
+\bottomrule\end{tabularx}\endgroup
+
+\textbf{Reporting standard.} State the independent evaluation unit, exclusion rules, fixed partitions, baseline and uncertainty. Fit thresholds and preprocessing on training groups. Report failures and abstentions. For graph methods, document candidate labels and all retained relation paths. For temporal data, avoid treating dependent rows as independent replicates.
+
+\clearpage\section{Runnable starter protocols and measured baselines}
+The new examples use only Python's standard library. From the repository root, run:
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python3 examples/run_starters.py --output /tmp/cps-starters
+python3 examples/check_starters.py
+\end{Verbatim}
+The checked-in results and split manifest are under \texttt{examples/baselines}. These newly introduced illustrative partitions are not official benchmark splits or reproductions of the cited articles.
+
+\begingroup\small\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{29mm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule\textbf{Starter} & \textbf{Protocol} & \textbf{Measured reference result}\\\midrule
+Event rarity & Train-only event frequencies and 95th-percentile threshold; 21 training and 6 test traces & 420 test events; 2.38\% flagged; 0.95\% unseen event classes\\
+CWE popularity & Training-only CWE frequency; whole-CVE hash split; 44,188 test CVEs & Hit@1: 0.1676; Hit@5: 0.4038; MRR: 0.2868\\
+Constant-stop decision & Four held-out scenario families; 60 test cases with explicit boolean stop expectations & Agreement: 0.6667; continue recall: 0; 220 cases without boolean stop excluded across all families\\
+\bottomrule\end{tabularx}\endgroup
+
+\textbf{Split design.} Operational and graph groups use SHA256 of a versioned group key modulo five. The agent test families are SC-02, SC-06, SC-14 and SC-18; this explicit selection includes both decision classes. Family selection was made when introducing the protocol. Freeze these groups for subsequent comparisons; independently authored families remain desirable because scenario families may share rules.
+
+\textbf{Interpretation.} Rarity flags are not malicious-event detections. CWE scores measure agreement with source-reference mappings. The constant-stop baseline illustrates why overall agreement should be accompanied by class-specific results. Missing expected fields are not inferred. No physical system, live model or attack tool is executed.
+
+\textbf{Audit correction.} The 14,124 released events contain 27 distinct trace identifiers. Earlier documentation stated 29; the corrected count changes no released event. Reproducibility checks cover group assignment, class coverage, recorded results and repeated execution.
+
+\textbf{Versioned citation.} Cite the tagged release and applicable upstream works. The existing \texttt{CITATION.cff} provides citation metadata. DOI registration remains pending account-holder activation of the GitHub--Zenodo integration; no DOI is asserted here. The repository's archival guide records the required steps.

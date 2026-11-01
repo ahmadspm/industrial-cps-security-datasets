@@ -9,3 +9,7 @@
 - Four hundred expected-decision fixtures and an offline reference implementation.
 - Documentation, source attribution, citation metadata, terms, checksums and a standard-library validator.
 - Raw staging history, source bundles, diagnostic logs, credential/account tables, screenshots and unrelated execution tooling excluded.
+
+## Research usability improvements
+
+Added research-question mapping, three reproducible standard-library baselines with frozen partitions, an intellectual-lineage schematic and archival instructions. Corrected the documented event-trace count from 29 to 27 distinct released IDs; no data changed.

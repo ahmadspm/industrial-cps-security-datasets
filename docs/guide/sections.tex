@@ -22,6 +22,8 @@ Sector application & Railway virtual-twin work [18] & Transfer questions and sec
 
 The present collection makes selected representations and offline fixtures available for further investigation of these themes. Its value lies in enabling transparent, bounded experiments across structural, synthetic, observational and expected-decision evidence. Researchers should cite the relevant intellectual foundations as well as this particular dataset release.
 
+\input{research_protocols.tex}
+
 \clearpage\section{Contemporary security problems, 2025-2026}
 \subsection*{Loss of monitoring and control through exposed PLCs}
 A July 2026 FBI/EPA announcement reports water-sector incidents involving internet-facing PLCs, with changes to configurations and credentials causing loss of monitoring or control [9]. This motivates research on communication boundaries, trusted configuration evidence and restoration priorities. The inventory and graph tables support an abstract comparison of exposure-reduction policies; they contain neither packet captures nor forensic records of those incidents.
@@ -146,7 +148,7 @@ knowledge\_graph / typed structure & 305,167 nodes; 276,420 edges & Link predict
 benchmarks / upstream reference labels & 2,047 CTI records & CTI extraction and mapping\\
 training / instruction-output examples & 358 unique pairs & Query generation and adaptation\\
 synthetic / generated assumptions and logs & 340 attackability rows; 9,880 protocol rows & Controlled perturbations\\
-operational / pseudonymized observations & 14,124 events; 29 traces & Sequence and anomaly studies\\
+operational / pseudonymized observations & 14,124 events; 27 traces & Sequence and anomaly studies\\
 agent\_scenarios / expected fixtures & 20 scenarios; 400 cases & Governed decision behavior\\
 \bottomrule\end{tabularx}\endgroup\par\medskip
 Folder counts are not independent evidence units. Some attackability tables are repeated in the graph and synthetic folders; do not count the same rows as independent replications.
@@ -268,7 +270,7 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Research question.} Can a sequence model identify unusual transitions more consistently than a local transition-frequency baseline?
 
-\textbf{Materials and suitability.} event\_features.jsonl.gz contains 14,124 records in 29 traces. Fields include trace\_id, record\_index, relative\_seconds, event\_class, signal\_id, value, previous\_value and ok. Suitable for exploratory sequence analysis; attack classification is conditional on new, verified labels.
+\textbf{Materials and suitability.} event\_features.jsonl.gz contains 14,124 records in 27 traces. Fields include trace\_id, record\_index, relative\_seconds, event\_class, signal\_id, value, previous\_value and ok. Suitable for exploratory sequence analysis; attack classification is conditional on new, verified labels.
 
 \textbf{Experimental design.} Order within each trace using record\_index and relative time; inspect missing or repeated times. Split whole traces before creating windows. Fit encoders and thresholds on training traces only. If no independent attack labels exist, use descriptive anomaly analysis or separately labeled controlled perturbations.
 

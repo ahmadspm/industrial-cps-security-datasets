@@ -1,6 +1,6 @@
 # Operational features: temporal monitoring and process-aware security
 
-`event_features.jsonl.gz` contains **14,124 reduced event-feature records from 29 traces**. Each row has `trace_id`, `record_index`, `relative_seconds`, `event_class`, `signal_id`, `value`, `previous_value` and `ok`.
+`event_features.jsonl.gz` contains **14,124 reduced event-feature records from 27 traces**. Each row has `trace_id`, `record_index`, `relative_seconds`, `event_class`, `signal_id`, `value`, `previous_value` and `ok`.
 
 Numeric/boolean observations and lists are retained. String states and signal/event identities are stable pseudonyms; raw paths, URLs, names, addresses and absolute timestamps are omitted.
 
@@ -21,4 +21,4 @@ These are observation-derived features, not a complete packet capture, a labelle
 
 [P4: HySecTwin](../../docs/RELATED_PUBLICATIONS.md#p4-hysectwin) is the custodian's co-authored semantic digital-twin/hybrid-reasoning project. Its [repository](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling) and [reasoning reproducibility package](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling/tree/main/Reproducibility) are relevant to deterministic/fuzzy monitoring and contextual security reasoning.
 
-The 29 reduced traces here are not asserted to reproduce the complete HySecTwin experiments or original physical-to-twin latency measurements. Semantic rule replay would require an appropriate, separately supplied signal/ontology mapping; pseudonymous tokens alone do not recover equipment semantics. [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides complementary industrial threat-modelling context. See the [dataset card](../../docs/DATASET_CARD.md) and [provenance register](../../metadata/provenance.csv).
+The 27 reduced traces here are not asserted to reproduce the complete HySecTwin experiments or original physical-to-twin latency measurements. Semantic rule replay would require an appropriate, separately supplied signal/ontology mapping; pseudonymous tokens alone do not recover equipment semantics. [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides complementary industrial threat-modelling context. See the [dataset card](../../docs/DATASET_CARD.md) and [provenance register](../../metadata/provenance.csv).
