@@ -4,13 +4,13 @@ This guide distinguishes **work co-authored by Ahmad Mohsin** from **third-party
 
 ## Co-authored research
 
-| Reference | Article or research output | Version/status represented here | Main folder connections |
+| Reference | Publication / Version | Article Title | Research Themes |
 |---|---|---|---|
-| [P1: BRIDG-ICS](#p1-bridg-ics) | Industrial security knowledge graphs and threat analytics | Published in Cybersecurity, 2026 | Inventory, knowledge graph, synthetic data |
-| [P2: NeuroGraph](#p2-neurograph) | Graph-grounded neuro-symbolic threat reasoning | Author-linked arXiv version; acceptance in International Journal of Information Security was reported by the author; final journal DOI/details are not asserted here | Knowledge graph, benchmarks, training |
-| [P3: Human-AI collaboration with trusted autonomy](#p3-human-ai-collaboration-with-trusted-autonomy) | Human oversight, trust and autonomy in SOCs | ACM Transactions on Internet Technology, 2026 | Related methodology for agent oversight |
-| [P4: HySecTwin](#p4-hysectwin) | Semantic digital twins with deterministic/fuzzy security reasoning | Author's repository and linked arXiv version; repository README describes the manuscript as under review | Operational features, inventory, synthetic monitoring experiments |
-| [P5: Autonomous cyber-physical security assessment](#p5-autonomous-cyber-physical-security-assessment) | Behavioural digital twin and cooperative agentic security assessment | Author-supplied manuscript; public article URL, journal DOI and publication year are not supplied in this record | Agent scenarios and behavioural/operational research context |
+| [P1: BRIDG-ICS](#p1-bridg-ics) | Cybersecurity, 2026 | [BRIDG-ICS: AI-grounded knowledge graphs for intelligent threat analytics in Industry 5.0 cyber-physical systems](https://doi.org/10.1186/s42400-026-00597-0) | Knowledge graphs; threat analytics; cyber-risk modelling |
+| [P2: NeuroGraph](#p2-neurograph) | Author-reported acceptance in International Journal of Information Security; linked arXiv version | [NeuroGraph: An AI Graph-Driven Neuro-Symbolic Framework for Explainable Threat Reasoning in Advanced Manufacturing](https://arxiv.org/abs/2609.00604) | Neuro-symbolic AI; Graph-RAG; evidence-grounded threat reasoning; explainability |
+| [P3: Trusted autonomy](#p3-human-ai-collaboration-with-trusted-autonomy) | ACM Transactions on Internet Technology, 2026 | [A Unified Framework for Human–AI Collaboration in Security Operations Centers with Trusted Autonomy](https://doi.org/10.1145/3837073) | Human-AI collaboration; trust calibration; autonomy; security operations |
+| [P4: HySecTwin](#p4-hysectwin) | Linked arXiv version and author project; journal metadata not supplied | [HySecTwin: A Knowledge-Driven Digital Twin Framework Augmented with Hybrid Reasoning for Cyber-Physical Systems](https://arxiv.org/abs/2605.11682) | Semantic digital twins; hybrid reasoning; fuzzy inference; CPS security monitoring |
+| [P5: Autonomous assessment](#p5-autonomous-cyber-physical-security-assessment) | Author-supplied manuscript; public full-text link not supplied | [Autonomous Cyber-Physical Security Assessment in Smart Manufacturing with a Behavioural Digital Twin and Agentic AI](#p5-autonomous-cyber-physical-security-assessment) | Behavioural digital twins; cooperative agents; autonomous security assessment; manufacturing resilience |
 
 These are distinct article/version records. A linked preprint, repository or supplied manuscript is not automatically a publisher's version of record. The transformed public datasets are not asserted to reproduce every input or result of these articles.
 

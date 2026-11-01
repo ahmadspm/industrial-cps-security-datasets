@@ -1,5 +1,11 @@
 # Industrial CPS Security Research Datasets
 
+[![Dataset version](https://img.shields.io/badge/dataset-v1.0.0-blue)](CHANGELOG.md)
+[![Dataset validation](https://github.com/ahmadspm/industrial-cps-security-datasets/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/ahmadspm/industrial-cps-security-datasets/actions/workflows/validate.yml)
+[![Cite this dataset](https://img.shields.io/badge/cite-CITATION.cff-blue)](CITATION.cff)
+[![License scopes](https://img.shields.io/badge/licenses-mixed-lightgrey)](metadata/licenses.csv)
+[![Research articles](https://img.shields.io/badge/research-articles-8A2BE2)](docs/RELATED_PUBLICATIONS.md)
+
 A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation.
 
 **Release v1.0.0 — 1 November 2026.** Public views are derived from private source inputs. Raw operational logs, account/credential tables, screenshots, private identifiers and the source repository's earlier history are not part of this release.
@@ -18,6 +24,18 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 ## Research guide
 
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
+
+## Related research
+
+| Reference | Publication / Version | Article Title | Research Themes |
+|---|---|---|---|
+| [P1: BRIDG-ICS](docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) | Cybersecurity, 2026 | [BRIDG-ICS: AI-grounded knowledge graphs for intelligent threat analytics in Industry 5.0 cyber-physical systems](https://doi.org/10.1186/s42400-026-00597-0) | Knowledge graphs; threat analytics; cyber-risk modelling |
+| [P2: NeuroGraph](docs/RELATED_PUBLICATIONS.md#p2-neurograph) | Author-reported acceptance in International Journal of Information Security; linked arXiv version | [NeuroGraph: An AI Graph-Driven Neuro-Symbolic Framework for Explainable Threat Reasoning in Advanced Manufacturing](https://arxiv.org/abs/2609.00604) | Neuro-symbolic AI; Graph-RAG; evidence-grounded threat reasoning; explainability |
+| [P3: Trusted autonomy](docs/RELATED_PUBLICATIONS.md#p3-human-ai-collaboration-with-trusted-autonomy) | ACM Transactions on Internet Technology, 2026 | [A Unified Framework for Human–AI Collaboration in Security Operations Centers with Trusted Autonomy](https://doi.org/10.1145/3837073) | Human-AI collaboration; trust calibration; autonomy; security operations |
+| [P4: HySecTwin](docs/RELATED_PUBLICATIONS.md#p4-hysectwin) | Linked arXiv version and author project; journal metadata not supplied | [HySecTwin: A Knowledge-Driven Digital Twin Framework Augmented with Hybrid Reasoning for Cyber-Physical Systems](https://arxiv.org/abs/2605.11682) | Semantic digital twins; hybrid reasoning; fuzzy inference; CPS security monitoring |
+| [P5: Autonomous assessment](docs/RELATED_PUBLICATIONS.md#p5-autonomous-cyber-physical-security-assessment) | Author-supplied manuscript; public full-text link not supplied | [Autonomous Cyber-Physical Security Assessment in Smart Manufacturing with a Behavioural Digital Twin and Agentic AI](docs/RELATED_PUBLICATIONS.md#p5-autonomous-cyber-physical-security-assessment) | Behavioural digital twins; cooperative agents; autonomous security assessment; manufacturing resilience |
+
+The titles link to the article or its documented manuscript record. Research themes describe the scholarly focus; publication/version details remain explicit. [Article records and project links](docs/RELATED_PUBLICATIONS.md) · [BibTeX references](docs/references.bib). CTIBench is listed separately as a third-party data source, with its original attribution and license retained.
 
 ## Quick start
 
@@ -55,6 +73,21 @@ The replay script runs unit suites and deterministic fixture experiments. It doe
 
 Read [the dataset card](docs/DATASET_CARD.md), [schemas](docs/SCHEMAS.md), [methods and exclusions](docs/METHODS.md) and [validation report](docs/VALIDATION.md) before reuse.
 
-## Citation and terms
+## Citation
+
+Use GitHub's **Cite this repository** option, the [CITATION.cff](CITATION.cff) metadata, or the dataset entry below. Cite the relevant research articles and external data sources used in your experiment; [BibTeX references](docs/references.bib) are provided for convenience.
+
+```bibtex
+@misc{mohsin2026industrialcpsdatasets,
+  author       = {Mohsin, Ahmad},
+  title        = {Industrial CPS Security Research Datasets: Curated Public Views},
+  year         = {2026},
+  version      = {1.0.0},
+  howpublished = {GitHub dataset repository},
+  url          = {https://github.com/ahmadspm/industrial-cps-security-datasets}
+}
+```
+
+## Terms and attribution
 
 Use `CITATION.cff` and cite relevant upstream sources listed in `metadata/sources.csv`. Original collection material is offered under CC BY 4.0 and project code under MIT. **The CTIBench-derived benchmark directory uses CC BY-NC-SA 4.0**, including non-commercial and share-alike conditions. Other source-derived third-party elements retain their original terms. See `LICENSE`, `LICENSE-CODE`, `data/benchmarks/LICENSE` and `THIRD_PARTY_NOTICES.md`. No third-party endorsement is implied. No DOI has been assigned.
