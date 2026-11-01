@@ -1,5 +1,6 @@
 \documentclass[10pt,a4paper]{article}
-\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{lmodern,microtype}
+\usepackage[T1]{fontenc}\usepackage[utf8]{inputenc}\usepackage{lmodern,microtype,graphicx}
+\pdfinfoomitdate=1
 \usepackage[margin=21mm,headheight=14pt]{geometry}
 \usepackage{amsmath,amssymb,booktabs,tabularx,array,enumitem,float,caption,fancyhdr,fvextra}
 \usepackage[table]{xcolor}\usepackage{tikz}
@@ -12,13 +13,13 @@
 \setlength{\parindent}{0pt}\setlength{\parskip}{6pt}\setlist{nosep,leftmargin=*}
 \captionsetup{font=small,labelfont=bf,skip=6pt}
 \pagestyle{fancy}\fancyhf{}\fancyhead[L]{\small\textsc{Industrial CPS Security Research Datasets}}\fancyhead[R]{\small Researcher guide}
-\fancyfoot[L]{\footnotesize LaTeX edition 3.0 --- 1 November 2026}\fancyfoot[R]{\thepage}\renewcommand{\headrulewidth}{.3pt}
-\hypersetup{pdftitle={Cybersecurity Research with Industrial CPS Data},pdfauthor={Dr Ahmad Mohsin}}
+\fancyfoot[L]{\footnotesize Researcher guide}\fancyfoot[R]{\thepage}\renewcommand{\headrulewidth}{.3pt}
+\hypersetup{pdftitle={Cybersecurity Research with Industrial CPS Data},pdfauthor={Dr Ahmad Mohsin},pdfcreator={Researcher guide}}
 \begin{document}
 {\color{navy}\LARGE\bfseries Cybersecurity Research with\par Industrial CPS Data\par}
 {\large A research agenda and methodological guide}\par
 Prepared for the repository maintained by \textbf{Dr Ahmad Mohsin}\\
-Dataset release 1.0.0 \quad | \quad LaTeX edition 3.0 \quad | \quad 1 November 2026
+Dataset release 1.0.0
 \begin{abstract}
 This guide examines how a curated industrial cyber-physical systems dataset supports research in exposure analysis, knowledge graphs, grounded threat intelligence, behavioral monitoring, digital twins and governed AI agents. It distinguishes structural, synthetic, observational and expected-decision evidence, and identifies the additional labels, mappings and validation needed for stronger claims. Research questions are paired with suitable inputs, comparison designs, evaluation measures and limitations. The opening schematics establish the relationship between physical services, digital representations and analytical authority. Proposed experiments are distinguished from the release's recorded offline validation.
 \end{abstract}
@@ -35,7 +36,7 @@ This guide examines how a curated industrial cyber-physical systems dataset supp
 \end{tikzpicture}
 \caption{Conceptual scope. Solid arrows relate system concepts; the dashed path requires validation and a separate authority decision. Original TikZ figure.}
 \end{figure}
-\textbf{Scope.} The data support bounded offline research. They do not constitute a complete operational plant, a universal intrusion benchmark or authorization for autonomous process control. All illustrations are original academic schematics.
+\textbf{Scope.} The data support bounded offline research. They do not constitute a complete operational plant, a universal intrusion benchmark or authorization for autonomous process control. Figures 3--14 are generated scientific illustrations. Graphs, curve icons and supplementary symbols are schematic, not measured results.
 
 \textbf{Repository.} \url{https://github.com/ahmadspm/industrial-cps-security-datasets}
 
@@ -46,24 +47,17 @@ This guide examines how a curated industrial cyber-physical systems dataset supp
 A critical service relies on physical processes, control systems and organizational supervision. Cybersecurity failures can affect the integrity of observations, the availability of control or the correctness of decisions. An anomaly in a released record is not, by itself, evidence of a physical consequence. Figure~\ref{fig:cps} locates these dependencies within a representative CPS architecture [12].
 \begin{figure}[H]\centering
 \begin{tikzpicture}[font=\small]
-\begin{scope}[shift={(-5,0)}]
-\draw[fill=sky,draw=navy] (-.8,0) rectangle (.8,.8);\draw[navy] (-.8,.35) sin (-.4,.43) cos (0,.35) sin (.4,.43) cos (.8,.35);
-\draw[navy] (-.4,.8)--(-.4,1.1)--(.4,1.1)--(.4,.8);\node at (0,-.35){Water systems};\end{scope}
-\begin{scope}[shift={(0,0)}]
-\draw[navy,line width=1pt] (-.65,0)--(0,1.3)--(.65,0) (-.4,.5)--(.4,.5) (-.6,.9)--(.6,.9) (-.8,1.1)--(.8,1.1);
-\draw[navy] (-.7,1.1)--(-.7,.8) (.7,1.1)--(.7,.8);\node at (0,-.35){Energy systems};\end{scope}
-\begin{scope}[shift={(5,0)}]
-\draw[fill=amber,draw=navy] (-.9,0)--(-.9,.9)--(-.3,.6)--(-.3,.9)--(.3,.6)--(.3,.9)--(.9,.6)--(.9,0)--cycle;
-\draw[navy] (.55,.78)--(.55,1.3)--(.8,1.3)--(.8,.65);\node at (0,-.35){Manufacturing};\end{scope}
-\node[block,output,text width=105mm] (super) at (0,-1.5) {Supervisory systems and human operators\\HMI, historian, engineering and operational decisions};
-\node[block,design,text width=105mm] (control) at (0,-3) {Industrial control and communication\\PLC logic, protocol services, zones and conduits};
-\node[block,input,text width=105mm] (plant) at (0,-4.5) {Physical process, sensors and actuators\\Flow, pressure, motion, production and equipment states};
+\node[inner sep=0] at (0,1.2) {\includegraphics[width=.95\linewidth]{images/ci-context.png}};
+\node at (-5,-1.8) {Water systems};\node at (0,-1.8) {Energy systems};\node at (5,-1.8) {Manufacturing};
+\node[block,output,text width=105mm] (super) at (0,-3) {Supervisory systems and human operators\\HMI, historian, engineering and operational decisions};
+\node[block,design,text width=105mm] (control) at (0,-4.5) {Industrial control and communication\\PLC logic, protocol services, zones and conduits};
+\node[block,input,text width=105mm] (plant) at (0,-6) {Physical process, sensors and actuators\\Flow, pressure, motion, production and equipment states};
 \draw[arr] ([xshift=-15mm]super.south)--node[left,font=\scriptsize]{setpoints / commands}([xshift=-15mm]control.north);
 \draw[arr] ([xshift=15mm]control.north)--node[right,font=\scriptsize]{status / alarms}([xshift=15mm]super.south);
 \draw[arr] ([xshift=-15mm]control.south)--node[left,font=\scriptsize]{actuation}([xshift=-15mm]plant.north);
 \draw[arr] ([xshift=15mm]plant.north)--node[right,font=\scriptsize]{measurements}([xshift=15mm]control.south);
 \end{tikzpicture}
-\caption{Critical-infrastructure contexts above a representative CPS feedback loop. Original sector pictograms and architecture; not a site drawing or a claim that these sectors supplied the data.}\label{fig:cps}
+\caption{Critical-infrastructure contexts above a representative CPS feedback loop. AI-generated, photorealistic infrastructure illustrations are shown above the conceptual control loop. They do not depict identified sites or dataset collection locations.}\label{fig:cps}
 \end{figure}
 \textbf{Dataset connection.} Inventory and dataflow tables describe selected structural relationships. Operational features describe pseudonymized event sequences. Synthetic logs support controlled comparisons. They support exposure, monitoring and evidence-interpretation studies; measured service loss requires additional process and incident evidence.
 
@@ -73,25 +67,11 @@ A critical service relies on physical processes, control systems and organizatio
 \addcontentsline{toc}{section}{Context II: digital twins and agentic AI}
 Digital twins represent selected entities, states and transitions for observation and analysis. Their usefulness depends on the credibility of the representation and its intended use [13]. An agent adds planning and tool selection, creating a separate question about permission to act. Recent agentic-AI guidance emphasizes bounded tasks, oversight and monitoring [14].
 \begin{figure}[H]\centering
-\begin{tikzpicture}[font=\small]
-\node[block,input,text width=42mm] (data) at (-4.7,0) {Released evidence\\assets / flows / events};
-\node[block,method,text width=42mm] (twin) at (0,0) {Digital-twin model\\state / behavior / topology};
-\node[block,input,text width=42mm] (kg) at (4.7,0) {Knowledge context\\graph / CTI / provenance};
-\node[block,evaluation,text width=68mm] (agent) at (0,-1.6) {Agent reasoning and proposed plan\\observation, memory and task objective};
-\node[block,design,text width=68mm] (gate) at (0,-3.1) {Independent decision controls\\tool allow-list / risk / stop conditions};
-\node[block,method,text width=50mm] (mock) at (-3.5,-4.7) {Eligible offline action\\mock tool or twin experiment};
-\node[block,hold,text width=50mm] (hold) at (3.5,-4.7) {Hold, stop or human review\\unsupported or prohibited proposal};
-\node[block,output,text width=96mm] (audit) at (0,-6.2) {Evidence and outcome record\\policy agreement / errors / bounded termination};
-\draw[arr] (data)--(twin);\draw[arr] (twin)--(agent);\draw[arr] (kg.south)|-(agent.east);
-\draw[arr] (agent)--(gate);\draw[arr] (gate.south)--++(0,-.3)-|(mock.north);
-\draw[arr] (gate.south)--++(0,-.3)-|(hold.north);
-\draw[arr] (mock.south)--++(0,-.3)-|(audit.north);\draw[arr] (hold.south)--++(0,-.3)-|(audit.north);
-\draw[arr,dashed] (audit.west)--++(-2.4,0)|-(twin.north);
-\end{tikzpicture}
-\caption{Digital-twin and agentic-AI research architecture. The policy gate is external to the generated plan. Dashed feedback requires a declared evaluation rule. The release supplies selected representations and fixtures, not this complete integrated runtime. Original TikZ figure.}\label{fig:agent}
+\includegraphics[width=\linewidth,trim={36bp 5bp 34bp 0bp},clip]{images/figure-03.png}
+\caption{Digital-twin and agentic-AI research architecture. The policy gate is external to the generated plan. Feedback requires a declared evaluation rule; audit-log features are proposed rather than supplied. The release supplies selected representations and fixtures, not this complete integrated runtime. }\label{fig:agent}
 \end{figure}
 \textbf{Research implication.} Twin fidelity, answer correctness, policy agreement and operational safety are different constructs. The 400 expected agent decisions support fixture-level evaluation; the 29 event traces support bounded sequence research. Neither alone certifies the combined architecture.
 
-{\footnotesize\textbf{Context sources.} [12] Stouffer et al. (2023), \textit{Guide to OT Security}, \href{https://doi.org/10.6028/NIST.SP.800-82r3}{NIST SP 800-82r3}. [13] Voas et al. (2025), \textit{Security and Trust Considerations for Digital Twin Technology}, \href{https://doi.org/10.6028/NIST.IR.8356}{NIST IR 8356}. [14] ASD and international partners (1 May 2026), \href{https://www.cyber.gov.au/publication/careful-adoption-of-agentic-ai-services}{\textit{Careful adoption of agentic AI services}}. Accessed 1 November 2026.}
+{\footnotesize\textbf{Context sources.} [12] Stouffer et al. (2023), \textit{Guide to OT Security}, \href{https://doi.org/10.6028/NIST.SP.800-82r3}{NIST SP 800-82r3}. [13] Voas et al. (2025), \textit{Security and Trust Considerations for Digital Twin Technology}, \href{https://doi.org/10.6028/NIST.IR.8356}{NIST IR 8356}. [14] ASD and international partners (1 May 2026), \href{https://www.cyber.gov.au/publication/careful-adoption-of-agentic-ai-services}{\textit{Careful adoption of agentic AI services}}. }
 \input{sections.tex}
 \end{document}
