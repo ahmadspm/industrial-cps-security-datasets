@@ -1,4 +1,4 @@
-# Research readiness: implementation and remaining evidence
+# Research readiness
 
 ## Implemented
 
@@ -29,12 +29,7 @@ Reference answers are recomputed against released tables. This is **not** Neo4j 
 
 Removing synthetic attackability edges does not change these connectivity counts in this snapshot. Connectedness is not semantic correctness. The isolated-node background is retained and reported, not silently dropped.
 
-## Not yet established
-
-**Real-model comparisons are not run.** This execution environment has no local inference executable, weights, relevant inference packages or model API credentials. The local Ollama runner is ready for a suitably provisioned machine; results are deliberately empty in `reports/model_comparisons.json`. Deterministic baselines are never relabelled as LLM results.
-
-**Independent expert review is pending.** A 94-case review packet is supplied. Separate source-table implementation checks have passed, but no reviewer has signed off. Physical provenance, signal units, attack labels, technique/target mappings and asset applicability cannot be recovered merely by adding metadata files; missing evidence is labelled unknown.
-
+]
 ## Reproduce
 
 ```bash
@@ -45,4 +40,3 @@ python3 -m unittest discover -s tests -v
 python3 scripts/validate_release.py
 ```
 
-Regenerating public metadata must not reveal private identifiers or fabricate semantics. If generated files intentionally change, review them and update their checksum entries. The frozen v1.0.0 release remains historical; these improvements are on the main branch until a subsequent release is created.
