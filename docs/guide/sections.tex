@@ -1,3 +1,27 @@
+\clearpage\section{Research lineage: lifecycle security to evidence-grounded AI}
+The research programme underlying this collection began in 2023 with \textit{Digital Twins and the Future of Their Use Enabling Shift Left and Shift Right Cybersecurity Operations}, by Mohsin, Janicke, Nepal and Holmes [15]. Its September 2023 preprint and TPS-ISA 2023 record establish this starting point. The work placed security digital twins across the CPS lifecycle: \emph{shift left} brings security analysis into design, while \emph{shift right} supports analysis during operation. This history concerns the research programme; it does not imply that every released data record was collected in 2023.
+
+\subsection*{From lifecycle models to interpretable security analysis}
+The subsequent state-of-the-art AI/XAI review by Sarker, Janicke, Mohsin, Gill and Maglaras [16] organized AI and explainable-AI methods for cybersecurity in digital-twin environments. It provides a methodological foundation for examining the quality and interpretability of security analytics. The later chapter \textit{Security risks and privacy challenges in digital twins} [17] extended the lifecycle perspective to security, privacy and architectural concerns, including a smart-factory case study.
+
+LLM-enabled reasoning represents a later strand of this programme rather than a capability that should be attributed retrospectively to every earlier publication. The guide's graph-grounded CTI and query-generation studies connect to NeuroGraph [2]; its separation of recommendations from permission to act also relates to the trusted-autonomy work [3]. BRIDG-ICS [1] and HySecTwin [4] provide further context for graph integration and hybrid reasoning. These connections motivate the research questions; they do not establish that the public subset reproduces each article's experiments.
+
+\subsection*{Sector-specific modelling and the present research resource}
+The supplied railway paper, \textit{A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems} [18], places virtual-twin threat modelling in a transport-OT setting. It is included as a related sector-specific work. Railway records are not asserted to be present in this industrial dataset, and transfer of a method requires the independent validation described in the cross-sector study.
+
+\begingroup\small\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{28mm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Research strand} & \textbf{Prior-work connection} & \textbf{Use in this guide}\\\midrule
+Lifecycle security & Shift-left/shift-right digital twins [15] & Design-stage topology studies and operational monitoring questions\\
+Interpretable analytics & AI/XAI methods and taxonomy [16] & Baseline comparisons, explanation support and error analysis\\
+Security and privacy & Digital-twin lifecycle and architecture [17] & Provenance, pseudonymization and evidence limitations\\
+LLMs and reasoning & NeuroGraph and trusted autonomy [2,3] & Grounded answers, semantic queries and bounded decisions\\
+Sector application & Railway virtual-twin work [18] & Transfer questions and sector-specific validation requirements\\
+\bottomrule\end{tabularx}\endgroup
+
+The present collection makes selected representations and offline fixtures available for further investigation of these themes. Its value lies in enabling transparent, bounded experiments across structural, synthetic, observational and expected-decision evidence. Researchers should cite the relevant intellectual foundations as well as this particular dataset release.
+
 \clearpage\section{Contemporary security problems, 2025-2026}
 \subsection*{Loss of monitoring and control through exposed PLCs}
 A July 2026 FBI/EPA announcement reports water-sector incidents involving internet-facing PLCs, with changes to configurations and credentials causing loss of monitoring or control [9]. This motivates research on communication boundaries, trusted configuration evidence and restoration priorities. The inventory and graph tables support an abstract comparison of exposure-reduction policies; they contain neither packet captures nor forensic records of those incidents.
@@ -27,7 +51,7 @@ Adversarial AI robustness & How much controlled evidence corruption changes a de
 Agent governance & Do policy guards reduce prohibited decisions under held-out scenario families? & Expected-decision fixtures; explicit policy evaluation\\
 Human-centered triage & Does a traceable evidence chain improve reviewer accuracy and review time? & Validated joins + new analyst study; decision-support evaluation\\
 \bottomrule\end{tabularx}\endgroup\par\medskip
-The questions are deliberately comparative. A new model name or higher score alone is insufficient: the experiment should isolate the proposed mechanism, define the independent evaluation unit and identify the practical meaning of the observed difference. No novelty claim is implied without a separate literature review.
+The interpretability questions are informed by the earlier AI/XAI review [16]. The questions are deliberately comparative. A new model name or higher score alone is insufficient: the experiment should isolate the proposed mechanism, define the independent evaluation unit and identify the practical meaning of the observed difference. No novelty claim is implied without a separate literature review.
 
 \clearpage\section{Dataset suitability and evidence gaps}
 Suitability is assessed for a specified research claim rather than for an algorithm in isolation. Direct support means that the necessary released inputs exist for a bounded offline task. Conditional support means that labels, mappings or an evaluation set must be added. Unsupported claims require a different empirical basis.
@@ -89,7 +113,7 @@ A manuscript should acknowledge these limitations where the relevant result is i
 
 \clearpage\section{Study protocol and figure conventions}
 \subsection*{From research problem to an assessable claim}
-A study protocol should state the operational motivation, the hypothesized mechanism, the released evidence, the intervention or model variation, and the outcome that could refute the hypothesis. A primary endpoint and evaluation split should be frozen before tuning. The baseline should represent a credible simpler approach under the same information and resource budget.
+The lifecycle framing follows the shift-left/shift-right research [15,17]. A study protocol should state the operational motivation, the hypothesized mechanism, the released evidence, the intervention or model variation, and the outcome that could refute the hypothesis. A primary endpoint and evaluation split should be frozen before tuning. The baseline should represent a credible simpler approach under the same information and resource budget.
 
 For example: under a fixed monitoring budget, a boundary-aware policy is hypothesized to cover a larger weighted proportion of declared cross-zone flows than degree ranking. A negative or negligible difference would refute the proposed benefit for this topology. The conclusion would concern the declared graph, with no claim about measured attack reduction.
 
@@ -369,3 +393,13 @@ Article attribution and publication status follow docs/RELATED\_PUBLICATIONS.md.
 
 \textbf{[8] Common pitfalls and recommended practices}\newline scikit-learn documentation. Train/test separation and leakage prevention. \newline \href{https://scikit-learn.org/stable/common_pitfalls.html}{https://scikit-learn.org/stable/common\_pitfalls.html}
 
+
+
+\clearpage\subsection*{Earlier foundations and related sector application}
+\textbf{[15] Digital Twins and the Future of Their Use Enabling Shift Left and Shift Right Cybersecurity Operations}\newline Mohsin, A., Janicke, H., Nepal, S., and Holmes, D. (2023). In \textit{2023 5th IEEE International Conference on Trust, Privacy and Security in Intelligent Systems and Applications (TPS-ISA)}, pp. 277--286.\newline \href{https://doi.org/10.1109/TPS-ISA58951.2023.00042}{doi:10.1109/TPS-ISA58951.2023.00042}; \href{https://arxiv.org/abs/2309.13612}{September 2023 preprint}.
+
+\textbf{[16] Explainable AI for cybersecurity automation, intelligence and trustworthiness in digital twin: Methods, taxonomy, challenges and prospects}\newline Sarker, I. H., Janicke, H., Mohsin, A., Gill, A., and Maglaras, L. (2024). \textit{ICT Express}, 10(4), 935--958.\newline \href{https://doi.org/10.1016/j.icte.2024.05.007}{doi:10.1016/j.icte.2024.05.007}.
+
+\textbf{[17] Security risks and privacy challenges in digital twins}\newline Mohsin et al. (2026). In \textit{Foundations of Digital Twins}, pp. 239--252. Elsevier.\newline \href{https://doi.org/10.1016/B978-0-443-43896-7.00016-9}{doi:10.1016/B978-0-443-43896-7.00016-9}.
+
+\textbf{[18] A Secure-by-Design Virtual Twin Framework for AI-Driven Threat Modeling in Railway OT Systems}\newline Neupane, N., Mohsin, A., Sarker, I. H., Sikos, L. F., and Janicke, H. (2026). KES 2026 work; bibliographic attribution supplied by the author. The linked record was supplied for this edition; final publisher DOI and pagination have not been independently verified.\newline \href{https://www.researchgate.net/publication/414633139_A_Secure-by-Design_Virtual_Twin_Framework_for_AI-Driven_Threat_Modeling_in_Railway_OT_Systems}{Author-supplied ResearchGate record}.
