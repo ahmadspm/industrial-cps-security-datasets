@@ -33,3 +33,7 @@ Remove target and derived/inverse target relations from training views when test
 [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides the associated industrial graph/threat-analysis framework. [P2: NeuroGraph](../../docs/RELATED_PUBLICATIONS.md#p2-neurograph) is the custodian's co-authored work on graph-grounded query generation, retrieval and explainable threat reasoning. [T1: CTIBench](../../docs/RELATED_PUBLICATIONS.md#t1-ctibench--third-party-benchmark-source) is a separate third-party evaluation source, not an article by the custodian.
 
 Endpoint validity establishes structural membership, not the truth of a vulnerability, inferred exploit or mitigation effect. Historical CVSS/EPSS/KEV attributes require updating before operational use. Synthetic `ATTACKABLE` values remain modelling inputs. This graph is not a packet capture or a set of verified compromises.
+
+## Connectivity and verified joins
+
+See [connectivity](../../reports/graph_connectivity.json), [per-type node incidence](../../reports/graph_nodes.csv) and [join coverage](../../reports/join_coverage.json). All 94 inventory assets match graph **product** identifiers; host nodes use another namespace. The [crosswalk](../../metadata/asset_graph_crosswalk.csv) records the supported join. Disconnected nodes are retained as declared background; a zero unmatched-edge count is not a claim of full connectivity or semantic validation. The [connected task](../../evaluation/README.md) demonstrates source-backed retrieval with abstention.

@@ -1,0 +1,24 @@
+{
+  "adjudication_status": "No expert process/attack annotation added. Short traces are flagged, not deleted.",
+  "collection": {
+    "absolute_dates": "not_released",
+    "clock_synchronization": "not_verified",
+    "collection_mode": "not_verified",
+    "process_mapping": "not_available",
+    "site": "not_disclosed"
+  },
+  "event_count": 14124,
+  "fields": {
+    "event_class": "Pseudonymous event category; no attack meaning is inferred.",
+    "ok": "Source boolean when present; not an attack label.",
+    "previous_value": "Supplied previous value, not assumed to reconstruct every state transition.",
+    "record_index": "Ordinal in source file; gaps are not automatically packet loss.",
+    "relative_seconds": "Elapsed time from first parseable source timestamp within trace.",
+    "signal_id": "Pseudonym; equality is preserved, physical quantity and units are not supplied.",
+    "trace_id": "Release-local sequence group; one source-file group is not necessarily one independent physical experiment.",
+    "value": "Typed observed value/state token; unit/range and physical interpretation unknown."
+  },
+  "schema_version": "1.0",
+  "source": "data/operational/event_features.jsonl.gz",
+  "trace_count": 27
+}

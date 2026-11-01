@@ -1,0 +1,713 @@
+[
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10048 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10048' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 1,
+    "split_group": "CVE-2024-10048"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10000 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10000' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 2,
+    "split_group": "CVE-2024-10000"
+  },
+  {
+    "expected_ids": [
+      "CWE-22"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10011 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10011' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 3,
+    "split_group": "CVE-2024-10011"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10165 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10165' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 4,
+    "split_group": "CVE-2024-10165"
+  },
+  {
+    "expected_ids": [
+      "CWE-287"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10020 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10020' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 5,
+    "split_group": "CVE-2024-10020"
+  },
+  {
+    "expected_ids": [
+      "CWE-922"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10028 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10028' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 7,
+    "split_group": "CVE-2024-10028"
+  },
+  {
+    "expected_ids": [
+      "CWE-287"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10097 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10097' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 8,
+    "split_group": "CVE-2024-10097"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10179 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10179' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 9,
+    "split_group": "CVE-2024-10179"
+  },
+  {
+    "expected_ids": [
+      "CWE-303"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10127 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10127' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 10,
+    "split_group": "CVE-2024-10127"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10136 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10136' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 11,
+    "split_group": "CVE-2024-10136"
+  },
+  {
+    "expected_ids": [
+      "CWE-22"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10100 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10100' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 12,
+    "split_group": "CVE-2024-10100"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10177 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10177' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 13,
+    "split_group": "CVE-2024-10177"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10192 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10192' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 14,
+    "split_group": "CVE-2024-10192"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10168 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10168' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 15,
+    "split_group": "CVE-2024-10168"
+  },
+  {
+    "expected_ids": [
+      "CWE-843"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10230 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10230' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 16,
+    "split_group": "CVE-2024-10230"
+  },
+  {
+    "expected_ids": [
+      "CWE-732"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10228 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10228' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 17,
+    "split_group": "CVE-2024-10228"
+  },
+  {
+    "expected_ids": [
+      "CWE-20"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10083 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10083' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 18,
+    "split_group": "CVE-2024-10083"
+  },
+  {
+    "expected_ids": [
+      "CWE-73"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10210 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10210' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 20,
+    "split_group": "CVE-2024-10210"
+  },
+  {
+    "expected_ids": [
+      "CWE-476"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10037 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10037' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 21,
+    "split_group": "CVE-2024-10037"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10071 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10071' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 23,
+    "split_group": "CVE-2024-10071"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10176 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10176' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 24,
+    "split_group": "CVE-2024-10176"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10107 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10107' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 25,
+    "split_group": "CVE-2024-10107"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10029 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10029' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 26,
+    "split_group": "CVE-2024-10029"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10143 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10143' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 27,
+    "split_group": "CVE-2024-10143"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10186 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10186' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 28,
+    "split_group": "CVE-2024-10186"
+  },
+  {
+    "expected_ids": [
+      "CWE-77"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10193 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10193' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 29,
+    "split_group": "CVE-2024-10193"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10009 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10009' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 30,
+    "split_group": "CVE-2024-10009"
+  },
+  {
+    "expected_ids": [
+      "CWE-862"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10008 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10008' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 31,
+    "split_group": "CVE-2024-10008"
+  },
+  {
+    "expected_ids": [
+      "CWE-863"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10219 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10219' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 32,
+    "split_group": "CVE-2024-10219"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10138 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10138' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 33,
+    "split_group": "CVE-2024-10138"
+  },
+  {
+    "expected_ids": [
+      "CWE-78"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10118 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10118' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 35,
+    "split_group": "CVE-2024-10118"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10232 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10232' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 36,
+    "split_group": "CVE-2024-10232"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10191 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10191' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 37,
+    "split_group": "CVE-2024-10191"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10091 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10091' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 38,
+    "split_group": "CVE-2024-10091"
+  },
+  {
+    "expected_ids": [
+      "CWE-121"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CVE-2024-10130 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE) WHERE cve.cve_id = 'CVE-2024-10130' RETURN DISTINCT cwe.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 39,
+    "split_group": "CVE-2024-10130"
+  },
+  {
+    "expected_ids": [
+      "entity_1aebdadb81537c6a",
+      "entity_268189cf5ea5cf37",
+      "entity_47e88cf3d006f786",
+      "entity_68082cf47a18bdae",
+      "entity_7910726cbd06ce22",
+      "entity_8f3cd5b5ba1d0f4c",
+      "entity_938a7fb921a2e421",
+      "entity_94d6b09a99fca7ed",
+      "entity_959c63dd5608a827",
+      "entity_d1b7ba9e36cd5ace",
+      "entity_d31d3aefb0e0d694",
+      "entity_f47f13e2b2e5676b",
+      "entity_fe1b97e52a05c502"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-120 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-120' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 81,
+    "split_group": "CWE-120"
+  },
+  {
+    "expected_ids": [
+      "entity_084562efc9aa0dcd",
+      "entity_204c2f8ef970c5dd",
+      "entity_860d1af60bedf42b"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-270 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-270' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 83,
+    "split_group": "CWE-270"
+  },
+  {
+    "expected_ids": [
+      "entity_2011bd5d3453f934"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-90 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-90' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 84,
+    "split_group": "CWE-90"
+  },
+  {
+    "expected_ids": [
+      "entity_d84498f74c95ca76",
+      "entity_f487e9196f226f33"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-30 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-30' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 85,
+    "split_group": "CWE-30"
+  },
+  {
+    "expected_ids": [
+      "entity_4f4ac8655e5a53a5",
+      "entity_7698037a21f3d717"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-260 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-260' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 86,
+    "split_group": "CWE-260"
+  },
+  {
+    "expected_ids": [
+      "entity_01b1c7a35a7eb91a",
+      "entity_79e046192bb2ac1e",
+      "entity_b09e3827fba48609",
+      "entity_c443f59a0e696761"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-80 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-80' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 87,
+    "split_group": "CWE-80"
+  },
+  {
+    "expected_ids": [
+      "entity_0bcfbe059a3875fc",
+      "entity_396bb96d8b8018a6",
+      "entity_5ea7c625771a82e4",
+      "entity_6db2327bca7131b5",
+      "entity_761a32c64cf1d8ce",
+      "entity_9a220ede3d586df8",
+      "entity_ea963af51d867901"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-250 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-250' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 95,
+    "split_group": "CWE-250"
+  },
+  {
+    "expected_ids": [
+      "entity_3bae95ca0dd67045",
+      "entity_8cdc68f0b66e0a59",
+      "entity_b841e5e55d4bee46",
+      "entity_c9b612a98af0701f",
+      "entity_ea9d180a4baa5379"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-170 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-170' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 101,
+    "split_group": "CWE-170"
+  },
+  {
+    "expected_ids": [
+      "entity_b2c0cd3b3ba659fd"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-180 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-180' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 106,
+    "split_group": "CWE-180"
+  },
+  {
+    "expected_ids": [
+      "entity_04adb8ea185bd320",
+      "entity_04c06ec27c538db9",
+      "entity_0b2e9c3ebbb9dcac",
+      "entity_76fd68d3f16d12c5",
+      "entity_941bce3c04bb2250",
+      "entity_9ca31f72c4a04ff4",
+      "entity_c4b9d9f5b1e0875b",
+      "entity_e34f9d3167b0e6f6",
+      "entity_e69ec25e0d557081",
+      "entity_ea8fa7b57586fc1f"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweMitigation_node identifiers for CWE-20 following this typed path: (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CWE_MITIGATION]->(m:CWEMitigation) WHERE cwe.id = 'CWE-20' RETURN DISTINCT m.id AS id ORDER BY id",
+    "source_query_ordinal": 2,
+    "source_record_ordinal": 107,
+    "split_group": "CWE-20"
+  },
+  {
+    "expected_ids": [
+      "CAPEC-588",
+      "CAPEC-591",
+      "CAPEC-592",
+      "CAPEC-63",
+      "CAPEC-85"
+    ],
+    "instruction": "Using the released graph, return sorted distinct capec_node identifiers for CVE-2024-10223 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC) WHERE cve.cve_id = 'CVE-2024-10223' RETURN DISTINCT capec.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 160,
+    "split_group": "CVE-2024-10223"
+  },
+  {
+    "expected_ids": [
+      "CAPEC-588",
+      "CAPEC-591",
+      "CAPEC-592",
+      "CAPEC-63",
+      "CAPEC-85"
+    ],
+    "instruction": "Using the released graph, return sorted distinct capec_node identifiers for CVE-2024-10234 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC) WHERE cve.cve_id = 'CVE-2024-10234' RETURN DISTINCT capec.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 165,
+    "split_group": "CVE-2024-10234"
+  },
+  {
+    "expected_ids": [
+      "entity_031f970b2809da2b",
+      "entity_122d95a1e2b1e467",
+      "entity_fd3a1aa32b730be2"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cweConsequence_node identifiers for CWE-20 following this typed path: (cwe:CWE)-[:HAS_CONSEQUENCE]->(cc:CWEConsequence).",
+    "output": "MATCH (cwe:CWE)-[:HAS_CONSEQUENCE]->(cc:CWEConsequence) WHERE cwe.id = 'CWE-20' RETURN DISTINCT cc.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 171,
+    "split_group": "CWE-20"
+  },
+  {
+    "expected_ids": [
+      "CAPEC-22",
+      "CAPEC-57",
+      "CAPEC-593",
+      "CAPEC-94"
+    ],
+    "instruction": "Using the released graph, return sorted distinct capec_node identifiers for CVE-2024-10173 following this typed path: (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC).",
+    "output": "MATCH (cve:CVE)-[:HAS_CWE]->(cwe:CWE)<-[:HAS_CAPEC]-(capec:CAPEC) WHERE cve.cve_id = 'CVE-2024-10173' RETURN DISTINCT capec.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 172,
+    "split_group": "CVE-2024-10173"
+  },
+  {
+    "expected_ids": [
+      "CWE-89"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CWE-89 following this typed path: (n:CWE).",
+    "output": "MATCH (n:CWE) WHERE n.id = 'CWE-89' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 204,
+    "split_group": "CWE-89"
+  },
+  {
+    "expected_ids": [
+      "CVE-2023-4863"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cve_node identifiers for CVE-2023-4863 following this typed path: (n:CVE).",
+    "output": "MATCH (n:CVE) WHERE n.cve_id = 'CVE-2023-4863' RETURN DISTINCT n.cve_id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 205,
+    "split_group": "CVE-2023-4863"
+  },
+  {
+    "expected_ids": [
+      "T1059"
+    ],
+    "instruction": "Using the released graph, return sorted distinct technique_node identifiers for T1059 following this typed path: (n:Technique).",
+    "output": "MATCH (n:Technique) WHERE n.id = 'T1059' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 207,
+    "split_group": "T1059"
+  },
+  {
+    "expected_ids": [
+      "CWE-79"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CWE-79 following this typed path: (n:CWE).",
+    "output": "MATCH (n:CWE) WHERE n.id = 'CWE-79' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 209,
+    "split_group": "CWE-79"
+  },
+  {
+    "expected_ids": [
+      "T1566"
+    ],
+    "instruction": "Using the released graph, return sorted distinct technique_node identifiers for T1566 following this typed path: (n:Technique).",
+    "output": "MATCH (n:Technique) WHERE n.id = 'T1566' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 210,
+    "split_group": "T1566"
+  },
+  {
+    "expected_ids": [
+      "T1082"
+    ],
+    "instruction": "Using the released graph, return sorted distinct technique_node identifiers for T1082 following this typed path: (n:Technique).",
+    "output": "MATCH (n:Technique) WHERE n.id = 'T1082' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 211,
+    "split_group": "T1082"
+  },
+  {
+    "expected_ids": [
+      "CWE-352"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CWE-352 following this typed path: (n:CWE).",
+    "output": "MATCH (n:CWE) WHERE n.id = 'CWE-352' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 212,
+    "split_group": "CWE-352"
+  },
+  {
+    "expected_ids": [
+      "CAPEC-66"
+    ],
+    "instruction": "Using the released graph, return sorted distinct capec_node identifiers for CAPEC-66 following this typed path: (n:CAPEC).",
+    "output": "MATCH (n:CAPEC) WHERE n.id = 'CAPEC-66' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 215,
+    "split_group": "CAPEC-66"
+  },
+  {
+    "expected_ids": [
+      "CWE-200"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CWE-200 following this typed path: (n:CWE).",
+    "output": "MATCH (n:CWE) WHERE n.id = 'CWE-200' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 222,
+    "split_group": "CWE-200"
+  },
+  {
+    "expected_ids": [
+      "CVE-2024-30051"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cve_node identifiers for CVE-2024-30051 following this typed path: (n:CVE).",
+    "output": "MATCH (n:CVE) WHERE n.cve_id = 'CVE-2024-30051' RETURN DISTINCT n.cve_id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 228,
+    "split_group": "CVE-2024-30051"
+  },
+  {
+    "expected_ids": [
+      "T1071"
+    ],
+    "instruction": "Using the released graph, return sorted distinct technique_node identifiers for T1071 following this typed path: (n:Technique).",
+    "output": "MATCH (n:Technique) WHERE n.id = 'T1071' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 234,
+    "split_group": "T1071"
+  },
+  {
+    "expected_ids": [
+      "CWE-125"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cwe_node identifiers for CWE-125 following this typed path: (n:CWE).",
+    "output": "MATCH (n:CWE) WHERE n.id = 'CWE-125' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 236,
+    "split_group": "CWE-125"
+  },
+  {
+    "expected_ids": [
+      "CVE-2021-44228"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cve_node identifiers for CVE-2021-44228 following this typed path: (n:CVE).",
+    "output": "MATCH (n:CVE) WHERE n.cve_id = 'CVE-2021-44228' RETURN DISTINCT n.cve_id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 247,
+    "split_group": "CVE-2021-44228"
+  },
+  {
+    "expected_ids": [
+      "CVE-2020-0601"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cve_node identifiers for CVE-2020-0601 following this typed path: (n:CVE).",
+    "output": "MATCH (n:CVE) WHERE n.cve_id = 'CVE-2020-0601' RETURN DISTINCT n.cve_id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 253,
+    "split_group": "CVE-2020-0601"
+  },
+  {
+    "expected_ids": [
+      "CVE-2022-22965"
+    ],
+    "instruction": "Using the released graph, return sorted distinct cve_node identifiers for CVE-2022-22965 following this typed path: (n:CVE).",
+    "output": "MATCH (n:CVE) WHERE n.cve_id = 'CVE-2022-22965' RETURN DISTINCT n.cve_id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 259,
+    "split_group": "CVE-2022-22965"
+  },
+  {
+    "expected_ids": [
+      "CAPEC-100"
+    ],
+    "instruction": "Using the released graph, return sorted distinct capec_node identifiers for CAPEC-100 following this typed path: (n:CAPEC).",
+    "output": "MATCH (n:CAPEC) WHERE n.id = 'CAPEC-100' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 265,
+    "split_group": "CAPEC-100"
+  },
+  {
+    "expected_ids": [
+      "T1105"
+    ],
+    "instruction": "Using the released graph, return sorted distinct technique_node identifiers for T1105 following this typed path: (n:Technique).",
+    "output": "MATCH (n:Technique) WHERE n.id = 'T1105' RETURN DISTINCT n.id AS id ORDER BY id",
+    "source_query_ordinal": 1,
+    "source_record_ordinal": 286,
+    "split_group": "T1105"
+  }
+]

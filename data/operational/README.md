@@ -22,3 +22,7 @@ These are observation-derived features, not a complete packet capture, a labelle
 [P4: HySecTwin](../../docs/RELATED_PUBLICATIONS.md#p4-hysectwin) is the custodian's co-authored semantic digital-twin/hybrid-reasoning project. Its [repository](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling) and [reasoning reproducibility package](https://github.com/ahmadspm/HybridSec-Digital-Twin-CSP-Modelling/tree/main/Reproducibility) are relevant to deterministic/fuzzy monitoring and contextual security reasoning.
 
 The 27 reduced traces here are not asserted to reproduce the complete HySecTwin experiments or original physical-to-twin latency measurements. Semantic rule replay would require an appropriate, separately supplied signal/ontology mapping; pseudonymous tokens alone do not recover equipment semantics. [P1: BRIDG-ICS](../../docs/RELATED_PUBLICATIONS.md#p1-bridg-ics) provides complementary industrial threat-modelling context. See the [dataset card](../../docs/DATASET_CARD.md) and [provenance register](../../metadata/provenance.csv).
+
+## Trace-level metadata
+
+The [trace manifest](../../metadata/trace_manifest.csv) reports every released trace's event count, duration, spacing, signal diversity and missingness. [Operational semantics](../../metadata/operational_semantics.json) records field meanings and explicitly unknown collection mode, process mapping, units and attack labels. The three traces with fewer than three events are flagged rather than silently removed. Event spacing is not assumed to be uniform sensor sampling.

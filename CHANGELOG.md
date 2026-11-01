@@ -13,3 +13,7 @@
 ## Research usability improvements
 
 Added research-question mapping, three reproducible standard-library baselines with frozen partitions, an intellectual-lineage schematic and archival instructions. Corrected the documented event-trace count from 29 to 27 distinct released IDs; no data changed.
+
+## Research compatibility and evaluation
+
+Added a 66-query release-compatible derived subset while preserving 358 legacy records; graph connectivity and join reports; 94 verified inventory-to-product key matches; trace metadata with explicit unknown semantics; all-fixture field evaluators; a 94-case connected task, deterministic baselines and separate source-consistency audit. Real-model execution and independent human sign-off are explicitly pending.

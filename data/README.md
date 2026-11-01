@@ -29,3 +29,7 @@ Validate identifier joins between folders rather than assuming that every source
 Synthetic risk attributes, upstream reference labels, operational observations and expected agent decisions have different meanings. Report the evidence class used in each experiment. Intrusion detection requires verified attack labels or separately documented injected scenarios; this release does not provide a universal malicious/benign label for all records. Physical fidelity and live model performance require their own experiments.
 
 Start with [schemas](../docs/SCHEMAS.md), [the dataset card](../docs/DATASET_CARD.md), [methods](../docs/METHODS.md) and [validation](../docs/VALIDATION.md). The CTIBench-derived folder retains [CC BY-NC-SA 4.0](benchmarks/LICENSE); other scopes are listed in [the license map](../metadata/licenses.csv).
+
+## Compatible query and evaluation additions
+
+Use the [release-compatible query subset](training/release_compatible.json) for the declared minimized schema; retain the original 358 examples as legacy source material. [Research readiness](../docs/RESEARCH_READINESS.md) links graph joins, trace metadata, all-fixture evaluators and the connected evidence task, including outstanding model execution and independent review.

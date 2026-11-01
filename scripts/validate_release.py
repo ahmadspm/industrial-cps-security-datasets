@@ -26,6 +26,10 @@ if unmatched:errors.append('Unmatched released graph references: '+str(unmatched
 checks.update(graph_nodes=node_rows,graph_edges=edge_rows,unmatched_released_graph_edges=unmatched)
 train=json.loads((ROOT/'data/training/fine_tuning.json').read_text());unique={json.dumps(r,sort_keys=True) for r in train}
 if len(train)!=len(unique):errors.append('Training duplicates remain')
+preferred=json.loads((ROOT/'data/training/release_compatible.json').read_text())
+if len({r['output'] for r in preferred})!=len(preferred):errors.append('Compatible query duplicates remain')
+if not preferred or any(not r.get('expected_ids') for r in preferred):errors.append('Compatible queries need nonempty reference results')
+checks['release_compatible_queries']=len(preferred)
 checks['unique_training_records']=len(unique)
 bench={}
 for p in (ROOT/'data/benchmarks').glob('*.csv*'):

@@ -16,14 +16,18 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 | `data/knowledge_graph` | 305,167 nodes and 276,420 typed-reference-checked edges | Source-derived factual attributes; semantic correctness not certified |
 | `data/synthetic` | 10,220 synthetic protocol/attackability records | Synthetic, not physical attack ground truth |
 | `data/benchmarks` | 60 CTI-ATE, 996 CTI-RCM and 991 CTI-RCM-2021 records | Upstream reference labels; 13 ambiguous records excluded |
-| `data/training` | 358 unique instruction/output records | Training material, not held-out evaluation |
+| `data/training` | 358 legacy pairs; 66 normalized release-compatible queries | Training/reference material, not held-out evaluation |
 | `data/operational` | 14,124 reduced event-feature records from 27 traces | De-identified observations; no physical-fidelity certification |
 | `data/agent_scenarios` | 400 expected-decision test cases in 20 scenarios | Expected decisions, not 400 newly executed agent outcomes |
 | `code/twin_reference` | Models, configurations, fixtures and tests needed for offline replay | Derived reference implementation |
 
+## Research readiness and evaluation
+
+See the [implementation and evidence status](docs/RESEARCH_READINESS.md) for the release-compatible query subset, graph connectivity and join coverage, trace metadata, complete fixture-field evaluator and connected evidence task. [Evaluation instructions](evaluation/README.md) include a local real-model comparison runner and an independent-review packet. **Real-model execution and independent expert sign-off remain pending.**
+
 ## Research guide
 
-Read **Critical Infrastructure Cybersecurity Research: Digital Twins, AI and Knowledge Graphs**, by Dr Ahmad Mohsin (Research Fellow / Scientist), in the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 30-page academic guide with fourteen figures, including twelve redesigned image-generated scientific diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, three opening pages illustrating CPS, critical infrastructure, digital twins and governed agentic AI, study protocols, loading examples and reproducibility guidance.
+Read **Critical Infrastructure Cybersecurity Research: Digital Twins, AI and Knowledge Graphs**, by Dr Ahmad Mohsin (Research Fellow / Scientist), in the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 31-page academic guide with fourteen figures, including twelve redesigned image-generated scientific diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, three opening pages illustrating CPS, critical infrastructure, digital twins and governed agentic AI, study protocols, loading examples and reproducibility guidance.
 
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 

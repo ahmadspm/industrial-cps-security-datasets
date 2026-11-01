@@ -12,3 +12,4 @@ jobs:
           python-version: '3.12'
       - run: python scripts/validate_release.py
       - run: python examples/check_starters.py
+      - run: python -m unittest discover -s tests -v

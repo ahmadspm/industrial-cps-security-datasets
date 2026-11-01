@@ -1,0 +1,283 @@
+{
+  "cases": 400,
+  "missing_output_policy": "Machine-scored assertions fail; missing context is unscored; narrative notes are documentation.",
+  "predicates": {
+    "_react_analyze_recon.detection_risk": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "_react_analyze_recon.next_action": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "_react_analyze_recon.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "_run_react_loop.must_not_select": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "_run_react_loop.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "_run_react_loop.tool_must_be_in_or_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "assess.detection_risk": {
+      "occurrences": 100,
+      "status_without_output_or_context": "fail"
+    },
+    "assess.next_action": {
+      "occurrences": 180,
+      "status_without_output_or_context": "fail"
+    },
+    "assess.note": {
+      "occurrences": 120,
+      "status_without_output_or_context": "documentation"
+    },
+    "decide_continuation.campaign_decision": {
+      "occurrences": 80,
+      "status_without_output_or_context": "fail"
+    },
+    "decide_continuation.note": {
+      "occurrences": 80,
+      "status_without_output_or_context": "documentation"
+    },
+    "decide_continuation.stop_reason_not_empty": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "deep_recon.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "deep_recon.recommended_target": {
+      "occurrences": 20,
+      "status_without_output_or_context": "unscored"
+    },
+    "deep_recon.recommended_technique_pattern": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "evaluate_outcome.detection_risk": {
+      "occurrences": 80,
+      "status_without_output_or_context": "fail"
+    },
+    "evaluate_outcome.outcome_summary_contains": {
+      "occurrences": 80,
+      "status_without_output_or_context": "fail"
+    },
+    "final.all_rounds_present": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.campaign_decision": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.campaign_decision_in": {
+      "occurrences": 60,
+      "status_without_output_or_context": "fail"
+    },
+    "final.causal_chain_starts_at": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.has_fields": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "final.phases_count": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.priority_targets_is_list": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.source": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "final.stop": {
+      "occurrences": 180,
+      "status_without_output_or_context": "fail"
+    },
+    "final.stop_or_tool_selected": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.stop_reason_not_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.target_node": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.technique_id_pattern": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool": {
+      "occurrences": 80,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool_in_available_or_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool_must_not_be": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool_not_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool_not_equal": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "final.tool_not_in": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "generate_mitre_plan.all_hops_in_topology": {
+      "occurrences": 20,
+      "status_without_output_or_context": "unscored"
+    },
+    "generate_mitre_plan.causal_chain_min_length": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "generate_mitre_plan.causal_chain_starts_at": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "generate_mitre_plan.must_match_target_category": {
+      "occurrences": 20,
+      "status_without_output_or_context": "unscored"
+    },
+    "generate_mitre_plan.note": {
+      "occurrences": 40,
+      "status_without_output_or_context": "documentation"
+    },
+    "generate_mitre_plan.severity": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "generate_mitre_plan.target_node": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "generate_mitre_plan.technique_id_pattern": {
+      "occurrences": 60,
+      "status_without_output_or_context": "fail"
+    },
+    "input.input_tool_availability": {
+      "occurrences": 300,
+      "status_without_output_or_context": "fail"
+    },
+    "plan_llm.all_tools_in_available": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "plan_llm.must_have_all_rounds": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "plan_llm.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "plan_llm.required_phase_fields": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "plan_llm.technique_id_pattern": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "recon_llm.note": {
+      "occurrences": 20,
+      "status_without_output_or_context": "documentation"
+    },
+    "recon_llm.opening_move_has_tool": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "recon_llm.priority_targets_min_length": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "recon_llm.required_fields": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "recon_llm.topology_insight_not_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "risk_check.action": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "risk_check.from": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "risk_check.note": {
+      "occurrences": 40,
+      "status_without_output_or_context": "documentation"
+    },
+    "risk_check.to_one_of": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.note": {
+      "occurrences": 100,
+      "status_without_output_or_context": "documentation"
+    },
+    "select_tool.target_node": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.technique_id": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.technique_id_pattern": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.tool_must_be_in": {
+      "occurrences": 60,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.tool_must_not_be": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.tool_must_not_be_empty": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.tool_must_not_be_in": {
+      "occurrences": 20,
+      "status_without_output_or_context": "fail"
+    },
+    "select_tool.tool_name": {
+      "occurrences": 40,
+      "status_without_output_or_context": "fail"
+    }
+  },
+  "specification": "agent-fields-v1"
+}
