@@ -1,10 +1,10 @@
 # Industrial CPS Security Research Datasets
 
-[![Dataset version](https://img.shields.io/badge/dataset-v1.0.0-blue)](CHANGELOG.md)
+[![Dataset version](assets/badges/dataset-version.svg)](CHANGELOG.md)
 [![Dataset validation](https://github.com/ahmadspm/industrial-cps-security-datasets/actions/workflows/validate.yml/badge.svg?branch=main)](https://github.com/ahmadspm/industrial-cps-security-datasets/actions/workflows/validate.yml)
-[![Cite this dataset](https://img.shields.io/badge/cite-CITATION.cff-blue)](CITATION.cff)
-[![License scopes](https://img.shields.io/badge/licenses-mixed-lightgrey)](metadata/licenses.csv)
-[![Research articles](https://img.shields.io/badge/research-articles-8A2BE2)](docs/RELATED_PUBLICATIONS.md)
+[![Cite this dataset](assets/badges/citation.svg)](CITATION.cff)
+[![License scopes](assets/badges/licenses.svg)](metadata/licenses.csv)
+[![Research articles](assets/badges/research.svg)](docs/RELATED_PUBLICATIONS.md)
 
 A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation.
 
