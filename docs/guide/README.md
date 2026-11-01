@@ -1,16 +1,23 @@
-# Researcher guide source
+# Researcher guide - LaTeX source
 
-The root `RESEARCHERS_GUIDE.pdf` is built from `build_researchers_guide.py`. Version 2.1 contains 24 pages, ten experimental workflows, a research agenda and a suitability assessment.
+The root `RESEARCHERS_GUIDE.pdf` is compiled directly from LaTeX. Edition 3.0 contains 25 pages and 14 original TikZ figures. The first three pages establish the CPS, critical-infrastructure, digital-twin and agentic-AI context. No external image assets are required.
 
-Requirements: Python 3, ReportLab, Pillow and DejaVu Sans/Serif/Mono fonts in `/usr/share/fonts/truetype/dejavu/` (Debian/Ubuntu: `fonts-dejavu-core`).
+## Build
 
-From the repository root:
+Install TeX Live (including `latexmk`, TikZ/PGF, Latin Modern, `microtype`, `caption`, `fancyhdr`, `fvextra`, `booktabs` and `tabularx`) or an equivalent MiKTeX installation. From the repository root:
 
 ```sh
-python -m pip install reportlab pillow
-python docs/guide/build_researchers_guide.py
+bash docs/guide/build.sh
 ```
 
-The script asserts 24 pages and checks vertical overflow. Render and inspect every page after edits. The colour scheme encodes evidence, design, baseline, method, held decisions, evaluation and reporting. The guide describes proposed experiments; dataset files and recorded replay results are unchanged.
+The build uses a temporary directory, performs the required LaTeX passes and copies the compiled PDF to the repository root. It requires neither Python nor ReportLab.
 
-Figures A and B are original vector academic diagrams implemented in the builder. Figure A distinguishes the CPS control loop from released research representations; Figure B shows the evidence required for cross-sector validation. No photographs or reproduced article figures are included. NIST OT architecture guidance [12] is cited on page 2, and recent guidance [9-11] on page 3. Related-article details remain in `docs/RELATED_PUBLICATIONS.md`.
+For Overleaf, upload `RESEARCHERS_GUIDE.tex` and `sections.tex` to one project, select `RESEARCHERS_GUIDE.tex` as the main document, and compile with pdfLaTeX.
+
+## Source organization
+
+- `RESEARCHERS_GUIDE.tex`: document class, typography, first three context pages, TikZ styles and source attribution.
+- `sections.tex`: research agenda, suitability assessments, study protocols, workflow diagrams, tables, code examples and references.
+- `build.sh`: local compilation entry point.
+
+All figures are original vector academic schematics. Source guidance is cited in the text; these are not reproductions of article or magazine figures. The data and recorded replay results are unchanged. The edition was compiled with pdfTeX / TeX Live 2023 and reviewed after rendering every page. Future edits should be checked for LaTeX warnings and rendered layout defects.

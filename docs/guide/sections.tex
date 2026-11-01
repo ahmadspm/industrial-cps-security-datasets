@@ -1,0 +1,458 @@
+\clearpage\section{Contemporary security problems, 2025-2026}
+\subsection*{Loss of monitoring and control through exposed PLCs}
+A July 2026 FBI/EPA announcement reports water-sector incidents involving internet-facing PLCs, with changes to configurations and credentials causing loss of monitoring or control [9]. This motivates research on communication boundaries, trusted configuration evidence and restoration priorities. The inventory and graph tables support an abstract comparison of exposure-reduction policies; they contain neither packet captures nor forensic records of those incidents.
+
+\subsection*{Authority and reliability in AI-enabled OT}
+The December 2025 joint guidance on secure AI integration in OT emphasizes suitability assessment, governance, oversight and lifecycle testing [10]. A research implication is that model accuracy and permission to act should be evaluated separately. The agent fixtures can test tool eligibility and stop decisions. Their expected outputs cannot establish the safety of direct process control.
+
+\subsection*{Manipulated inputs and ungrounded explanations}
+NIST 2025 adversarial machine-learning taxonomy covers attacks across the AI lifecycle [11]. For this corpus, a tractable research question concerns whether controlled corruption of graph facts or retrieved evidence changes an analytical conclusion. Such experiments require newly constructed perturbations with explicit attacker capabilities; the release does not supply a validated poisoning or prompt-injection benchmark.
+
+\textbf{Sources:} [9] FBI/EPA, 30 July 2026: \href{https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions}{Water-sector PLC warning}. [10] ASD and international partners, 4 December 2025: \href{https://www.cyber.gov.au/publication/principles-for-the-secure-integration-of-artificial-intelligence-in-operational-technology}{Secure AI integration in OT}. [11] Vassilev et al., March 2025: \href{https://doi.org/10.6028/NIST.AI.100-2e2025}{NIST AI 100-2 E2025}. Accessed 1 November 2026.
+
+These connections are proposed research uses, not claims that the dataset contains contemporary campaigns. The security contribution should be stated at the level actually evaluated: topology, reference mapping, controlled robustness or fixture-level decision behavior.
+
+\clearpage\section{Potential research areas and open problems}
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Area / open problem} & \textbf{Testable question} & \textbf{Inputs and expected contribution}\\
+\midrule
+Exposure and segmentation & Can boundary-aware monitoring improve weighted flow coverage at the same budget? & Inventory + topology; resource-allocation method\\
+Explainable graph inference & Does relation typing improve held-out link ranking without inverse-edge leakage? & Knowledge graph; auditable structural inference\\
+Grounded CTI analytics & Does graph evidence reduce unsupported identifiers at matched answer coverage? & CTI benchmarks + graph; calibrated mapping\\
+Security query generation & Does adaptation generalize beyond familiar query templates? & Training pairs + new disjoint test set; semantic validation\\
+Behavioral anomaly analysis & Can unusual transitions be detected across held-out traces? & Operational traces; exploratory or adjudicated evaluation\\
+Adversarial AI robustness & How much controlled evidence corruption changes a decision? & Derived graph/CTI variants; robustness characterization\\
+Agent governance & Do policy guards reduce prohibited decisions under held-out scenario families? & Expected-decision fixtures; explicit policy evaluation\\
+Human-centered triage & Does a traceable evidence chain improve reviewer accuracy and review time? & Validated joins + new analyst study; decision-support evaluation\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+The questions are deliberately comparative. A new model name or higher score alone is insufficient: the experiment should isolate the proposed mechanism, define the independent evaluation unit and identify the practical meaning of the observed difference. No novelty claim is implied without a separate literature review.
+
+\clearpage\section{Dataset suitability and evidence gaps}
+Suitability is assessed for a specified research claim rather than for an algorithm in isolation. Direct support means that the necessary released inputs exist for a bounded offline task. Conditional support means that labels, mappings or an evaluation set must be added. Unsupported claims require a different empirical basis.
+
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Data family} & \textbf{Suitability in this release} & \textbf{Additional evidence for broader claims}\\
+\midrule
+Inventory & Direct: topology, boundary coverage and prioritization & Observed configurations, controls and exposure validation\\
+Knowledge graph & Direct: typed relation analysis; conditional: risk inference & Adjudicated relations; time-stamped updates; measured outcomes\\
+CTI benchmarks & Direct: reference-label mapping comparisons & Independent label review; evidence corpus for faithfulness\\
+Training pairs & Conditional: adaptation and query generation & Template-disjoint held-out prompts; semantic oracle\\
+Synthetic & Direct: controlled sensitivity experiments & Real incident labels and external operational validation\\
+Operational & Direct: sequence description; conditional: intrusion detection & Attack/fault adjudication; signal meanings; physical context\\
+Agent scenarios & Direct: expected-policy agreement & Actual execution traces; independent outcome and safety criteria\\
+Cross-source fusion & Conditional: only validated joins & Identity/time mappings and a documented coverage audit\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+The corpus alone is unsuitable for measuring field intrusion-detection effectiveness, certifying autonomous control, estimating sector-wide attack prevalence, proving causal physical consequences, or establishing a current vulnerability risk score. These are evidence limitations, not conclusions about the usefulness of the data.
+
+\clearpage\section{A focused study of adversarial AI robustness}
+A defensible extension is to examine whether analytical outputs remain stable when a bounded portion of their evidence is manipulated. The independent variable is the perturbation budget; the primary outcome is the change in correctness or unsupported-claim rate relative to a clean evaluation. The threat model must specify access, knowledge and the records that an adversary can modify.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Frozen graph/CTI subset + independent labels};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Define attacker capability; preserve clean holdout};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Clean evidence:\newline same analytical model};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Perturbed evidence:\newline bounded derived variants};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Compare correctness, abstention and evidence support};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Release perturbation manifest and failure analysis};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Controlled evidence manipulation. Blue: evidence; amber: design; grey/green: comparison; purple: evaluation; teal: reporting.}
+\end{figure}
+Researchers may remove relations, introduce type-consistent false relations, or add conflicting retrieved statements to derived copies. Each variant should record affected IDs and its construction rule. Label leakage, malformed inputs and plausible but incorrect evidence should be analyzed separately. Prompt injection requires a separately constructed textual corpus and task-specific success criteria; no such benchmark is supplied.
+
+Useful outcomes include degradation curves, false-evidence acceptance, abstention under contradiction and recovery after evidence removal. Results support a claim about the declared perturbation model, not about resistance to all adaptive adversaries.
+
+\clearpage\section{Cross-sector relevance and transfer limits}
+\begin{figure}[H]\centering
+\begin{tikzpicture}[font=\small]
+\node[block,input,text width=60mm] (a) at (-3.5,0) {Released industrial evidence};
+\node[block,input,text width=60mm] (b) at (3.5,0) {Target-sector evidence};
+\node[block,method,text width=60mm] (c) at (-3.5,-1.3) {Fixed method and baseline};
+\node[block,design,text width=60mm] (d) at (3.5,-1.3) {Compatibility: semantics, labels, authority};
+\node[block,evaluation,text width=95mm] (e) at (0,-2.8) {Independent target-sector validation};
+\draw[arr] (a)--(c);\draw[arr] (b)--(d);\draw[arr] (c.south)--++(0,-.3)-|(e.north);\draw[arr] (d.south)--++(0,-.3)-|(e.north);
+\end{tikzpicture}\caption{Evidence required for cross-sector transfer. Original conceptual diagram.}\end{figure}
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Application context} & \textbf{Transferable research method} & \textbf{Required sector-specific additions}\\
+\midrule
+Water and wastewater & Boundary analysis; change/anomaly triage & Hydraulic/process model, asset mapping, quality/pressure limits\\
+Electricity and DER & Evidence-grounded prioritization; guarded recommendations & Electrical topology, grid dynamics, protection and timing constraints\\
+Manufacturing & Flow coverage; sequence analysis; agent fixture evaluation & Verified station semantics, production modes and incident labels\\
+Transport services & Dependency reasoning and evidence provenance & Relevant control systems, interlocks, operational and safety outcomes\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+Cross-sector applicability is a hypothesis to test. Similar network protocols do not imply equivalent dynamics, hazards or response authority. The transfer diagram identifies the additional evidence required to evaluate that hypothesis.
+
+\clearpage\section{Threats to validity and research interpretation}
+\subsection*{Construct validity}
+A proxy must be distinguished from the phenomenon of interest. Coverage of declared flows measures monitoring placement, not prevention of compromise. Expected policy agreement measures consistency with an oracle, not physical safety. Unusual event sequences measure deviation, not necessarily malicious behavior.
+
+\subsection*{Internal validity}
+Duplicate descriptions, repeated attackability tables and inverse graph relations can contaminate a comparison. Preprocessing, retrieval indexing and hyperparameter selection must follow the split. For LLM studies, expected answers and direct answer-bearing records should be excluded from the evaluated input. Model pretraining contamination remains a separate uncertainty.
+
+\subsection*{External validity}
+The industrial setting, pseudonymization, synthetic assumptions and small number of independent traces restrict generalization. A large row count does not substitute for independent sites, operating modes or incidents. Transfer studies should evaluate an additional, independently curated dataset and disclose differences in sensors, protocols and labels.
+
+\subsection*{Statistical conclusion validity}
+Repeated windows from one trace are correlated. Confidence intervals should reflect grouping by trace, entity, description or scenario family. Multiple model comparisons should be distinguished from a prespecified primary analysis. Effect sizes and failure distributions are more informative than isolated best-run scores.
+
+A manuscript should acknowledge these limitations where the relevant result is interpreted, rather than relying only on a general limitations paragraph.
+
+\clearpage\section{Study protocol and figure conventions}
+\subsection*{From research problem to an assessable claim}
+A study protocol should state the operational motivation, the hypothesized mechanism, the released evidence, the intervention or model variation, and the outcome that could refute the hypothesis. A primary endpoint and evaluation split should be frozen before tuning. The baseline should represent a credible simpler approach under the same information and resource budget.
+
+For example: under a fixed monitoring budget, a boundary-aware policy is hypothesized to cover a larger weighted proportion of declared cross-zone flows than degree ranking. A negative or negligible difference would refute the proposed benefit for this topology. The conclusion would concern the declared graph, with no claim about measured attack reduction.
+
+\subsection*{Consistent meaning of workflow colours}
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Colour} & \textbf{Role in the experimental argument}\\
+\midrule
+Blue & Released evidence or frozen inputs\\
+Amber & Study design, split construction or eligibility checks\\
+Grey & Baseline or reference condition\\
+Green & Proposed method or permitted branch\\
+Coral & Held, rejected or unsupported branch\\
+Purple & Common evaluation or evidence review\\
+Teal & Reported outputs, uncertainty and provenance\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+Each box also states its role in text so the diagrams remain interpretable in greyscale. Comparison diagrams share inputs and evaluation conditions. Decision diagrams distinguish permitted and held branches. All workflows describe proposed research procedures, rather than newly measured experimental results.
+
+The following sections document the evidence inventory, data loading, study protocols, evaluation measures and reproducibility requirements. Use the PDF bookmarks to navigate the LaTeX edition.
+
+\clearpage\section{Choose the evidence and the question}
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Folder / evidence} & \textbf{Release size} & \textbf{Research use}\\
+\midrule
+inventory / structural tables & 94 master assets; 53 component records; 120 flows; 6 zones; 5 conduits & Segmentation and exposure\\
+knowledge\_graph / typed structure & 305,167 nodes; 276,420 edges & Link prediction and graph reasoning\\
+benchmarks / upstream reference labels & 2,047 CTI records & CTI extraction and mapping\\
+training / instruction-output examples & 358 unique pairs & Query generation and adaptation\\
+synthetic / generated assumptions and logs & 340 attackability rows; 9,880 protocol rows & Controlled perturbations\\
+operational / pseudonymized observations & 14,124 events; 29 traces & Sequence and anomaly studies\\
+agent\_scenarios / expected fixtures & 20 scenarios; 400 cases & Governed decision behavior\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+Folder counts are not independent evidence units. Some attackability tables are repeated in the graph and synthetic folders; do not count the same rows as independent replications.
+
+\subsection*{Evidence classes matter}
+An observed event is not automatically an attack. A synthetic risk score is an assumption, not a measured compromise probability. A reference answer is not a newly adjudicated label. An expected agent output is a test oracle, not a successful tool execution. Graph referential integrity is not semantic truth.
+
+Read data/README.md, the selected folder README, docs/SCHEMAS.md, docs/DATASET\_CARD.md and metadata/licenses.csv before selecting features. Use metadata/provenance.csv and \path{metadata/research_file_map.csv} to trace inputs and related research.
+
+\clearpage\section{Obtain, freeze and load the release}
+\begin{Verbatim}[fontsize=\footnotesize,breaklines=true,frame=single,rulecolor=\color{rulegray},framesep=8pt]
+git clone https://github.com/ahmadspm/industrial-cps-security-datasets.git
+cd industrial-cps-security-datasets
+git rev-parse HEAD
+python scripts/validate_release.py
+\end{Verbatim}
+Record the full commit, Python version and file SHA-256 values from metadata/checksums.csv. Run the validator from the repository root. Work in a separate output directory and retain the original compressed inputs unchanged.
+
+\subsection*{CSV and compressed CSV: standard-library loader}
+\begin{Verbatim}[fontsize=\footnotesize,breaklines=true,frame=single,rulecolor=\color{rulegray},framesep=8pt]
+from pathlib import Path
+import csv, gzip, json
+
+def rows(path):
+    path = Path(path)
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rt", encoding="utf-8-sig", newline="") as f:
+        yield from csv.DictReader(f)
+
+flows = list(rows("data/inventory/Dataflows.csv"))
+cves = rows("data/knowledge_graph/cve_node_000.csv.gz")
+first_cve = next(cves)
+with gzip.open("data/operational/event_features.jsonl.gz",
+               "rt", encoding="utf-8") as f:
+    first_event = json.loads(next(f))
+with open("data/training/fine_tuning.json", encoding="utf-8") as f:
+    instruction_pairs = json.load(f)
+\end{Verbatim}
+CSV values load as strings. Convert numeric and boolean columns explicitly from the schema; distinguish missing values from zero. Stream all 15 CVE shards for the full CVE table. Do not load a plain CSV sibling in addition to its compressed release file.
+
+No database service is needed to inspect the data. A graph store, embedding model or LLM is a researcher-selected addition and must be versioned separately.
+
+\clearpage\section{Design an experiment before fitting}
+Specify one primary question, unit of analysis, eligibility criteria and testable outcome. Select a baseline before inspecting held-out results. Separate data quality checks from the security hypothesis.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Freeze commit, schema and research question};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Audit labels, groups and duplicate overlap};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Verified target available:\newline supervised comparison};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {No verified target:\newline exploratory or controlled study};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Fit on training only; lock evaluation protocol};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Report uncertainty, provenance and limitations};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Evidence quality determines which evaluation claims are supportable.}
+\end{figure}
+Use group-based splits when records share a description, flow, trace, entity or scenario template. Keep related versions and inverse graph facts on the same side of the split. Record exclusions and split identifiers before tuning. Fit transformations only on training data [8].
+
+Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A technique association does not itself establish that an attack occurred. NIST CSF 2.0 can organize research outcomes; this dataset does not establish compliance [6].
+
+\clearpage\section{Inventory: segmentation and exposure}
+\textbf{Research area.} Asset-centric exposure analysis\newline \textbf{Problem statement.} Incomplete knowledge of communication boundaries complicates the allocation of scarce monitoring resources.
+
+\textbf{Research question.} Can a graph-aware monitoring policy cover important cross-zone flows more efficiently than a simple priority rule?
+
+\textbf{Materials and suitability.} Use Dataflows.csv with assets-Master.csv, ZONES.csv and zones\_conduits.csv. Treat the separate 53-record component inventory as a source requiring explicit mapping. Direct support for structural comparisons; measured intrusion likelihood and operational disruption require additional evidence.
+
+\textbf{Experimental design.} Check asset/zone keys and join coverage; retain unmatched rows in an audit. Construct a directed asset-flow graph. Declare protocol/port and zone rules. Compare policies under equal sensor or intervention budgets.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {120 declared flows + asset/zone tables};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Validate joins; define budget and coverage target};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline criticality or degree ranking};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline boundary-aware graph selection};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Compare covered flows, cost and uncovered assets};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Sensitivity analysis across budgets and missing joins};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{A shared topology and budget enable a fair monitoring comparison.}
+\end{figure}
+\textbf{Interpretation and limitations.} Give cross-zone flow coverage, weighted coverage, selected locations and sensitivity to criticality weights. Reachability reflects declared connectivity, not proven exploitability. Removed identities and addresses cannot support deployment-specific claims.
+
+\clearpage\section{Knowledge graph: inference and prioritization}
+\textbf{Research area.} Explainable threat intelligence and graph learning\newline \textbf{Problem statement.} A plausible association between a weakness, product and technique may be unsupported or produced by leakage between training and evaluation graphs.
+
+\textbf{Research question.} Does a typed graph method recover held-out relations better than a relation-frequency baseline?
+
+\textbf{Materials and suitability.} Use node and edge CSV/CSV.GZ files with metadata/graph\_node\_keys.json and graph\_relation\_rules.json. The release contains 291,577 CVE rows across 15 shards. Direct support for typed structural inference; temporal forecasting requires dated snapshots and verified future outcomes.
+
+\textbf{Experimental design.} Select one relation and a transductive or entity-disjoint task. Split before creating inverse edges, embeddings or derived features. Remove held-out facts and equivalent inverse/derived facts from training. Use type-correct candidates; document negative sampling.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Typed nodes + declared relation rules};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Freeze relation split; remove leakage paths};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline type-constrained frequency};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline typed graph model};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Evaluate identical candidate sets and filtered ranks};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Audit false links and unsupported risk assumptions};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Split construction precedes graph feature generation.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report MRR and Hits@k with candidate counts, or precision/recall on a defined labeled task. Unknown edges are not verified negatives. Zero unmatched endpoints confirms structure only. CVSS/EPSS/KEV attributes are historical snapshots; they are not current risk advice. The graph lacks a full narrative corpus.
+
+\clearpage\section{CTI benchmarks: grounded answers}
+\textbf{Research area.} Evidence-grounded LLM security analytics\newline \textbf{Problem statement.} Fluent threat explanations may include incorrect identifiers or claims that are not entailed by retrieved evidence.
+
+\textbf{Research question.} Does graph grounding improve technique or weakness mapping over the same model without retrieval?
+
+\textbf{Materials and suitability.} Use 60 CTI-ATE, 996 CTI-RCM and 991 CTI-RCM-2021 records. GT is an upstream reference label. CTIBench is external work by Alam et al. [5], not authored by this repository maintainer. Direct support for reference-label mapping; citation faithfulness requires a separately adjudicated evidence set.
+
+\textbf{Experimental design.} Use metadata/benchmark\_split\_groups.csv to keep related descriptions together across files. Hide GT and any direct answer-bearing path from the model input and retrieval index. Freeze prompts and retrieval budget. Normalize output to declared identifier sets; score abstentions explicitly.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Grouped CTI prompts; hidden reference answers};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Freeze model, prompts and allowed evidence};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline same LLM without retrieval};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline graph-grounded LLM};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Score mapping + evidence support + invalid outputs};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Review disagreements; report coverage and abstention};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Retrieval gains must be measured independently from answer leakage.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report exact-set match and micro/macro label precision, recall and F1 as appropriate to the GT representation. Distinguish parsing failures, wrong mappings and unsupported claims. Thirteen records from five conflicting-description groups were excluded during release preparation. Evaluate retained labels rather than assuming universal correctness. CTIBench terms include noncommercial/share-alike conditions.
+
+\clearpage\section{Training pairs: query generation}
+\textbf{Research area.} Domain adaptation for security query generation\newline \textbf{Problem statement.} A model may memorize query templates while failing to generate semantically correct queries for unseen analytical tasks.
+
+\textbf{Research question.} Can instruction tuning improve schema-valid, semantically correct query generation on unseen query families?
+
+\textbf{Materials and suitability.} fine\_tuning.json contains 358 unique instruction/output pairs after removal of 129 exact duplicates. These are development examples, not an official held-out benchmark. Conditional support: researchers must construct a disjoint evaluation set and validate query semantics.
+
+\textbf{Experimental design.} Group near-duplicate instructions and query templates. Create train/dev/test groups and publish IDs. Reserve the test set before prompt engineering or adaptation. Compare a fixed base model with the adapted model on the same held-out prompts. Validate queries in a read-only sandbox if execution is part of the task.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {358 instruction/output pairs};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Group templates; freeze train/dev/test IDs};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline fixed model and prompt};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline adapted model, train split only};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Parse, check schema, then compare query semantics};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Publish errors, split IDs and model configuration};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Template separation reduces memorization-based evaluation.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report syntactic validity, schema validity, execution success and semantic correctness separately. Textual exact match alone may reject equivalent queries. The release does not supply a ready-made hosted database or tuning pipeline. State any external examples, compute budget and model license; test contamination remains a limitation.
+
+\clearpage\section{Synthetic data: controlled anomaly studies}
+\textbf{Research area.} Robust detection under controlled perturbations\newline \textbf{Problem statement.} A detector can learn generation artifacts instead of behavior relevant to an intrusion or operational anomaly.
+
+\textbf{Research question.} How robust is an anomaly detector to documented timing or volume perturbations under different protocols?
+
+\textbf{Materials and suitability.} Use 9,880 generated protocol rows and 340 attackability rows. Protocols include OPC UA, Modbus TCP, MQTT/MQTTS, HTTPS, SSH, RDP, S7comm and EtherNet/IP. Suitable for controlled algorithm comparison; field detection claims require independently labeled operational incidents.
+
+\textbf{Experimental design.} Inspect protocol-specific fields before harmonizing. Split by flow or generation/scenario group where supported. Add perturbations to a derived copy with a recorded seed and explicit injection labels. Keep training and test generation groups disjoint. Compare equal-threshold-budget methods.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Generated protocol records; declared assumptions};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Group split; log injection rule and seed};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline fixed threshold or robust statistic};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline multivariate anomaly detector};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Evaluate derived injection labels; vary severity};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Report protocol sensitivity and synthetic-only scope};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Labels introduced by the experiment stay separate from released values.}
+\end{figure}
+\textbf{Interpretation and limitations.} Give precision/recall, PR-AUC and false alarms per declared unit for the controlled task. Status/result fields are not universal malicious labels. ATTACKABLE controlStrength, pExploit, attackCost\_min and riskWeight are synthetic assumptions, not empirical compromise outcomes. Test whether a model merely reconstructs the formula used to create its target.
+
+\clearpage\section{Operational traces: sequence research}
+\textbf{Research area.} Behavioral monitoring and sequence modelling\newline \textbf{Problem statement.} Unusual sequences can reflect legitimate operating modes, incomplete observations or faults as well as malicious activity.
+
+\textbf{Research question.} Can a sequence model identify unusual transitions more consistently than a local transition-frequency baseline?
+
+\textbf{Materials and suitability.} event\_features.jsonl.gz contains 14,124 records in 29 traces. Fields include trace\_id, record\_index, relative\_seconds, event\_class, signal\_id, value, previous\_value and ok. Suitable for exploratory sequence analysis; attack classification is conditional on new, verified labels.
+
+\textbf{Experimental design.} Order within each trace using record\_index and relative time; inspect missing or repeated times. Split whole traces before creating windows. Fit encoders and thresholds on training traces only. If no independent attack labels exist, use descriptive anomaly analysis or separately labeled controlled perturbations.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {29 pseudonymized event traces};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Whole-trace split; train-only windows and encoding};
+\node[block,baseline,text width=58mm] (n2) at (-3.3,-2.6) {Baseline:\newline transition count or robust threshold};
+\node[block,method,text width=58mm] (n3) at (3.3,-2.6) {Proposed:\newline sequence anomaly model};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Label gate: verified attacks or exploratory scores?};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Report trace-level uncertainty and analyst review};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Trace boundaries and label availability constrain inference.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report unusual-transition rates and review agreement for exploratory studies; use attack metrics only with justified labels. The ok field is not an attack label. Relative clocks are per trace. String values are state\_ pseudonyms; units and original signal semantics may be unavailable. Do not infer physical meaning or align cross-trace clocks without evidence.
+
+\clearpage\section{Agent scenarios: governed decisions}
+\textbf{Research area.} Assurance of agentic security workflows\newline \textbf{Problem statement.} An AI agent may select nonexistent tools, exceed a risk condition or continue after a required stop.
+
+\textbf{Research question.} Does a policy guard reduce invalid tool selections and missed stop conditions relative to an unguarded decision policy?
+
+\textbf{Materials and suitability.} Use 400 expected cases across 20 JSON scenarios. Each provides inputs and expected outputs/final decisions. These fixtures are distinct from the historical twin replay suites. Direct support for fixture-based policy evaluation; live tool safety and mission success are outside the fixture evidence.
+
+\textbf{Experimental design.} Build a local fixture evaluator that reads tests and records actual outputs. Keep expected fields out of model prompts. Group by scenario family for held-out testing where feasible. Route proposals through tool-catalog, risk and stop checks before any simulated execution. Use deterministic mock tools for comparison.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Scenario inputs; expected fields hidden};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Generate proposal; validate catalog, risk and stop rule};
+\node[block,method,text width=58mm] (n2) at (-3.3,-2.6) {Policy allows:\newline execute local mock action};
+\node[block,hold,text width=58mm] (n3) at (3.3,-2.6) {Policy rejects:\newline hold, stop or abstain};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Compare actual outputs with expected decisions};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Audit invalid tools, stop failures and loop behavior};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{The decision gate produces auditable allow/hold outcomes.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report case-level agreement, unsafe-decision rate, stop-condition recall, invalid-tool rate and bounded termination. Specify denominators and oracle limitations. Relevant fixtures cover unavailable tools, hallucinated tools, risk thresholds, loop guards and simulation-only eligibility. Expected outputs are policy references, not evidence of live attacks or operational safety certification.
+
+\clearpage\section{Integrated study: evidence to review}
+\textbf{Research area.} Human-centered evidence fusion\newline \textbf{Problem statement.} Combining incompatible identities or clocks can create convincing but false cross-source explanations.
+
+\textbf{Research question.} Can traceable evidence improve analyst prioritization compared with an inventory-only ranking?
+
+\textbf{Materials and suitability.} Combine only demonstrably compatible inventory keys, graph relations and event identifiers. Different sources may not share identities or clocks. Conditional support: only explicitly validated identity and temporal mappings justify integrated analyses.
+
+\textbf{Experimental design.} Create a mapping table with source keys, mapping rationale and confidence. Measure join coverage and unresolved records before fusion. Require supported joins for each evidence chain; retain unresolved records for review rather than guessing. Compare the same analyst tasks and time budget.
+
+\begin{figure}[H]\centering\begin{tikzpicture}[font=\small,>={Stealth[length=2mm]}]
+\node[block,input,text width=92mm] (n0) at (0,0) {Inventory + graph + observation candidates};
+\node[block,design,text width=92mm] (n1) at (0,-1.2) {Check identity/time mapping and evidence provenance};
+\node[block,method,text width=58mm] (n2) at (-3.3,-2.6) {Supported joins:\newline assemble cited evidence chain};
+\node[block,hold,text width=58mm] (n3) at (3.3,-2.6) {Unsupported joins:\newline isolate and request review};
+\node[block,evaluation,text width=92mm] (n4) at (0,-4.0) {Human review with inventory-only comparison};
+\node[block,output,text width=92mm] (n5) at (0,-5.2) {Publish join coverage, decision quality and audit trail};
+\draw[arr] (n0)--(n1);\draw[arr] (n1.south)--++(0,-.35)-|(n2.north);\draw[arr] (n1.south)--++(0,-.35)-|(n3.north);\draw[arr] (n2.south)--++(0,-.3)-|(n4.north);\draw[arr] (n3.south)--++(0,-.3)-|(n4.north);\draw[arr] (n4)--(n5);
+\end{tikzpicture}\caption{Evidence joins are an eligibility gate, not an assumption.}
+\end{figure}
+\textbf{Interpretation and limitations.} Report supported-join coverage, unsupported-claim rate, analyst agreement and review time with the study protocol. Blind reviewers to method where practical. Do not interpret a connected path as a confirmed attack chain. Explain how pseudonymization and missing semantics affect causal interpretation.
+
+\clearpage\section{Metrics, uncertainty and fair comparisons}
+\begingroup\small\setlength{\tabcolsep}{5pt}\renewcommand{\arraystretch}{1.22}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Task} & \textbf{Primary measures} & \textbf{Essential denominator / caveat}\\
+\midrule
+Label mapping & Exact set match; micro/macro F1 & All eligible prompts; disclose parse failures and abstentions\\
+Graph ranking & MRR; Hits@k & Candidate set size; filtered-known-fact rule; unknown negatives\\
+Anomaly detection & PR-AUC; precision/recall; false alarms & Verified or injected labels; alarms per trace/time unit\\
+Inventory optimization & Coverage; cost; uncovered critical flows & Fixed budget and declared weights; unmatched joins\\
+Query generation & Syntax, schema and semantic validity & All test prompts; distinguish equivalent queries\\
+Agent decisions & Agreement; invalid-tool and stop-failure rates & All eligible cases; independent failures may overlap\\
+\bottomrule\end{tabularx}\endgroup\par\medskip
+Define TP, FP and FN for the chosen positive unit. Precision = TP/(TP+FP); recall = TP/(TP+FN); F1 = 2PR/(P+R). State how zero denominators are handled. Accuracy alone can obscure rare-event failure.
+
+Use identical splits, candidate sets, prompts and resource budgets across methods. Report multiple seeds for stochastic training. Bootstrap or summarize at the independent unit, such as trace, description group or scenario family; row-level resampling can understate uncertainty.
+
+Use ablations that answer a question: remove graph evidence, remove policy guards, or replace a learned detector with a simple threshold. Report confidence intervals with method and sample size, practical effect size, failure cases and computational cost. Small numbers of independent groups limit generalization.
+
+\clearpage\section{Replay the reference experiments}
+The release includes curated historical code under code/twin\_reference and an offline orchestration script. Replaying this code checks reproducibility of its included fixtures. It does not train every proposed model in this guide or reproduce every paper claim.
+
+\begin{Verbatim}[fontsize=\footnotesize,breaklines=true,frame=single,rulecolor=\color{rulegray},framesep=8pt]
+python -m venv .venv
+# Activate this environment using your platform convention.
+python -m pip install -r code/requirements-replay.txt
+python scripts/replay_offline.py --help
+python scripts/replay_offline.py --source-root . --output replay_output
+\end{Verbatim}
+Use a clean environment and retain the installed package versions. Inspect scripts/replay\_offline.py and docs/VALIDATION.md for the dependency-directory option and current execution behavior. Keep replay\_output outside the published source manifest.
+
+\subsection*{Interpret the recorded baseline correctly}
+validation/replay\_summary.json records the prior release replay: 24 suites, 285 tests and 10 deterministic experiments. These are recorded validation results for the curated code, not a fresh model benchmark or a pass count for the 400 agent-scenario cases. A new run must report its own result and environment.
+
+\subsection*{What to retain from a new run}
+\begin{itemize}
+\item Exact repository commit, input checksums, command line and dependency versions.
+\item Per-suite exit status, test totals, experiment outputs and failure logs.
+\item Any local patches, model/provider configuration, seeds and elapsed time.
+\item A comparison of expected versus actual outputs; explain deviations without overwriting the reference result.
+\end{itemize}
+Offline fixtures do not require physical equipment, model weights, a hosted graph database or live network actions. If a separate study introduces those components, describe them as additional experimental infrastructure and report the authorization and isolation appropriate to that study.
+
+\clearpage\section{Prepare a reusable research package}
+\subsection*{Minimal experiment manifest - fill in actual values}
+\begin{Verbatim}[fontsize=\footnotesize,breaklines=true,frame=single,rulecolor=\color{rulegray},framesep=8pt]
+study_id: your-study-id
+dataset_commit: FULL_COMMIT_SHA
+input_paths: [SELECTED_RELEASE_FILES]
+input_sha256_manifest: metadata/checksums.csv
+question: PREDECLARED_QUESTION
+unit_of_analysis: trace_or_group_or_entity
+label_source: reference_or_adjudicated_or_injected_or_none
+split_ids: path/to/frozen_split_ids.json
+seed: YOUR_SEED
+baseline: VERSION_AND_CONFIGURATION
+method: VERSION_AND_CONFIGURATION
+fit_scope: training_only
+primary_metric: METRIC_AND_DENOMINATOR
+uncertainty: METHOD_AND_RESAMPLING_UNIT
+outputs: path/to/results
+exclusions_and_limitations: path/to/audit.md
+\end{Verbatim}
+\subsection*{Before submission or release}
+State the cybersecurity question and threat assumptions; describe the exact subset and independent sample count; publish group splits and exclusions; separate observations from synthetic or expected values; include baselines and ablations; report all eligible outcomes, uncertainty and failures; and disclose external enrichment, model versions and compute.
+
+Cite this dataset using CITATION.cff and cite the relevant original works [1-5]. Read LICENSE, LICENSE-CODE, THIRD\_PARTY\_NOTICES.md and metadata/licenses.csv: the compilation, code and third-party subsets have different terms. CTIBench is CC BY-NC-SA 4.0; a top-level badge does not override subset conditions.
+
+Keep pseudonymized identifiers as released. Do not restore private identities or publish unreviewed source material. Share derived labels with their creation protocol and clear provenance. A public dataset paper should describe collection, curation, schema, permitted uses, quality checks and limitations separately from a method paper's performance claims.
+
+\clearpage\section{Articles and methodological references}
+Article attribution and publication status follow docs/RELATED\_PUBLICATIONS.md. A related article is context for a research theme, not proof that this curated subset reproduces its results.
+
+\textbf{[1] BRIDG-ICS: AI-grounded knowledge graphs for intelligent threat analytics in Industry 5.0 cyber-physical systems}\newline Nandiya et al. (2026). Cybersecurity 9, article 167. Published journal article.\newline \href{https://doi.org/10.1186/s42400-026-00597-0}{https://doi.org/10.1186/s42400-026-00597-0}
+
+\textbf{[2] NeuroGraph: An AI Graph-Driven Neuro-Symbolic Framework for Explainable Threat Reasoning in Advanced Manufacturing}\newline Nandiya et al. (2026). Preprint arXiv:2609.00604. Author reports acceptance in International Journal of Information Security; final journal DOI not supplied.\newline \href{https://arxiv.org/abs/2609.00604}{https://arxiv.org/abs/2609.00604}
+
+\textbf{[3] A Unified Framework for Human-AI Collaboration in Security Operations Centers with Trusted Autonomy}\newline Mohsin et al. (2026). ACM Transactions on Internet Technology. Journal DOI below; preprint arXiv:2505.23397.\newline \href{https://doi.org/10.1145/3837073}{https://doi.org/10.1145/3837073}
+
+\textbf{[4] HySecTwin: A Knowledge-Driven Digital Twin Framework Augmented with Hybrid Reasoning for Cyber-Physical Systems}\newline Holmes et al. (2026). Preprint arXiv:2605.11682. Related project: HybridSec-Digital-Twin-CSP-Modelling, ahmadspm on GitHub.\newline \href{https://arxiv.org/abs/2605.11682}{https://arxiv.org/abs/2605.11682}
+
+\textbf{[4a] Autonomous Cyber-Physical Security Assessment in Smart Manufacturing with a Behavioural Digital Twin and Agentic AI}\newline Nandiya, Mohsin, Lohmann, Ekelhart, Sarker and Janicke (n.d.). Author-supplied manuscript; no public article URL or final publication metadata supplied.\newline \href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/docs/RELATED_PUBLICATIONS.md}{Related-publications record in this repository}
+
+\textbf{[5] CTIBench: A benchmark for evaluating LLMs in cyber threat intelligence}\newline Alam, Bhusal, Nguyen and Rastogi (2024). NeurIPS 37, 50805-50825. External benchmark; not authored by the maintainer.\newline \href{https://doi.org/10.52202/079017-1607}{https://doi.org/10.52202/079017-1607}
+
+\textbf{[6] The NIST Cybersecurity Framework (CSF) 2.0}\newline NIST (2024). CSWP 29. Outcome vocabulary for framing research; not an evaluation certificate.\newline \href{https://doi.org/10.6028/NIST.CSWP.29}{https://doi.org/10.6028/NIST.CSWP.29}
+
+\textbf{[7] ATT\&CK for ICS matrix}\newline MITRE. Technique and tactic vocabulary. Accessed 1 November 2026; preserve the version used for mappings.\newline \href{https://attack.mitre.org/matrices/ics/}{https://attack.mitre.org/matrices/ics/}
+
+\textbf{[8] Common pitfalls and recommended practices}\newline scikit-learn documentation. Train/test separation and leakage prevention. Accessed 1 November 2026.\newline \href{https://scikit-learn.org/stable/common_pitfalls.html}{https://scikit-learn.org/stable/common\_pitfalls.html}
+
