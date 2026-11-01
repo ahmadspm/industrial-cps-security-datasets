@@ -23,6 +23,8 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 
 ## Research guide
 
+Read the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 16-page practical manual with nine workflow diagrams, study designs for all seven data folders, loading examples, evaluation methods, leakage controls and reproducibility guidance.
+
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 
 ## Related research
