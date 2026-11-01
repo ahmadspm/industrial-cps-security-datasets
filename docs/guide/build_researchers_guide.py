@@ -29,7 +29,7 @@ def title(t):
     if page: c.showPage()
     page+=1;c.setFillColor(teal);c.rect(0,H-10,W,10,fill=1,stroke=0)
     c.setFont('D',8);c.setFillColor(gray);c.drawString(M,H-35,'INDUSTRIAL CPS SECURITY  /  RESEARCH METHODS')
-    c.drawRightString(W-M,32,f'{page:02d} / 24');c.drawString(M,32,'Guide v2.0 | 1 November 2026')
+    c.drawRightString(W-M,32,f'{page:02d} / 24');c.drawString(M,32,'Guide v2.1 | 1 November 2026')
     c.bookmarkPage('p'+str(page));c.addOutlineEntry(t,'p'+str(page),0)
     y=H-69
     p=Paragraph(escape(t),ParagraphStyle('t',fontName='H',fontSize=21,leading=28,textColor=navy));_,h=p.wrap(CW,100);p.drawOn(c,M,y-h);y-=h+19
@@ -106,7 +106,7 @@ def study(t,question,data,steps,labels,caption,claim):
 
 title("Cybersecurity Research with Industrial CPS Data")
 para('A research agenda and methodological guide',16)
-para('Industrial CPS Security Research Datasets | Version 2.0',11)
+para('Industrial CPS Security Research Datasets | Version 2.1',11)
 para('Prepared for the repository maintained by Dr Ahmad Mohsin<br/>1 November 2026',10)
 sub('Abstract')
 para('The growing use of machine learning, knowledge graphs and autonomous agents in industrial security creates a need for evaluations that connect computational performance to defensible operational claims. This guide characterizes the research opportunities afforded by the released dataset and distinguishes structural, synthetic, observational and expected-decision evidence. It develops research problems in exposure analysis, graph inference, grounded threat intelligence, query generation, behavioral monitoring and agent governance. For each area, the guide identifies a research question, suitable inputs, a comparison design and the additional evidence required for stronger conclusions. Recent critical-infrastructure advisories motivate the agenda; they are not represented as incidents captured in this dataset.')
@@ -115,20 +115,49 @@ para('The contribution is a methodological research agenda rather than a benchma
 para('<link href="https://github.com/ahmadspm/industrial-cps-security-datasets" color="#087F8C">github.com/ahmadspm/industrial-cps-security-datasets</link>',9)
 para('<b>Keywords:</b> industrial cybersecurity; cyber-physical systems; knowledge graphs; adversarial machine learning; agentic AI; reproducibility.',9)
 
-def photograph(path,height,caption):
+def architecture_figure():
     global y
-    from PIL import Image
-    im=Image.open(R/path); iw,ih=im.size
-    width=min(CW,height*iw/ih);height=width*ih/iw
-    c.drawImage(str(R/path),M+(CW-width)/2,y-height,width,height,preserveAspectRatio=True)
-    y-=height+9;para(caption,8)
+    top=y-32; left=M+112; right=W-M-112
+    node(left,top,'Human supervision<br/>HMI / operator',200,44,role='output')
+    node(left,top-100,'Industrial control<br/>PLC / control logic',200,44,role='design')
+    node(left,top-200,'Physical process<br/>sensors and actuators',200,44,role='input')
+    node(right,top,'Security research<br/>graph / anomaly / agent models',200,44,role='method')
+    node(right,top-100,'Released representations<br/>assets / flows / event features',200,44,role='input')
+    node(right,top-200,'Offline experiments<br/>synthetic data / scenario fixtures',200,44,role='baseline')
+    edge([(left-30,top-22),(left-30,top-78)])
+    edge([(left+30,top-78),(left+30,top-22)])
+    edge([(left-30,top-122),(left-30,top-178)])
+    edge([(left+30,top-178),(left+30,top-122)])
+    edge([(right,top-78),(right,top-22)])
+    edge([(right,top-178),(right,top-122)])
+    c.setDash(3,3)
+    edge([(left+100,top-100),(right-100,top-100)])
+    edge([(right-100,top),(left+100,top)])
+    c.setDash()
+    y=top-238
+    para('Figure A. Conceptual CPS security research architecture. Solid arrows denote the control/measurement cycle (left) or analytical evidence flow (right). Dashed arrows denote abstraction into released records and advisory interpretation. They do not denote an implemented live connection. Original figure for this guide; conceptual context: NIST SP 800-82r3 [12] and AI/OT guidance [10].',8)
 
-title('Research context: infrastructure and evidence')
-photograph('docs/guide/images/williamsburg-1978.jpg',255,'Figure A. Williamsburg Bridge, view from Manhattan, 1978. Jack Boucher, HAER NY-128-1, Library of Congress [12]. Archival photograph; illustrative transport infrastructure, not a dataset collection site.')
-para('Critical infrastructure joins physical assets, communications and organizational decision processes. Security research therefore needs to establish which parts of that relationship are actually observed. The released industrial tables support analyses of assets, flows and selected behaviors; they do not constitute a complete representation of a water utility, electricity network or transport service.')
-para('The photograph illustrates a real engineered service whose physical function depends on a wider operating context. It is not evidence of a cyber incident, a vulnerability or a connection to the released corpus. The corresponding research lesson is methodological: a graph of declared relationships can support reasoning about structure, while consequences to a physical service require sector-specific process models and validation.')
-para('[12] Photograph source: <link href="https://www.loc.gov/item/ny1263/" color="#087F8C">Library of Congress, HAER NY-128</link>. Public-domain federal documentation photographs. Source credits and mirror retrieval details: docs/guide/IMAGE_CREDITS.md. Reproduced at reduced resolution without content alteration.',8)
-para('The agenda below treats cross-sector use as transfer of a method. Water, energy and transport applications require their own assets, protocol semantics, operating constraints and outcome labels before results can be generalized.')
+def transfer_figure():
+    global y
+    top=y-25; left=M+114;right=W-M-114;mid=W/2
+    node(left,top,'Released industrial evidence<br/>declared scope and assumptions',210,42,role='input')
+    node(right,top,'Target-sector evidence<br/>assets / dynamics / constraints',210,42,role='input')
+    node(left,top-75,'Reproducible method<br/>fixed baseline and metrics',210,42,role='method')
+    node(right,top-75,'Compatibility assessment<br/>semantics / labels / authority',210,42,role='design')
+    node(mid,top-148,'Independent target-sector validation<br/>performance + operational constraints',320,44,role='evaluation')
+    edge([(left,top-21),(left,top-54)])
+    edge([(right,top-21),(right,top-54)])
+    edge([(left,top-96),(left,top-112),(mid,top-112),(mid,top-126)])
+    edge([(right,top-96),(right,top-112),(mid,top-112),(mid,top-126)])
+    y=top-181
+    para('Figure B. Evidence required for cross-sector transfer. A method and a compatibility assessment converge on independent validation. An industrial result alone does not establish a water, energy or transport outcome. Original conceptual diagram for this guide.',8)
+
+title('Research context: CPS security architecture')
+architecture_figure()
+para('A cyber-physical system couples a physical process to sensing, control and supervision. Cybersecurity research must distinguish this operating loop from the analytical representations used to study it. Figure A locates the released assets, communication flows and event features within that distinction. It also separates observational evidence from offline simulations and expected-decision fixtures.')
+para('The dataset supports structural and behavioral research on selected representations. It does not provide a complete operating plant or authorize a model to control equipment. The dashed advisory path therefore requires separate interpretation, validation and an explicit decision about permitted authority.')
+para('[12] Stouffer et al. (2023). <i>Guide to Operational Technology (OT) Security.</i> NIST SP 800-82 Rev. 3. <link href="https://doi.org/10.6028/NIST.SP.800-82r3" color="#087F8C">doi:10.6028/NIST.SP.800-82r3</link>. Figure A is an original synthesis, not a reproduction of a NIST figure.',8.5)
+para('Sector-specific physical consequences require additional process models, operating constraints and outcome evidence. This is the basis for the transfer assessment in Figure B.')
 
 title('Contemporary security problems, 2025-2026')
 sub('Loss of monitoring and control through exposed PLCs')
@@ -156,9 +185,9 @@ para('Researchers may remove relations, introduce type-consistent false relation
 para('Useful outcomes include degradation curves, false-evidence acceptance, abstention under contradiction and recovery after evidence removal. Results support a claim about the declared perturbation model, not about resistance to all adaptive adversaries.',9.5)
 
 title('Cross-sector relevance and transfer limits')
-photograph('docs/guide/images/williamsburg-1991.jpg',230,'Figure B. Williamsburg Bridge from Brooklyn to Manhattan, 1991. Jet Lowe, HAER NY-128-6, Library of Congress [12]. Contextual photograph; no bridge control or cyber data are included.')
+transfer_figure()
 table([['Application context','Transferable research method','Required sector-specific additions'],['Water and wastewater','Boundary analysis; change/anomaly triage','Hydraulic/process model, asset mapping, quality/pressure limits'],['Electricity and DER','Evidence-grounded prioritization; guarded recommendations','Electrical topology, grid dynamics, protection and timing constraints'],['Manufacturing','Flow coverage; sequence analysis; agent fixture evaluation','Verified station semantics, production modes and incident labels'],['Transport services','Dependency reasoning and evidence provenance','Relevant control systems, interlocks, operational and safety outcomes']],[CW*.24,CW*.35,CW*.41])
-para('Cross-sector applicability is a hypothesis to test. Similar network protocols do not imply equivalent dynamics, hazards or response authority. The photographs document physical infrastructure only; no photographed site is represented as a source of this dataset.',9.3)
+para('Cross-sector applicability is a hypothesis to test. Similar network protocols do not imply equivalent dynamics, hazards or response authority. Figure B identifies the additional evidence required to evaluate that hypothesis.',9.3)
 
 title('Threats to validity and research interpretation')
 sub('Construct validity')
@@ -178,7 +207,7 @@ para('For example: under a fixed monitoring budget, a boundary-aware policy is h
 sub('Consistent meaning of workflow colours')
 table([['Colour','Role in the experimental argument'],['Blue','Released evidence or frozen inputs'],['Amber','Study design, split construction or eligibility checks'],['Grey','Baseline or reference condition'],['Green','Proposed method or permitted branch'],['Coral','Held, rejected or unsupported branch'],['Purple','Common evaluation or evidence review'],['Teal','Reported outputs, uncertainty and provenance']],[CW*.24,CW*.76])
 para('Each box also states its role in text so the diagrams remain interpretable in greyscale. Comparison diagrams share inputs and evaluation conditions. Decision diagrams distinguish permitted and held branches. All workflows describe proposed research procedures, rather than newly measured experimental results.',9.5)
-para('Navigation: evidence inventory and loading, pp. 10-11; experimental design, p. 12; eight study protocols, pp. 13-20; metrics, p. 21; replay, p. 22; reproducibility manifest, p. 23; related articles, p. 24. Recent guidance [9-11] is linked on p. 3; photograph source [12] is credited on p. 2.',9.5)
+para('Navigation: evidence inventory and loading, pp. 10-11; experimental design, p. 12; eight study protocols, pp. 13-20; metrics, p. 21; replay, p. 22; reproducibility manifest, p. 23; related articles, p. 24. Recent guidance [9-11] is linked on p. 3; OT architecture reference [12] is given on p. 2.',9.5)
 
 title('1. Choose the evidence and the question')
 table([['Folder / evidence','Release size','Research use'],['inventory / structural tables','94 master assets; 53 component records; 120 flows; 6 zones; 5 conduits','Segmentation and exposure'],['knowledge_graph / typed structure','305,167 nodes; 276,420 edges','Link prediction and graph reasoning'],['benchmarks / upstream reference labels','2,047 CTI records','CTI extraction and mapping'],['training / instruction-output examples','358 unique pairs','Query generation and adaptation'],['synthetic / generated assumptions and logs','340 attackability rows; 9,880 protocol rows','Controlled perturbations'],['operational / pseudonymized observations','14,124 events; 29 traces','Sequence and anomaly studies'],['agent_scenarios / expected fixtures','20 scenarios; 400 cases','Governed decision behavior']],[CW*.36,CW*.28,CW*.36])

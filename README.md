@@ -23,7 +23,7 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 
 ## Research guide
 
-Read the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 24-page academic guide with ten colour-coded workflow diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, credited infrastructure photographs, study protocols, loading examples and reproducibility guidance.
+Read the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for a 24-page academic guide with ten colour-coded workflow diagrams, potential research areas and problems, dataset suitability and evidence gaps, recent AI/OT security challenges, two original academic architecture and validation diagrams, study protocols, loading examples and reproducibility guidance.
 
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, file-level research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 
