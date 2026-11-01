@@ -9,7 +9,7 @@ from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import Paragraph, Table, TableStyle
 from reportlab.lib.styles import ParagraphStyle
 R=Path(__file__).resolve().parents[2]
-for name,file in [('D','DejaVuSans.ttf'),('DB','DejaVuSans-Bold.ttf'),('M','DejaVuSansMono.ttf')]:
+for name,file in [('D','DejaVuSerif.ttf'),('DB','DejaVuSerif-Bold.ttf'),('H','DejaVuSans-Bold.ttf'),('M','DejaVuSansMono.ttf')]:
     pdfmetrics.registerFont(TTFont(name,'/usr/share/fonts/truetype/dejavu/'+file))
 W,H=A4; M=45; CW=W-2*M
 navy=HexColor('#133047'); teal=HexColor('#087F8C'); pale=HexColor('#EAF4F5'); gray=HexColor('#526575')
@@ -29,10 +29,10 @@ def title(t):
     if page: c.showPage()
     page+=1;c.setFillColor(teal);c.rect(0,H-10,W,10,fill=1,stroke=0)
     c.setFont('D',8);c.setFillColor(gray);c.drawString(M,H-35,'INDUSTRIAL CPS SECURITY  /  RESEARCH METHODS')
-    c.drawRightString(W-M,32,f'{page:02d} / 16');c.drawString(M,32,'Guide v1.0 | 1 November 2026')
+    c.drawRightString(W-M,32,f'{page:02d} / 24');c.drawString(M,32,'Guide v2.0 | 1 November 2026')
     c.bookmarkPage('p'+str(page));c.addOutlineEntry(t,'p'+str(page),0)
     y=H-69
-    p=Paragraph(escape(t),ParagraphStyle('t',fontName='DB',fontSize=22,leading=28,textColor=navy));_,h=p.wrap(CW,100);p.drawOn(c,M,y-h);y-=h+19
+    p=Paragraph(escape(t),ParagraphStyle('t',fontName='H',fontSize=21,leading=28,textColor=navy));_,h=p.wrap(CW,100);p.drawOn(c,M,y-h);y-=h+19
 
 def sub(t): para('<b>'+t+'</b>',12)
 def bullets(items):
@@ -55,8 +55,10 @@ def table(rows,widths=None):
     t.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),pale),('VALIGN',(0,0),(-1,-1),'TOP'),('BOTTOMPADDING',(0,0),(-1,-1),8),('TOPPADDING',(0,0),(-1,-1),8),('LINEBELOW',(0,0),(-1,0),1,teal),('LINEBELOW',(0,1),(-1,-1),.3,HexColor('#CCD9DE'))]))
     _,h=t.wrap(CW,900);assert y-h>55,(page,y,h);t.drawOn(c,M,y-h);y-=h+12
 
-def node(cx,cy,text,w=200,h=38):
-    c.setFillColor(pale);c.setStrokeColor(teal);c.roundRect(cx-w/2,cy-h/2,w,h,5,fill=1,stroke=1)
+def node(cx,cy,text,w=200,h=38,role='input'):
+    fills={'input':'#D9EAF8','design':'#FCE6BB','baseline':'#E2E7EC','method':'#CCEBE2','evaluation':'#E5DDF3','output':'#D0E7EE','hold':'#F8D9D3'}
+    borders={'input':'#28618A','design':'#946000','baseline':'#5E6C79','method':'#176C54','evaluation':'#6A4A8A','output':'#176379','hold':'#A13D32'}
+    c.setFillColor(HexColor(fills[role]));c.setStrokeColor(HexColor(borders[role]));c.roundRect(cx-w/2,cy-h/2,w,h,5,fill=1,stroke=1)
     p=Paragraph(text,ParagraphStyle('n',fontName='D',fontSize=9,leading=12,alignment=1,textColor=navy));_,ph=p.wrap(w-12,h);p.drawOn(c,cx-w/2+6,cy-ph/2)
 def edge(points,label=None):
     c.setStrokeColor(teal);c.setLineWidth(1.1);p=c.beginPath();p.moveTo(*points[0])
@@ -71,9 +73,9 @@ def diagram(labels,caption):
     global y
     # A branching comparison, with shared inputs and common evaluation.
     top=y-24; mid=W/2; left=M+115;right=W-M-115
-    node(mid,top,labels[0],260);node(mid,top-65,labels[1],260)
-    node(left,top-140,labels[2],208,44);node(right,top-140,labels[3],208,44)
-    node(mid,top-215,labels[4],300,44);node(mid,top-280,labels[5],300,38)
+    node(mid,top,labels[0],260,role='input');node(mid,top-65,labels[1],260,role='design')
+    node(left,top-140,labels[2],208,44,role='baseline' if page not in (19,20) else 'method');node(right,top-140,labels[3],208,44,role='method' if page not in (19,20) else 'hold')
+    node(mid,top-215,labels[4],300,44,role='evaluation');node(mid,top-280,labels[5],300,38,role='output')
     edge([(mid,top-19),(mid,top-46)])
     edge([(mid,top-84),(mid,top-103),(left,top-103),(left,top-118)])
     edge([(mid,top-84),(mid,top-103),(right,top-103),(right,top-118)])
@@ -83,24 +85,103 @@ def diagram(labels,caption):
     y=top-310;para(caption,8)
 
 def study(t,question,data,steps,labels,caption,claim):
-    title(t);para('<b>Research question.</b> '+question);para('<b>Evidence.</b> '+data)
-    para('<b>Design.</b> '+steps);diagram(labels,caption);para('<b>Report.</b> '+claim)
+    title(t)
+    key=t.split('.')[0]
+    context={
+    '4':('Asset-centric exposure analysis','Incomplete knowledge of communication boundaries complicates the allocation of scarce monitoring resources.','Direct support for structural comparisons; measured intrusion likelihood and operational disruption require additional evidence.'),
+    '5':('Explainable threat intelligence and graph learning','A plausible association between a weakness, product and technique may be unsupported or produced by leakage between training and evaluation graphs.','Direct support for typed structural inference; temporal forecasting requires dated snapshots and verified future outcomes.'),
+    '6':('Evidence-grounded LLM security analytics','Fluent threat explanations may include incorrect identifiers or claims that are not entailed by retrieved evidence.','Direct support for reference-label mapping; citation faithfulness requires a separately adjudicated evidence set.'),
+    '7':('Domain adaptation for security query generation','A model may memorize query templates while failing to generate semantically correct queries for unseen analytical tasks.','Conditional support: researchers must construct a disjoint evaluation set and validate query semantics.'),
+    '8':('Robust detection under controlled perturbations','A detector can learn generation artifacts instead of behavior relevant to an intrusion or operational anomaly.','Suitable for controlled algorithm comparison; field detection claims require independently labeled operational incidents.'),
+    '9':('Behavioral monitoring and sequence modelling','Unusual sequences can reflect legitimate operating modes, incomplete observations or faults as well as malicious activity.','Suitable for exploratory sequence analysis; attack classification is conditional on new, verified labels.'),
+    '10':('Assurance of agentic security workflows','An AI agent may select nonexistent tools, exceed a risk condition or continue after a required stop.','Direct support for fixture-based policy evaluation; live tool safety and mission success are outside the fixture evidence.'),
+    '11':('Human-centered evidence fusion','Combining incompatible identities or clocks can create convincing but false cross-source explanations.','Conditional support: only explicitly validated identity and temporal mappings justify integrated analyses.')}
+    area,problem,suit=context[key]
+    para('<b>Research area.</b> '+area+'<br/><b>Problem statement.</b> '+problem,9.4)
+    para('<b>Research question.</b> '+question,9.4)
+    para('<b>Materials and suitability.</b> '+data+' '+suit,9.4)
+    para('<b>Experimental design.</b> '+steps,9.4)
+    diagram(labels,caption)
+    para('<b>Interpretation and limitations.</b> '+claim,9.2)
 
-title('Researcher\'s Guide')
-para('Industrial CPS Security Research Datasets',18)
-para('Practical study designs, reproducible evaluation and nine workflow diagrams for cybersecurity research.',13)
-y-=25
-sub('Purpose and audience')
-para('For researchers studying industrial cyber-physical systems, cyber threat intelligence, knowledge graphs, digital twins and governed AI agents. This manual explains how to form an experiment from the released files and how to keep its conclusions within the available evidence.')
-sub('Release examined')
-para('Dataset release 1.0.0. Documentation baseline: commit <font face="M" size="8">70804c6d92e4c45ed673ba4d64e6a00a9103c0ea</font>. Guide prepared 1 November 2026 for the repository maintained by Dr Ahmad Mohsin. Freeze the actual commit used in each experiment; later documentation commits may follow this baseline.')
-para('<link href="https://github.com/ahmadspm/industrial-cps-security-datasets" color="#087F8C">github.com/ahmadspm/industrial-cps-security-datasets</link>')
-sub('How to read the workflows')
-para('The diagrams are proposed offline research designs, not results or assertions that every component is implemented. Each compares a baseline with a proposed method or routes evidence through a decision gate. No performance numbers are invented in this guide.')
-para('Start with pages 2-4; choose a study on pages 5-12; use pages 13-15 to evaluate and report it. References and article links appear on page 16.')
+title("Cybersecurity Research with Industrial CPS Data")
+para('A research agenda and methodological guide',16)
+para('Industrial CPS Security Research Datasets | Version 2.0',11)
+para('Prepared for the repository maintained by Dr Ahmad Mohsin<br/>1 November 2026',10)
+sub('Abstract')
+para('The growing use of machine learning, knowledge graphs and autonomous agents in industrial security creates a need for evaluations that connect computational performance to defensible operational claims. This guide characterizes the research opportunities afforded by the released dataset and distinguishes structural, synthetic, observational and expected-decision evidence. It develops research problems in exposure analysis, graph inference, grounded threat intelligence, query generation, behavioral monitoring and agent governance. For each area, the guide identifies a research question, suitable inputs, a comparison design and the additional evidence required for stronger conclusions. Recent critical-infrastructure advisories motivate the agenda; they are not represented as incidents captured in this dataset.')
+sub('Scope and contribution')
+para('The contribution is a methodological research agenda rather than a benchmark leaderboard. The proposed experiments have not been executed for this edition. Dataset release 1.0.0 is examined at documentation baseline b7407cb67341e546a352afb587f65e470ac4d970. The underlying data are unchanged. Article provenance and publication status are documented in the repository.')
+para('<link href="https://github.com/ahmadspm/industrial-cps-security-datasets" color="#087F8C">github.com/ahmadspm/industrial-cps-security-datasets</link>',9)
+para('<b>Keywords:</b> industrial cybersecurity; cyber-physical systems; knowledge graphs; adversarial machine learning; agentic AI; reproducibility.',9)
+
+def photograph(path,height,caption):
+    global y
+    from PIL import Image
+    im=Image.open(R/path); iw,ih=im.size
+    width=min(CW,height*iw/ih);height=width*ih/iw
+    c.drawImage(str(R/path),M+(CW-width)/2,y-height,width,height,preserveAspectRatio=True)
+    y-=height+9;para(caption,8)
+
+title('Research context: infrastructure and evidence')
+photograph('docs/guide/images/williamsburg-1978.jpg',255,'Figure A. Williamsburg Bridge, view from Manhattan, 1978. Jack Boucher, HAER NY-128-1, Library of Congress [12]. Archival photograph; illustrative transport infrastructure, not a dataset collection site.')
+para('Critical infrastructure joins physical assets, communications and organizational decision processes. Security research therefore needs to establish which parts of that relationship are actually observed. The released industrial tables support analyses of assets, flows and selected behaviors; they do not constitute a complete representation of a water utility, electricity network or transport service.')
+para('The photograph illustrates a real engineered service whose physical function depends on a wider operating context. It is not evidence of a cyber incident, a vulnerability or a connection to the released corpus. The corresponding research lesson is methodological: a graph of declared relationships can support reasoning about structure, while consequences to a physical service require sector-specific process models and validation.')
+para('[12] Photograph source: <link href="https://www.loc.gov/item/ny1263/" color="#087F8C">Library of Congress, HAER NY-128</link>. Public-domain federal documentation photographs. Source credits and mirror retrieval details: docs/guide/IMAGE_CREDITS.md. Reproduced at reduced resolution without content alteration.',8)
+para('The agenda below treats cross-sector use as transfer of a method. Water, energy and transport applications require their own assets, protocol semantics, operating constraints and outcome labels before results can be generalized.')
+
+title('Contemporary security problems, 2025-2026')
+sub('Loss of monitoring and control through exposed PLCs')
+para('A July 2026 FBI/EPA announcement reports water-sector incidents involving internet-facing PLCs, with changes to configurations and credentials causing loss of monitoring or control [9]. This motivates research on communication boundaries, trusted configuration evidence and restoration priorities. The inventory and graph tables support an abstract comparison of exposure-reduction policies; they contain neither packet captures nor forensic records of those incidents.')
+sub('Authority and reliability in AI-enabled OT')
+para('The December 2025 joint guidance on secure AI integration in OT emphasizes suitability assessment, governance, oversight and lifecycle testing [10]. A research implication is that model accuracy and permission to act should be evaluated separately. The agent fixtures can test tool eligibility and stop decisions. Their expected outputs cannot establish the safety of direct process control.')
+sub('Manipulated inputs and ungrounded explanations')
+para('NIST 2025 adversarial machine-learning taxonomy covers attacks across the AI lifecycle [11]. For this corpus, a tractable research question concerns whether controlled corruption of graph facts or retrieved evidence changes an analytical conclusion. Such experiments require newly constructed perturbations with explicit attacker capabilities; the release does not supply a validated poisoning or prompt-injection benchmark.')
+para('<b>Sources:</b> [9] FBI/EPA, 30 July 2026: <link href="https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions" color="#087F8C">Water-sector PLC warning</link>. [10] ASD and international partners, 4 December 2025: <link href="https://www.cyber.gov.au/publication/principles-for-the-secure-integration-of-artificial-intelligence-in-operational-technology" color="#087F8C">Secure AI integration in OT</link>. [11] Vassilev et al., March 2025: <link href="https://doi.org/10.6028/NIST.AI.100-2e2025" color="#087F8C">NIST AI 100-2 E2025</link>. Accessed 1 November 2026.',8.5)
+para('These connections are proposed research uses, not claims that the dataset contains contemporary campaigns. The security contribution should be stated at the level actually evaluated: topology, reference mapping, controlled robustness or fixture-level decision behavior.')
+
+title('Potential research areas and open problems')
+table([['Area / open problem','Testable question','Inputs and expected contribution'],['Exposure and segmentation','Can boundary-aware monitoring improve weighted flow coverage at the same budget?','Inventory + topology; resource-allocation method'],['Explainable graph inference','Does relation typing improve held-out link ranking without inverse-edge leakage?','Knowledge graph; auditable structural inference'],['Grounded CTI analytics','Does graph evidence reduce unsupported identifiers at matched answer coverage?','CTI benchmarks + graph; calibrated mapping'],['Security query generation','Does adaptation generalize beyond familiar query templates?','Training pairs + new disjoint test set; semantic validation'],['Behavioral anomaly analysis','Can unusual transitions be detected across held-out traces?','Operational traces; exploratory or adjudicated evaluation'],['Adversarial AI robustness','How much controlled evidence corruption changes a decision?','Derived graph/CTI variants; robustness characterization'],['Agent governance','Do policy guards reduce prohibited decisions under held-out scenario families?','Expected-decision fixtures; explicit policy evaluation'],['Human-centered triage','Does a traceable evidence chain improve reviewer accuracy and review time?','Validated joins + new analyst study; decision-support evaluation']],[CW*.25,CW*.38,CW*.37])
+para('The questions are deliberately comparative. A new model name or higher score alone is insufficient: the experiment should isolate the proposed mechanism, define the independent evaluation unit and identify the practical meaning of the observed difference. No novelty claim is implied without a separate literature review.',9.4)
+
+title('Dataset suitability and evidence gaps')
+para('Suitability is assessed for a specified research claim rather than for an algorithm in isolation. Direct support means that the necessary released inputs exist for a bounded offline task. Conditional support means that labels, mappings or an evaluation set must be added. Unsupported claims require a different empirical basis.',9.5)
+table([['Data family','Suitability in this release','Additional evidence for broader claims'],['Inventory','Direct: topology, boundary coverage and prioritization','Observed configurations, controls and exposure validation'],['Knowledge graph','Direct: typed relation analysis; conditional: risk inference','Adjudicated relations; time-stamped updates; measured outcomes'],['CTI benchmarks','Direct: reference-label mapping comparisons','Independent label review; evidence corpus for faithfulness'],['Training pairs','Conditional: adaptation and query generation','Template-disjoint held-out prompts; semantic oracle'],['Synthetic','Direct: controlled sensitivity experiments','Real incident labels and external operational validation'],['Operational','Direct: sequence description; conditional: intrusion detection','Attack/fault adjudication; signal meanings; physical context'],['Agent scenarios','Direct: expected-policy agreement','Actual execution traces; independent outcome and safety criteria'],['Cross-source fusion','Conditional: only validated joins','Identity/time mappings and a documented coverage audit']],[CW*.22,CW*.38,CW*.40])
+para('The corpus alone is unsuitable for measuring field intrusion-detection effectiveness, certifying autonomous control, estimating sector-wide attack prevalence, proving causal physical consequences, or establishing a current vulnerability risk score. These are evidence limitations, not conclusions about the usefulness of the data.',9.5)
+
+title('A focused study of adversarial AI robustness')
+para('A defensible extension is to examine whether analytical outputs remain stable when a bounded portion of their evidence is manipulated. The independent variable is the perturbation budget; the primary outcome is the change in correctness or unsupported-claim rate relative to a clean evaluation. The threat model must specify access, knowledge and the records that an adversary can modify.',9.5)
+diagram(['Frozen graph/CTI subset + independent labels','Define attacker capability; preserve clean holdout','Clean evidence:<br/>same analytical model','Perturbed evidence:<br/>bounded derived variants','Compare correctness, abstention and evidence support','Release perturbation manifest and failure analysis'],'Robustness workflow. Controlled evidence manipulation. Blue: evidence; amber: design; grey/green: comparison; purple: evaluation; teal: reporting.')
+para('Researchers may remove relations, introduce type-consistent false relations, or add conflicting retrieved statements to derived copies. Each variant should record affected IDs and its construction rule. Label leakage, malformed inputs and plausible but incorrect evidence should be analyzed separately. Prompt injection requires a separately constructed textual corpus and task-specific success criteria; no such benchmark is supplied.',9.5)
+para('Useful outcomes include degradation curves, false-evidence acceptance, abstention under contradiction and recovery after evidence removal. Results support a claim about the declared perturbation model, not about resistance to all adaptive adversaries.',9.5)
+
+title('Cross-sector relevance and transfer limits')
+photograph('docs/guide/images/williamsburg-1991.jpg',230,'Figure B. Williamsburg Bridge from Brooklyn to Manhattan, 1991. Jet Lowe, HAER NY-128-6, Library of Congress [12]. Contextual photograph; no bridge control or cyber data are included.')
+table([['Application context','Transferable research method','Required sector-specific additions'],['Water and wastewater','Boundary analysis; change/anomaly triage','Hydraulic/process model, asset mapping, quality/pressure limits'],['Electricity and DER','Evidence-grounded prioritization; guarded recommendations','Electrical topology, grid dynamics, protection and timing constraints'],['Manufacturing','Flow coverage; sequence analysis; agent fixture evaluation','Verified station semantics, production modes and incident labels'],['Transport services','Dependency reasoning and evidence provenance','Relevant control systems, interlocks, operational and safety outcomes']],[CW*.24,CW*.35,CW*.41])
+para('Cross-sector applicability is a hypothesis to test. Similar network protocols do not imply equivalent dynamics, hazards or response authority. The photographs document physical infrastructure only; no photographed site is represented as a source of this dataset.',9.3)
+
+title('Threats to validity and research interpretation')
+sub('Construct validity')
+para('A proxy must be distinguished from the phenomenon of interest. Coverage of declared flows measures monitoring placement, not prevention of compromise. Expected policy agreement measures consistency with an oracle, not physical safety. Unusual event sequences measure deviation, not necessarily malicious behavior.')
+sub('Internal validity')
+para('Duplicate descriptions, repeated attackability tables and inverse graph relations can contaminate a comparison. Preprocessing, retrieval indexing and hyperparameter selection must follow the split. For LLM studies, expected answers and direct answer-bearing records should be excluded from the evaluated input. Model pretraining contamination remains a separate uncertainty.')
+sub('External validity')
+para('The industrial setting, pseudonymization, synthetic assumptions and small number of independent traces restrict generalization. A large row count does not substitute for independent sites, operating modes or incidents. Transfer studies should evaluate an additional, independently curated dataset and disclose differences in sensors, protocols and labels.')
+sub('Statistical conclusion validity')
+para('Repeated windows from one trace are correlated. Confidence intervals should reflect grouping by trace, entity, description or scenario family. Multiple model comparisons should be distinguished from a prespecified primary analysis. Effect sizes and failure distributions are more informative than isolated best-run scores.')
+para('A manuscript should acknowledge these limitations where the relevant result is interpreted, rather than relying only on a general limitations paragraph.')
+
+title('Study protocol and figure conventions')
+sub('From research problem to an assessable claim')
+para('A study protocol should state the operational motivation, the hypothesized mechanism, the released evidence, the intervention or model variation, and the outcome that could refute the hypothesis. A primary endpoint and evaluation split should be frozen before tuning. The baseline should represent a credible simpler approach under the same information and resource budget.')
+para('For example: under a fixed monitoring budget, a boundary-aware policy is hypothesized to cover a larger weighted proportion of declared cross-zone flows than degree ranking. A negative or negligible difference would refute the proposed benefit for this topology. The conclusion would concern the declared graph, with no claim about measured attack reduction.')
+sub('Consistent meaning of workflow colours')
+table([['Colour','Role in the experimental argument'],['Blue','Released evidence or frozen inputs'],['Amber','Study design, split construction or eligibility checks'],['Grey','Baseline or reference condition'],['Green','Proposed method or permitted branch'],['Coral','Held, rejected or unsupported branch'],['Purple','Common evaluation or evidence review'],['Teal','Reported outputs, uncertainty and provenance']],[CW*.24,CW*.76])
+para('Each box also states its role in text so the diagrams remain interpretable in greyscale. Comparison diagrams share inputs and evaluation conditions. Decision diagrams distinguish permitted and held branches. All workflows describe proposed research procedures, rather than newly measured experimental results.',9.5)
+para('Navigation: evidence inventory and loading, pp. 10-11; experimental design, p. 12; eight study protocols, pp. 13-20; metrics, p. 21; replay, p. 22; reproducibility manifest, p. 23; related articles, p. 24. Recent guidance [9-11] is linked on p. 3; photograph source [12] is credited on p. 2.',9.5)
 
 title('1. Choose the evidence and the question')
-table([['Folder / evidence','Release size','Research use / page'],['inventory / structural tables','94 master assets; 53 component records; 120 flows; 6 zones; 5 conduits','Segmentation and exposure / 5'],['knowledge_graph / typed structure','305,167 nodes; 276,420 edges','Link prediction and graph reasoning / 6'],['benchmarks / upstream reference labels','2,047 CTI records','CTI extraction and mapping / 7'],['training / instruction-output examples','358 unique pairs','Query generation and adaptation / 8'],['synthetic / generated assumptions and logs','340 attackability rows; 9,880 protocol rows','Controlled perturbations / 9'],['operational / pseudonymized observations','14,124 events; 29 traces','Sequence and anomaly studies / 10'],['agent_scenarios / expected fixtures','20 scenarios; 400 cases','Governed decision behavior / 11']],[CW*.36,CW*.28,CW*.36])
+table([['Folder / evidence','Release size','Research use'],['inventory / structural tables','94 master assets; 53 component records; 120 flows; 6 zones; 5 conduits','Segmentation and exposure'],['knowledge_graph / typed structure','305,167 nodes; 276,420 edges','Link prediction and graph reasoning'],['benchmarks / upstream reference labels','2,047 CTI records','CTI extraction and mapping'],['training / instruction-output examples','358 unique pairs','Query generation and adaptation'],['synthetic / generated assumptions and logs','340 attackability rows; 9,880 protocol rows','Controlled perturbations'],['operational / pseudonymized observations','14,124 events; 29 traces','Sequence and anomaly studies'],['agent_scenarios / expected fixtures','20 scenarios; 400 cases','Governed decision behavior']],[CW*.36,CW*.28,CW*.36])
 para('Folder counts are not independent evidence units. Some attackability tables are repeated in the graph and synthetic folders; do not count the same rows as independent replications.')
 sub('Evidence classes matter')
 para('An observed event is not automatically an attack. A synthetic risk score is an assumption, not a measured compromise probability. A reference answer is not a newly adjudicated label. An expected agent output is a test oracle, not a successful tool execution. Graph referential integrity is not semantic truth.')
@@ -174,6 +255,6 @@ refs=[
 ('[8] Common pitfalls and recommended practices','scikit-learn documentation. Train/test separation and leakage prevention. Accessed 1 November 2026.','https://scikit-learn.org/stable/common_pitfalls.html')]
 for label,desc,url in refs:
     para('<b>'+escape(label)+'</b><br/>'+escape(desc)+'<br/><link href="'+url+'" color="#087F8C">'+escape(url)+'</link>',8.1)
-assert page==16,page
+assert page==24,page
 c.save()
 print(R/'RESEARCHERS_GUIDE.pdf')

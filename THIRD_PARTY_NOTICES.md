@@ -37,3 +37,7 @@ Nandiya, P., Mohsin, A., Ibrahim, A., Sarker, I. H., & Janicke, H. (2026). Neuro
 This co-authored article is distinct from the third-party CTIBench source. Additional co-authored work, HySecTwin resources and the supplied behavioural-DT/agentic-AI manuscript are documented in [the author research guide](docs/RELATED_PUBLICATIONS.md). The benchmark source attribution and license remain unchanged.
 
 Python dependency packages are installed separately for replay and retain their own licenses.
+
+## Infrastructure photographs in the researcher guide
+
+The two archival Williamsburg Bridge photographs in `docs/guide/images/` and `RESEARCHERS_GUIDE.pdf` are public-domain HAER documentation photographs by Jack Boucher (1978) and Jet Lowe (1991), Library of Congress. Their separate source and rights information is recorded in [docs/guide/IMAGE_CREDITS.md](docs/guide/IMAGE_CREDITS.md). They are illustrative material, not dataset records.
