@@ -1,5 +1,8 @@
 # Cybersecurity research with the datasets
 
+**Dataset citation:** Mohsin, A. (2026). *Industrial CPS Security Research Datasets: Curated Public Views* (Version 1.0.0) [Data set]. GitHub. https://github.com/ahmadspm/industrial-cps-security-datasets
+
+
 These seven dataset families can support **independent studies** or **combined research pipelines** involving industrial cyber-physical systems, digital twins, knowledge graphs and AI. Some combinations have verified identifier joins; others require additional mappings or separately collected evidence.
 
 The tables describe research uses, not experiments already completed. Read each folder's README for file details, source attribution and limitations. See the [Researcher's Guide](../RESEARCHERS_GUIDE.pdf) for the wider research agenda.
@@ -97,3 +100,22 @@ Start with the [trace manifest](../metadata/trace_manifest.csv) and [operational
 The [related publications](../docs/RELATED_PUBLICATIONS.md) distinguish co-authored research from external sources such as CTIBench. BRIDG-ICS and NeuroGraph inform graph/reasoning research; HySecTwin informs digital-twin and semantic-monitoring studies; the trusted-autonomy and behavioural-agent work inform decision evaluation. These connections do not establish that every article's experiments can be reproduced from this public subset.
 
 **Further documentation:** [Dataset card](../docs/DATASET_CARD.md) · [Schemas](../docs/SCHEMAS.md) · [Curation methods](../docs/METHODS.md) · [Validation](../docs/VALIDATION.md) · [File-level research map](../metadata/research_file_map.csv) · [Research methods](../docs/RESEARCH_METHODS.md) · [Runnable starters](../examples/README.md).
+
+
+## Dataset citation
+
+Mohsin, A. (2026). *Industrial CPS Security Research Datasets: Curated Public Views* (Version 1.0.0) [Data set]. GitHub. https://github.com/ahmadspm/industrial-cps-security-datasets
+
+```bibtex
+@misc{mohsin2026industrialcpsdatasets,
+  author    = {Mohsin, Ahmad},
+  title     = {Industrial CPS Security Research Datasets: Curated Public Views},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {GitHub},
+  type      = {Data set},
+  url       = {https://github.com/ahmadspm/industrial-cps-security-datasets}
+}
+```
+
+Please also cite the applicable research articles and upstream data sources used in your study; see [related publications](../docs/RELATED_PUBLICATIONS.md) and [citation metadata](../CITATION.cff).
