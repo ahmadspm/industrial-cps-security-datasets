@@ -1,11 +1,11 @@
-# Research readiness
+# Research methods and data interpretation
 
-## Implemented
+## Data and analytical tools
 
 - `scripts/research_quality.py` builds reproducible quality artifacts from the released source tables.
 - `data/training/release_compatible.json` is the preferred restricted-grammar query subset: **66 distinct normalized queries**, derived from **118** legacy records with an accepted query. The original 358 records remain unchanged for provenance. Query-level exclusions and transformations are in `reports/training_compatibility.json`.
 - `reports/graph_connectivity.json` and `graph_nodes.csv` describe typed-node incidence, isolated nodes, weak components and relation counts, both with and without synthetic attackability edges.
-- `reports/join_coverage.json` and `metadata/asset_graph_crosswalk.csv` establish **94/94** inventory-to-product ID matches and **79/79** flow-endpoint matches. Host IDs are a separate namespace; the earlier host-only comparison was not a valid test of product join coverage. Component joins and unsupported signal/agent joins remain explicit.
+- `reports/join_coverage.json` and `metadata/asset_graph_crosswalk.csv` establish **94/94** inventory-to-product ID matches and **79/79** flow-endpoint matches. Host IDs are a separate namespace. Component joins and unsupported signal/agent joins remain explicit.
 - `metadata/trace_manifest.csv` provides counts, duration, event spacing, signal diversity, missingness and short-trace flags for all **27** released traces. `operational_semantics.json` distinguishes observed fields from unknown collection/process/units information.
 - The [evaluation suite](../evaluation/README.md) scores all currently declared fixture field names and records context-dependent predicates as unscored when evidence is missing. All 400 cases remain in the denominator.
 - A source-linked 94-case connected task includes **33 assets with CVE links** and **86 asset–CVE edges**. Baselines and a separate source-consistency audit run without a model or physical equipment.
@@ -29,7 +29,6 @@ Reference answers are recomputed against released tables. This is **not** Neo4j 
 
 Removing synthetic attackability edges does not change these connectivity counts in this snapshot. Connectedness is not semantic correctness. The isolated-node background is retained and reported, not silently dropped.
 
-]
 ## Reproduce
 
 ```bash

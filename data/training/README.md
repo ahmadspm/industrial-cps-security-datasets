@@ -1,6 +1,6 @@
 # Query-generation training data
 
-**Preferred release-compatible subset:** [`release_compatible.json`](release_compatible.json), containing 66 distinct normalized queries with reference-table result IDs and source ordinals. Read [compatibility scope](../../docs/RESEARCH_READINESS.md) before using it. It is training material, not an independent held-out benchmark.
+**Preferred release-compatible subset:** [`release_compatible.json`](release_compatible.json), containing 66 distinct normalized queries with reference-table result IDs and source ordinals. Read [compatibility scope](../../docs/RESEARCH_METHODS.md) before using it. It is training material, not an independent held-out benchmark.
 
 **Legacy source examples:** `fine_tuning.json` retains 358 original deduplicated instruction/output pairs unchanged. Do not execute or score them indiscriminately against the minimized public schema. Some require removed properties or absent relationships; `reports/training_compatibility.json` records every source record's accepted queries and exclusions. Unsupported relations are not supplied merely to satisfy old outputs.
 

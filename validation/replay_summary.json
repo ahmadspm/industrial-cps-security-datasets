@@ -150,5 +150,5 @@
   ],
   "boundary": "Offline unit and deterministic fixture replay only; no live model, Neo4j, or physical system replay",
   "experiments_passed": 10,
-  "input_view": "Public release candidate with reference networks remapped and required test dependencies retained"
+  "input_view": "Published reference implementation with remapped example networks and declared test dependencies"
 }

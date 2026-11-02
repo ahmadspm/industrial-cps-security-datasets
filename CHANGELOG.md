@@ -1,19 +1,15 @@
-# Release history
+# Dataset versions and features
 
-## v1.0.0 — 1 November 2026
+## v1.0.0
 
-- Initial curated public views, published with a separate clean repository history.
-- De-identified inventory and reduced event features; pseudonymized synthetic endpoint/account identifiers.
-- Factual graph projection with typed endpoint checks and unmatched edges excluded.
-- Curated reference benchmarks, grouped-split metadata and a 358-record deduplicated training file.
+- De-identified asset inventory, zones, conduits and communication dependencies.
+- Source-derived cybersecurity graph with typed endpoint rules.
+- Synthetic protocol records and modelled attackability attributes.
+- Adapted CTI reference tasks with grouped evaluation metadata.
+- Query-generation examples and reduced operational event features.
 - Four hundred expected-decision fixtures and an offline reference implementation.
-- Documentation, source attribution, citation metadata, terms, checksums and a standard-library validator.
-- Raw staging history, source bundles, diagnostic logs, credential/account tables, screenshots and unrelated execution tooling excluded.
+- Citation metadata, component licensing and researcher documentation.
 
-## Research usability improvements
+## Research resources
 
-Added research-question mapping, three reproducible standard-library baselines with frozen partitions, an intellectual-lineage schematic and archival instructions. Corrected the documented event-trace count from 29 to 27 distinct released IDs; no data changed.
-
-## Research compatibility and evaluation
-
-Added a 66-query release-compatible derived subset while preserving 358 legacy records; graph connectivity and join reports; 94 verified inventory-to-product key matches; trace metadata with explicit unknown semantics; all-fixture field evaluators; a 94-case connected task, deterministic baselines and separate source-consistency audit. Real-model execution and independent human sign-off are explicitly pending.
+The repository includes a normalized 66-query subset, connectivity and join-coverage reports, a 94-asset graph crosswalk, trace metadata, fixture-field evaluators, a connected evidence-retrieval task and deterministic baselines. The researcher guide and data README describe independent and combined uses. Report the version or commit used to make experiments reproducible.

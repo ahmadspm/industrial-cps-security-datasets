@@ -40,6 +40,6 @@ These cases contain expected outputs. They are not 400 observed physical attacks
 
 ## Connection to the author's research
 
-[P5: Autonomous cyber-physical security assessment](../../docs/RELATED_PUBLICATIONS.md#p5-autonomous-cyber-physical-security-assessment) is the author-supplied manuscript on a behavioural manufacturing twin and cooperative agentic AI, including AOA/ASBIO. Its data/code statement points to the G4 source project from which these scenario files originate. Cite the manuscript according to its supplied version/status until a publisher citation or public full-text URL is provided. The 400 expected-decision fixtures do not by themselves reproduce the manuscript's live-model or production-impact results.
+[P5: Autonomous cyber-physical security assessment](../../docs/RELATED_PUBLICATIONS.md#p5-autonomous-cyber-physical-security-assessment) is the research manuscript on a behavioural manufacturing twin and cooperative agentic AI, including AOA/ASBIO. Its data/code statement points to the G4 source project from which these scenario files originate. Cite the linked research record and identify the version used. The 400 expected-decision fixtures do not by themselves reproduce the manuscript's live-model or production-impact results.
 
 [P3: Human-AI collaboration with trusted autonomy](../../docs/RELATED_PUBLICATIONS.md#p3-human-ai-collaboration-with-trusted-autonomy) is the custodian's related published methodology for autonomy, trust and oversight. Its SOC case study is distinct from these industrial fixtures.

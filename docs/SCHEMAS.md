@@ -28,4 +28,4 @@ Each scenario contains its identifier, declared test count and a `tests` array w
 
 ## Research quality artifacts
 
-The preferred query subset uses `metadata/graph_import_schema.json` labels and original CSV property names. `metadata/asset_graph_crosswalk.csv` declares exact inventory-to-product joins; host IDs are a separate namespace. `metadata/trace_manifest.csv` and `metadata/operational_semantics.json` report computed trace attributes and unknown collection/physical semantics. See [research readiness](RESEARCH_READINESS.md) and [evaluation contract](../evaluation/README.md).
+The preferred query subset uses `metadata/graph_import_schema.json` labels and original CSV property names. `metadata/asset_graph_crosswalk.csv` declares exact inventory-to-product joins; host IDs are a separate namespace. `metadata/trace_manifest.csv` and `metadata/operational_semantics.json` report computed trace attributes and unknown collection/physical semantics. See [research methods](RESEARCH_METHODS.md) and [evaluation contract](../evaluation/README.md).

@@ -54,7 +54,7 @@ Nandiya, P., Mohsin, A., Lohmann, G., Ekelhart, A., Sarker, I. H., & Janicke, H.
 
 [Source project identified in the manuscript](https://github.com/ahmadspm/Digital-TwinAutonomous-CPS-Security-Testing) (access depends on the source repository's visibility).
 
-The supplied manuscript describes a behavioural manufacturing twin and cooperative LLM agents, including AOA/ASBIO, for controlled cyber-physical security assessment. Its availability statement identifies the G4 project, which is the source lineage of this collection's [agent scenarios](../data/agent_scenarios/README.md). The 400 released expected-decision cases remain fixtures; their inclusion is not a rerun of the manuscript's model/production-impact experiments. A public full-text URL or publisher DOI should be added when supplied; the uploaded manuscript itself has not been republished here.
+The research manuscript describes a behavioural manufacturing twin and cooperative LLM agents, including AOA/ASBIO, for controlled cyber-physical security assessment. Its availability statement identifies the G4 project, which is the source lineage of this collection's [agent scenarios](../data/agent_scenarios/README.md). The 400 released expected-decision cases remain fixtures; their inclusion is not a rerun of the manuscript's model/production-impact experiments. The manuscript text is not redistributed in this dataset.
 
 ## Third-party dataset attribution
 
@@ -96,7 +96,7 @@ Mohsin et al. (2026). Security risks and privacy challenges in digital twins. In
 
 [Publisher chapter](https://www.sciencedirect.com/science/chapter/edited-volume/pii/B9780443438967000169)
 
-Lifecycle and architecture context for security, privacy and smart-factory research. Relevant to provenance, pseudonymization, lifecycle assurance and the limitations of public representations. The abbreviated author form is retained pending a complete publisher author export.
+Lifecycle and architecture context for security, privacy and smart-factory research. Relevant to provenance, pseudonymization, lifecycle assurance and the limitations of public representations. The chapter is cited in abbreviated author form.
 
 ## P9: Railway virtual twin
 

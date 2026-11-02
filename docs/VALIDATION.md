@@ -1,6 +1,6 @@
-# Release validation
+# Data validation
 
-Validation date: 1 November 2026. These results apply to the curated public views and network-remapped reference implementation, not to the unmodified private source archives.
+These results describe the published data representation and network-remapped reference implementation.
 
 | Check | Result |
 |---|---:|
@@ -22,8 +22,8 @@ The offline replay covers reliability fixture cases, retrieval/planning fixtures
 
 The file `validation/replay_summary.json` records the suite results. `code/requirements-replay.txt` records dependency versions used for the legacy agent suites. Validation is not a claim of zero re-identification risk, certified semantic labels, live LLM performance, Neo4j execution accuracy, production security or measured physical-to-twin fidelity.
 
-Excluded graph references and disputed label records remain private source findings. Their omission is documented; no replacement ground truth, missing nodes or physical evidence has been fabricated.
+Graph references without matching endpoints and ambiguous label groups are excluded under the documented curation rules.
 
 ## Research-quality checks
 
-The added research-quality suite contains 15 tests covering the normalized query subset, unsupported relations/identifiers, all-400-case accounting, malformed/missing predictions, risk and tool constraints, context-dependent assertions, plan fields, connected-task boundaries, source consistency and trace manifests. These checks supplement the historical 285 reference tests rather than replace or rerun them. See [research readiness](RESEARCH_READINESS.md); real-model comparisons and independent expert review remain pending.
+The added research-quality suite contains 15 tests covering the normalized query subset, unsupported relations/identifiers, all-400-case accounting, malformed/missing predictions, risk and tool constraints, context-dependent assertions, plan fields, connected-task boundaries, source consistency and trace manifests. These checks supplement the historical 285 reference tests rather than replace or rerun them. See [research methods](RESEARCH_METHODS.md) for methods, scope and interpretation.

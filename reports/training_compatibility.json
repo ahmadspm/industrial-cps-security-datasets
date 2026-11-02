@@ -3610,5 +3610,5 @@
     "deterministic DISTINCT/ORDER BY and source LIMIT",
     "exclude unsupported, empty-result and duplicate queries"
   ],
-  "validation": "Restricted exact-ID grammar, property/type/direction checks and reference-table evaluation; Neo4j EXPLAIN not run. Not a general Cypher validator."
+  "validation": "Restricted exact-ID grammar, property/type/direction checks and reference-table evaluation. Engine-specific execution is outside this check."
 }

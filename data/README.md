@@ -128,7 +128,7 @@ flowchart TD
     class G,H,I result;
 ```
 
-The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts for all 400 fixtures. Assertions needing reviewed topology or technique/target context remain explicitly unscored when that context is unavailable. Keep scenario families together; variations of one rule are not automatically independent observations. Use the [local-model runner](../evaluation/README.md#real-local-model-comparisons) to generate real predictions. Real-model comparisons and independent expert sign-off remain pending in the published readiness status. No attack tool or physical action is executed by this evaluation suite.
+The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts for all 400 fixtures. Assertions needing reviewed topology or technique/target context remain explicitly unscored when that context is unavailable. Keep scenario families together; variations of one rule are not automatically independent observations. Use the [local-model runner](../evaluation/README.md#real-local-model-comparisons) to generate real predictions. The reference results describe deterministic experiments; use the runner to produce model-specific measurements. No attack tool or physical action is executed by this evaluation suite.
 
 ## 6. Workflow D: exploratory event-sequence analysis
 
@@ -170,4 +170,4 @@ Start with the [trace manifest](../metadata/trace_manifest.csv) and [operational
 
 The [related publications](../docs/RELATED_PUBLICATIONS.md) distinguish co-authored research from external sources such as CTIBench. BRIDG-ICS and NeuroGraph inform graph/reasoning research; HySecTwin informs digital-twin and semantic-monitoring studies; the trusted-autonomy and behavioural-agent work inform decision evaluation. These connections do not establish that every article's experiments can be reproduced from this public subset.
 
-**Further documentation:** [Dataset card](../docs/DATASET_CARD.md) · [Schemas](../docs/SCHEMAS.md) · [Curation methods](../docs/METHODS.md) · [Validation](../docs/VALIDATION.md) · [File-level research map](../metadata/research_file_map.csv) · [Research readiness](../docs/RESEARCH_READINESS.md) · [Runnable starters](../examples/README.md).
+**Further documentation:** [Dataset card](../docs/DATASET_CARD.md) · [Schemas](../docs/SCHEMAS.md) · [Curation methods](../docs/METHODS.md) · [Validation](../docs/VALIDATION.md) · [File-level research map](../metadata/research_file_map.csv) · [Research methods](../docs/RESEARCH_METHODS.md) · [Runnable starters](../examples/README.md).

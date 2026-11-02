@@ -2,17 +2,18 @@
 
 This suite evaluates declared output constraints and released reference relationships. It does not execute attack tools or authorize physical actions.
 
-## Current execution status
+## Evaluation tasks
 
-| Work | Status |
+| Task | Research output |
 |---|---|
-| All 400 agent fixtures routed through evaluators | Implemented and exercised with deterministic baselines |
-| Machine-checkable expected fields | Implemented; missing outputs fail |
-| Topology/category-dependent assertions | Explicitly unscored without reviewed context |
-| Real model comparison | Runner provided; **not executed here** because no model runtime, weights or API credentials are available |
-| Connected task | 94 cases; 33 assets with source-linked CVEs; reference retriever and abstention baseline executed |
-| Source consistency audit | Separate implementation passed; shares source data |
-| Independent expert review | **Pending**; review packet provided, no sign-off claimed |
+| Agent fixture evaluation | Per-field and per-family scores across 400 expected-decision cases |
+| Context-dependent checks | Explicit coverage accounting for topology and technique/target assertions |
+| Local-model comparison | Model-specific predictions, raw responses, digests, prompts and scores |
+| Connected evidence retrieval | 94 asset cases, including 33 with source-linked CVEs |
+| Source-consistency audit | Membership and completeness checks against the released tables |
+| Researcher review worksheet | Reusable case-level annotations and disagreement records |
+
+Published baseline scores describe deterministic reference methods. They do not establish model performance, independent expert endorsement or physical applicability. Generate and report model-specific evidence for the method being evaluated.
 
 ## Agent output contract
 
@@ -46,7 +47,7 @@ For assertions requiring topology or technique/target semantics, supply a separa
 
 ## Real local-model comparisons
 
-Install Ollama and at least two distinct models on a machine able to run them. The runner checks installed model digests and rejects two names resolving to identical weights. Use exact installed tags; the names below are examples, not a claim they were run here:
+Install Ollama and at least two distinct models on a machine able to run them. The runner checks installed model digests and rejects two names resolving to identical weights. Use exact installed tags; the names below illustrate exact installed model tags:
 
 ```bash
 python3 evaluation/run_local_models.py --models qwen3:8b llama3.1:8b --task agents --output /tmp/cps-agent-models
@@ -71,4 +72,4 @@ python3 evaluation/audit_connected.py
 
 The reference-table retriever's perfect mapping agreement is a consistency check against the same source mappings, not independent ground-truth validation. The always-abstain baseline is reported separately. `reports/connected_source_audit.json` uses another implementation to check evidence membership and answer completeness; this still does not replace expert review.
 
-For independent review, give a qualified reviewer the source tables, questions, references and `independent_review.csv`. The reviewer should be independent of reference construction, document their identity/role and conflicts, check joins and every claimed evidence relation, distinguish source assertions from actual asset applicability, record disagreements, and sign off only after resolution. Review all 94 cases or publish the sampling rule and coverage. Do not edit original source mappings to force agreement. The review CSV is initially blank; regeneration preserves completed fields and marks changed references stale. No reviewer has been contacted and no independent human review has been claimed.
+For independent review, give a qualified reviewer the source tables, questions, references and `review_template.csv`. The reviewer should be independent of reference construction, document their identity/role and conflicts, check joins and every claimed evidence relation, distinguish source assertions from actual asset applicability, record disagreements, and sign off only after resolution. Review all 94 cases or publish the sampling rule and coverage. Do not edit original source mappings to force agreement. The worksheet provides blank annotation fields. Record reviewer identity, review scope and conclusions alongside reported findings. The worksheet itself is not evidence of endorsement.

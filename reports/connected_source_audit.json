@@ -6,11 +6,11 @@
     "all linked CVEs included",
     "no unsupported confirmation or action permission"
   ],
-  "human_review": "pending",
   "input_sha256": {
     "evaluation/connected_questions.json": "6abdd7ecd049078dcffd995868cd73133cd5a36256ac643427bab76477635413",
     "evaluation/connected_reference.json": "ef07f4f6afd7372371966872330a5911888a2cd76cbf2d399f4c8f8b585c34db"
   },
   "method": "Separate source-table implementation; shares source data with generator and is not an independent scientific review.",
+  "reference_basis": "Released source-table associations; automated consistency checks do not establish physical applicability or expert endorsement.",
   "status": "passed"
 }

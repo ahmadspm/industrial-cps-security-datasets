@@ -20,6 +20,6 @@ G4 scenarios contain expected decisions. Deterministic replay verifies fixture p
 
 ## Release scope
 
-The raw private staging history, original ZIP containers, diagnostic text logs, source screenshots/PDFs, account and credential tables, unpublished network identity maps, third-party narrative graph descriptions, and uncertain graph references are excluded. These exclusions are part of the release design; they are not claims that the source material was incorrect or unnecessary for all research.
+The collection excludes raw diagnostic logs, source screenshots, account/credential tables, private identity maps, unrestricted third-party narratives and graph edges without matching endpoints. Researchers should use the published schemas and provenance to interpret the retained representations.
 
 Report data-quality issues through the public repository's issue tracker. Do not include real credentials, network identifiers or raw private logs in an issue.

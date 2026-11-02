@@ -1,0 +1,28 @@
+\clearpage\section*{Research methods and analytical tools}
+\addcontentsline{toc}{section}{Research methods and analytical tools}
+The collection provides reproducible quality reports and evaluation tools for the study protocols described above. The measurements below describe the published representation and its declared research scope.
+
+\begingroup\small\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{35mm}>{\raggedright\arraybackslash}X}
+\toprule\textbf{Component} & \textbf{Research use and evidence scope}\\\midrule
+Query compatibility & 66 distinct normalized queries are supplied with reference-table answers and source ordinals. The original 358 legacy records are preserved. Validation uses a restricted grammar and source tables; engine-specific execution is a separate evaluation.\\
+Graph connectivity & 305,167 typed nodes, 276,420 edge rows, 69,103 isolated nodes and 69,226 weak components. The largest weak component contains 234,166 nodes. Connectivity is also reported without synthetic attackability edges.\\
+Verified joins & All 94 inventory asset IDs match graph product IDs; all 79 distinct dataflow endpoints match inventory and product IDs. Host nodes are a separate namespace. Signal-to-equipment and agent-target mappings remain unavailable.\\
+Trace metadata & All 27 traces have counts, duration, event spacing, signal diversity and missingness metadata. Three traces have fewer than three events. Collection mode, signal units and attack labels remain explicitly unknown.\\
+Agent evaluation & Every declared fixture-field name is handled across 400 cases. Missing outputs fail machine-checkable assertions. Topology/category predicates remain unscored without reviewed context; notes are excluded from numeric scores.\\
+Connected task & 94 asset cases, including 33 with source-linked CVEs and 86 asset--CVE edges. A deterministic source-table retriever and abstention baseline have been executed. Source associations require independent applicability assessment.\\
+\bottomrule\end{tabularx}\endgroup
+
+\textbf{Reproduction.} Run the following from the repository root:
+\begin{Verbatim}[fontsize=\small,breaklines=true]
+python3 scripts/research_quality.py
+python3 evaluation/run_baselines.py
+python3 evaluation/audit_connected.py
+python3 -m unittest discover -s tests -v
+\end{Verbatim}
+
+\textbf{Real-model comparison.} A local Ollama runner saves prompts, raw outputs, model digests, input hashes and scores. Use it to compare specified models under matched inputs and evaluation conditions. Published deterministic baseline scores describe reference methods rather than model performance.
+
+\textbf{Independent review.} A reusable case-level review worksheet is provided. A separate source-consistency implementation passed, but this shares the source mappings and does not replace independent human review. Source associations do not establish physical vulnerability or permission to act.
+
+\textbf{Further details.} See \texttt{docs/RESEARCH\_METHODS.md} and \texttt{evaluation/README.md} for compatibility limits, output contracts, context requirements and evidence interpretation.

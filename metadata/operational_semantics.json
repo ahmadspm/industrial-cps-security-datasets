@@ -1,5 +1,5 @@
 {
-  "adjudication_status": "No expert process/attack annotation added. Short traces are flagged, not deleted.",
+  "annotation_scope": "No expert process/attack annotation added. Short traces are flagged, not deleted.",
   "collection": {
     "absolute_dates": "not_released",
     "clock_synchronization": "not_verified",

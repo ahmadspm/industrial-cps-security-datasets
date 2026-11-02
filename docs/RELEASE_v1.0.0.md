@@ -1,9 +1,7 @@
-Curated public industrial CPS security research collection, including the academic researcher guide, research-question matrix and reproducible starter experiments.
+# Industrial CPS Security Research Datasets v1.0.0
 
-- Seven dataset families with component provenance and licensing.
-- Reference mapping, synthetic, observational and expected-decision evidence are distinguished.
-- Deterministic starter protocols include frozen group partitions and measured baselines.
-- Documentation corrects the operational trace count to 27 distinct IDs in 14,124 events; records are unchanged.
-- Prior research is contextual; this release does not claim to reproduce every cited article.
+A curated collection of industrial CPS representations, cybersecurity knowledge, synthetic protocol data, CTI reference tasks, event features and expected-decision agent fixtures.
 
-Run `python3 scripts/validate_release.py` and `python3 examples/check_starters.py`. Historical offline replay has a separate dependency and execution protocol. See docs/ARCHIVING.md for DOI activation; no archival DOI is claimed.
+Use the researcher guide, schemas, provenance and component licensing to select data for an experiment. Source-derived mappings, synthetic assumptions, observations and expected decisions are distinguished throughout the collection. The public subsets support bounded offline research and are not asserted to reproduce every experiment in the related publications.
+
+Research commands and output interpretation are documented in `evaluation/README.md` and `docs/RESEARCH_METHODS.md`.

@@ -1,27 +1,29 @@
-# Curation and exclusions
+# Data curation and representation
 
-The release was built from four pinned upstream repositories and five owner-supplied archives. Raw source bytes were verified during private staging. This public repository is intended to start with clean history, not inherit raw staging commits.
+## Sources and provenance
+
+The collection integrates four version-pinned research repositories and five source archives. `metadata/sources.csv` identifies source revisions. `metadata/provenance.csv` records file-level source roles and transformations. The published files are research views rather than complete source mirrors.
 
 ## Identifier treatment
 
-Inventory exports use a column whitelist. Real names, locations, IPs, subnets and free-text operational annotations are omitted. Stable HMAC-based pseudonyms preserve joins and state equality without distributing the private key. Synthetic endpoint/account/session identifiers are likewise pseudonymized. Operational exports use a reduced feature schema and per-trace relative timestamps.
+Inventory tables retain a defined subset of attributes. Direct names, locations, IP addresses, subnets and unrestricted annotations are omitted. Stable HMAC-based pseudonyms preserve declared identifier joins and state equality. The identifier key and inverse mapping are not distributed. Operational timestamps are relative within each trace.
 
-Reference implementation network examples were remapped consistently into reserved benchmarking ranges; loopback and unspecified addresses remain conventional software examples. Subnet relationships needed by fixture policy tests are preserved. No production connection is required by the offline replay.
+Reference-code network examples use reserved benchmarking ranges. Subnet relationships required by fixture policies are preserved. Offline evaluation requires no production connection.
 
-## Graph quality
+## Graph construction
 
-Release graph fields are factual identifiers, historical scores and enum attributes. Narrative descriptions, reference URLs, account/credential tables, raw host addresses, inferred tactic labels, redundant node copies and untyped relation tables are omitted. Typed relation rules filter 14,884 unmatched source rows. Remaining released relation rows have zero unmatched endpoint references under those declared rules. Ambiguous CAPEC level attributes are omitted; one ID-only node is retained per standard identifier.
+The public graph retains standard cybersecurity identifiers, selected historical scores, enum attributes and typed relationships. Narrative descriptions, account/credential tables and direct network addresses are omitted. Declared endpoint rules exclude 14,884 source rows without matching node references. Each retained edge has valid endpoints under those rules; this does not certify semantic correctness or physical applicability.
 
-Source limitations remain documented rather than repaired by fabrication. In particular, the earlier KG1 check found 14,066 CVE-to-CWE references to 37 identifiers absent from its node table; these are not promoted into asserted public graph edges.
+CAPEC identifiers with conflicting descriptive attributes are represented as ID-only nodes. Missing reference nodes and inferred relationships are not fabricated. Connectivity and relation incidence are described in `reports/graph_connectivity.json`.
 
-## Labels and duplicates
+## Reference labels and duplicates
 
-Thirteen benchmark records in five repeated-description groups with differing reference labels are excluded. This avoids resolving uncertain labels by arbitrary choice. Other repeated descriptions are retained when complete records differ. Future split groups are supplied; no historical experimental split is asserted.
+Thirteen benchmark records across five repeated-description groups with differing labels are excluded. Other repeated descriptions remain where the complete records differ. Description-group IDs support grouped evaluation splits. Labels remain source references rather than independently adjudicated physical ground truth.
 
-Fine-tuning data contained 129 exact record duplicates. Retaining the first occurrence produces 358 unique records. Synthetic, training, expected-decision and observed-feature evidence classes remain distinct.
+The legacy query collection contains 358 distinct records after removing 129 exact duplicates. The 66-query normalized subset uses supported schema properties, relationship directions and exact-identifier semantics. Its transformation and exclusion details are in `reports/training_compatibility.json`.
 
-## Screening and release scope
+## Scope and privacy
 
-The large raw CVE narrative table had 105 credential-like reference URL matches and seven description matches. A structured 112-field redaction patch was tested privately, but the minimized public graph omits both descriptions and reference URLs entirely. No source token was used or tested against a service. Source code with a nonempty proxy-token fallback is excluded along with the G4 execution tooling.
+The dataset omits raw diagnostic logs, screenshots, account/credential tables, direct identity mappings and unrestricted source narratives. These choices reduce disclosure and support bounded research use; they do not establish formal anonymity.
 
-Raw diagnostic logs, screenshots/PDFs, account tables, credentials, private identity maps, unrelated historical reports, staging transfer scripts and numbered source-archive bundles are excluded. The included reference-code fixtures and earlier model versions are retained only where needed for offline tests or their dependencies; historical live-model evidence reports are not redistributed as newly reproduced results.
+Synthetic assumptions, source-derived mappings, reduced observations and expected agent decisions retain distinct evidence classes. Earlier code versions are included where required by the documented reference tests. Reported deterministic results must not be interpreted as live-model or physical-system measurements.

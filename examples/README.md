@@ -15,4 +15,4 @@ python3 examples/check_starters.py
 
 These are illustrative research protocols, not official benchmark partitions. The graph split is group-based rather than temporal. Agent-family holdout does not guarantee semantic independence: related families may share rules. Report per-family results and evaluate further independently authored families before claiming generalization. Baseline scores establish a reproducible floor, not novel findings. Test flag rate has no ground-truth attack interpretation.
 
-The new audit counted **27 distinct trace IDs** in the 14,124 released events; earlier documentation stated 29. No events were removed in this documentation correction.
+The operational subset contains **27 distinct trace IDs** and 14,124 events. Trace lengths and eligibility for sequence analysis are recorded in the trace manifest.

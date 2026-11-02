@@ -6,7 +6,7 @@
 [![License scopes](assets/badges/licenses.svg)](metadata/licenses.csv)
 [![Research articles](assets/badges/research.svg)](docs/RELATED_PUBLICATIONS.md)
 
-A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation. Public views are derived from private source inputs. Raw operational logs, account/credential tables, screenshots, private identifiers and the source repository's earlier history are not part of this release.
+A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation. The collection includes de-identified inventory and observations, source-derived cybersecurity knowledge, synthetic data and expected-decision fixtures.
 
 | Directory | Contents | Evidence class |
 |---|---|---|
@@ -19,9 +19,9 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 | `data/agent_scenarios` | 400 expected-decision test cases in 20 scenarios | Expected decisions, not 400 newly executed agent outcomes |
 | `code/twin_reference` | Models, configurations, fixtures and tests needed for offline replay | Derived reference implementation |
 
-## Research readiness and evaluation
+## Research methods and evaluation
 
-See the [implementation and evidence status](docs/RESEARCH_READINESS.md) for the release-compatible query subset, graph connectivity and join coverage, trace metadata, complete fixture-field evaluator and connected evidence task. [Evaluation instructions](evaluation/README.md) include a local real-model comparison runner and an independent-review packet. **Real-model execution and independent expert sign-off remain pending.**
+Use the [research methods](docs/RESEARCH_METHODS.md) for compatible queries, graph connectivity, verified joins and trace metadata. The [evaluation suite](evaluation/README.md) provides fixture-field scoring, connected evidence-retrieval tasks, deterministic baselines, a local-model comparison runner and a reusable review worksheet. Scores in this repository describe the specified reference and fixture experiments; researchers generate model-specific results using their own declared configurations.
 
 ## Research guide
 
@@ -80,7 +80,7 @@ python3 scripts/replay_offline.py --source-root . --output replay_output
 
 The replay script runs unit suites and deterministic fixture experiments. It does not start deployment services or require live model weights, Neo4j, or physical equipment.
 
-## What changed for release
+## Dataset representation
 
 - Direct network, account, location and session identifiers are omitted or pseudonymized. Operational timestamps are relative; uncontrolled text values are pseudonyms.
 - Synthetic endpoints are pseudonyms. Reference-code network examples use reserved benchmarking addresses, preserving the example subnet relationships.
@@ -108,4 +108,4 @@ Use GitHub's **Cite this repository** option, the [CITATION.cff](CITATION.cff) m
 
 ## Terms and attribution
 
-Use `CITATION.cff` and cite relevant upstream sources listed in `metadata/sources.csv`. Original collection material is offered under CC BY 4.0 and project code under MIT. **The CTIBench-derived benchmark directory uses CC BY-NC-SA 4.0**, including non-commercial and share-alike conditions. Other source-derived third-party elements retain their original terms. See `LICENSE`, `LICENSE-CODE`, `data/benchmarks/LICENSE` and `THIRD_PARTY_NOTICES.md`. No third-party endorsement is implied. No DOI has been assigned.
+Use `CITATION.cff` and cite relevant upstream sources listed in `metadata/sources.csv`. Original collection material is offered under CC BY 4.0 and project code under MIT. **The CTIBench-derived benchmark directory uses CC BY-NC-SA 4.0**, including non-commercial and share-alike conditions. Other source-derived third-party elements retain their original terms. See `LICENSE`, `LICENSE-CODE`, `data/benchmarks/LICENSE` and `THIRD_PARTY_NOTICES.md`. No third-party endorsement is implied. Use the repository version or commit identifier when citing these files.

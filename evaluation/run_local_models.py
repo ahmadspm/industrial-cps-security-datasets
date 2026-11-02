@@ -55,6 +55,6 @@ def main():
                 summary['held_out_families']=['SC-02','SC-06','SC-14','SC-18'];summary['held_out_results']=[x for x in report['family_results'] if x['scenario'] in summary['held_out_families']]
             else:summary['overall']=report['overall']
             summaries.append(summary)
-    (a.output/'comparison.json').write_text(json.dumps({'status':'completed' if not a.limit and all(x['parsed_outputs']==x['attempted'] for x in summaries) else 'partial_or_failed_outputs','task':a.task,'development_smoke_test':bool(a.limit),'python':sys.version,'platform':platform.platform(),'input_sha256':input_hashes,'model_results':summaries,'human_review_status':'not_established_by_model_execution'},indent=2)+'\n')
+    (a.output/'comparison.json').write_text(json.dumps({'status':'completed' if not a.limit and all(x['parsed_outputs']==x['attempted'] for x in summaries) else 'partial_or_failed_outputs','task':a.task,'development_smoke_test':bool(a.limit),'python':sys.version,'platform':platform.platform(),'input_sha256':input_hashes,'model_results':summaries,'interpretation':'Model constraint agreement does not establish expert endorsement'},indent=2)+'\n')
     print('Comparison artifacts saved in '+str(a.output))
 if __name__=='__main__':main()
