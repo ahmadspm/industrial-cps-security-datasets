@@ -51,7 +51,7 @@ The workflows below read **left to right**. Colours match the guide: **blue** in
 
 ![Asset-aware threat-evidence retrieval: left-to-right research workflow](../assets/workflows/workflow-a.svg)
 
-*Workflow A. The same vector figure appears as Figure 12 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
+*Workflow A. The same vector figure appears as Figure 13 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 The [implemented connected task](../evaluation/README.md#connected-task-and-independent-review) covers **94 assets**, including **33 with released CVE links** and **86 asset–CVE edges**. Retrieve source-linked identifiers, preserve evidence paths and abstain where links are missing. An absent link does not establish absence of vulnerability. Identifier-only mitigation nodes do not justify an operational recommendation, and retrieval does not authorize an action.
 
@@ -61,7 +61,7 @@ The [implemented connected task](../evaluation/README.md#connected-task-and-inde
 
 ![Reliable cybersecurity query generation: left-to-right research workflow](../assets/workflows/workflow-b.svg)
 
-*Workflow B. The same vector figure appears as Figure 8 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
+*Workflow B. The same vector figure appears as Figure 9 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 Use [`release_compatible.json`](training/release_compatible.json) for the minimized public schema. Keep related identifiers and query templates together when splitting data. Do not supply `expected_ids` to the model. The 66 queries have restricted-grammar and source-table validation; **Neo4j engine checks and independent query-test construction are further experimental steps**, not completed results implied by this flowchart. Adaptation and live-model evaluation also require actual execution.
 
@@ -71,7 +71,7 @@ Use [`release_compatible.json`](training/release_compatible.json) for the minimi
 
 ![Governed evidence-grounded agent reasoning: left-to-right research workflow](../assets/workflows/workflow-c.svg)
 
-*Workflow C. The same vector figure appears as Figure 11 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
+*Workflow C. The same vector figure appears as Figure 12 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts for all 400 fixtures. Assertions needing reviewed topology or technique/target context remain explicitly unscored when that context is unavailable. Keep scenario families together; variations of one rule are not automatically independent observations. Use the [local-model runner](../evaluation/README.md#real-local-model-comparisons) to generate real predictions. The reference results describe deterministic experiments; use the runner to produce model-specific measurements. No attack tool or physical action is executed by this evaluation suite.
 
@@ -81,7 +81,7 @@ The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts fo
 
 ![Exploratory event-sequence analysis: left-to-right research workflow](../assets/workflows/workflow-d.svg)
 
-*Workflow D. The same vector figure appears as Figure 10 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
+*Workflow D. The same vector figure appears as Figure 11 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 Start with the [trace manifest](../metadata/trace_manifest.csv) and [operational semantics](../metadata/operational_semantics.json). Event spacing is not a verified uniform sensor-sampling interval. Short traces need explicit eligibility rules. Unusual transitions are not automatically cyberattacks. Injected events evaluate the injection protocol; they do not retrospectively label the original observations as malicious.
 

@@ -8,6 +8,14 @@
 
 A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation. The collection includes de-identified inventory and observations, source-derived cybersecurity knowledge, synthetic data and expected-decision fixtures.
 
+
+## Shift-left and shift-right security digital twins
+
+![Security digital twins supporting design-time and runtime cybersecurity across smart critical systems](assets/shift-left-right-digital-twin.png)
+
+*Security digital twins connect design-time (shift-left) and runtime (shift-right) cybersecurity with physical CPS components. Diagram from Mohsin, Janicke, Nepal and Holmes (2023), [Digital Twins and the Future of Their Use Enabling Shift Left and Shift Right Cybersecurity Operations](https://doi.org/10.1109/TPS-ISA58951.2023.00042); [preprint](https://arxiv.org/abs/2309.13612).*
+
+
 | Directory | Contents | Evidence class |
 |---|---|---|
 | `data/inventory` | De-identified asset, zone and data-flow attributes | Inventory, not measured security effectiveness |
