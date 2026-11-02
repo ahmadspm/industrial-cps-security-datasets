@@ -77,8 +77,7 @@ The corpus alone is unsuitable for measuring field intrusion-detection effective
 \clearpage\section{A focused study of adversarial AI robustness}
 A defensible extension is to examine whether analytical outputs remain stable when a bounded portion of their evidence is manipulated. The independent variable is the perturbation budget; the primary outcome is the change in correctness or unsupported-claim rate relative to a clean evaluation. The threat model must specify access, knowledge and the records that an adversary can modify.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 222bp 0bp 192bp},clip]{images/figure-04.png}\caption{Controlled evidence manipulation. Blue: evidence; amber: design; grey/green: comparison; purple: evaluation; teal: reporting.}
-\end{figure}
+
 Researchers may remove relations, introduce type-consistent false relations, or add conflicting retrieved statements to derived copies. Each variant should record affected IDs and its construction rule. Label leakage, malformed inputs and plausible but incorrect evidence should be analyzed separately. Prompt injection requires a separately constructed textual corpus and task-specific success criteria; no such benchmark is supplied.
 
 Useful outcomes include degradation curves, false-evidence acceptance, abstention under contradiction and recovery after evidence removal. Results support a claim about the declared perturbation model, not about resistance to all adaptive adversaries.
@@ -194,8 +193,7 @@ No database service is needed to inspect the data. A graph store, embedding mode
 \clearpage\section{Design an experiment before fitting}
 Specify one primary question, unit of analysis, eligibility criteria and testable outcome. Select a baseline before inspecting held-out results. Separate data quality checks from the security hypothesis.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 303bp 0bp 216bp},clip]{images/figure-06.png}\caption{Evidence quality determines which evaluation claims are supportable.}
-\end{figure}
+
 Use group-based splits when records share a description, flow, trace, entity or scenario template. Keep related versions and inverse graph facts on the same side of the split. Record exclusions and split identifiers before tuning. Fit transformations only on training data [8].
 
 Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A technique association does not itself establish that an attack occurred. NIST CSF 2.0 can organize research outcomes; this dataset does not establish compliance [6].
@@ -248,7 +246,9 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Group near-duplicate instructions and query templates. Create train/dev/test groups and publish IDs. Reserve the test set before prompt engineering or adaptation. Compare a fixed base model with the adapted model on the same held-out prompts. Validate queries in a read-only sandbox if execution is part of the task.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={7bp 0bp 6bp 4bp},clip]{images/figure-10.png}\caption{Template separation reduces memorization-based evaluation.}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{workflows/workflow-b.pdf}
+\caption{Query-generation comparison with a frozen test set. The shared left-to-right workflow is also shown as Workflow B in the data README.}\label{fig:workflow-b}
 \end{figure}
 \textbf{Interpretation and limitations.} Report syntactic validity, schema validity, execution success and semantic correctness separately. Textual exact match alone may reject equivalent queries. The release does not supply a ready-made hosted database or tuning pipeline. State any external examples, compute budget and model license; test contamination remains a limitation.
 
@@ -274,7 +274,9 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Order within each trace using record\_index and relative time; inspect missing or repeated times. Split whole traces before creating windows. Fit encoders and thresholds on training traces only. If no independent attack labels exist, use descriptive anomaly analysis or separately labeled controlled perturbations.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 302bp 0bp 222bp},clip]{images/figure-12.png}\caption{Trace boundaries and label availability constrain inference.}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{workflows/workflow-d.pdf}
+\caption{Whole-trace analysis with label-dependent evaluation. The shared left-to-right workflow is also shown as Workflow D in the data README.}\label{fig:workflow-d}
 \end{figure}
 \textbf{Interpretation and limitations.} Report unusual-transition rates and review agreement for exploratory studies; use attack metrics only with justified labels. The ok field is not an attack label. Relative clocks are per trace. String values are state\_ pseudonyms; units and original signal semantics may be unavailable. Do not infer physical meaning or align cross-trace clocks without evidence.
 
@@ -287,7 +289,9 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Build a local fixture evaluator that reads tests and records actual outputs. Keep expected fields out of model prompts. Group by scenario family for held-out testing where feasible. Route proposals through tool-catalog, risk and stop checks before any simulated execution. Use deterministic mock tools for comparison.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 131bp 0bp 91bp},clip]{images/figure-13.png}\caption{The decision gate produces auditable allow/hold outcomes. Additional governance controls illustrate a proposed evaluator; they are not all encoded in the released fixtures.}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{workflows/workflow-c.pdf}
+\caption{Governed agent comparison. Graph evidence requires verified entity mappings; the shared workflow is also shown as Workflow C in the data README.}\label{fig:workflow-c}
 \end{figure}
 \textbf{Interpretation and limitations.} Report case-level agreement, unsafe-decision rate, stop-condition recall, invalid-tool rate and bounded termination. Specify denominators and oracle limitations. Relevant fixtures cover unavailable tools, hallucinated tools, risk thresholds, loop guards and simulation-only eligibility. Expected outputs are policy references, not evidence of live attacks or operational safety certification.
 
@@ -300,7 +304,9 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Create a mapping table with source keys, mapping rationale and confidence. Measure join coverage and unresolved records before fusion. Require supported joins for each evidence chain; retain unresolved records for review rather than guessing. Compare the same analyst tasks and time budget.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={2bp 233bp 2bp 156bp},clip]{images/figure-14.png}\caption{Evidence joins are an eligibility gate, not an assumption.}
+\begin{figure}[H]\centering
+\includegraphics[width=\linewidth]{workflows/workflow-a.pdf}
+\caption{Asset-aware source-evidence retrieval with abstention. The shared workflow is also shown as Workflow A in the data README; associations do not establish physical vulnerability.}\label{fig:workflow-a}
 \end{figure}
 \textbf{Interpretation and limitations.} Report supported-join coverage, unsupported-claim rate, analyst agreement and review time with the study protocol. Blind reviewers to method where practical. Do not interpret a connected path as a confirmed attack chain. Explain how pseudonymization and missing semantics affect causal interpretation.
 

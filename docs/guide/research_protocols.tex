@@ -1,20 +1,3 @@
-\clearpage\section{Intellectual development and research positioning}
-The following schematic traces related research themes. Arrows indicate conceptual development, not a claim that each publication used the present public subset or that its experiments are reproducible from this collection alone.
-
-\begin{center}
-\begin{tikzpicture}[node distance=9mm]
-\node[block,design,text width=128mm] (origin) {\textbf{2023: lifecycle security foundations [15]}\\Shift-left design analysis and shift-right operational security};
-\node[block,input,text width=128mm,below=of origin] (review) {\textbf{2024: AI and explainable-AI review [16]}\\Methods, taxonomy, interpretability and trustworthiness};
-\node[block,method,text width=128mm,below=of review] (extension) {\textbf{Subsequent research strands [1--4,17,18]}\\Hybrid reasoning and graph-grounded LLMs\\Trusted autonomy, security/privacy and railway virtual twins};
-\node[block,evaluation,text width=128mm,below=of extension] (resource) {\textbf{Present public research collection}\\Structural, synthetic, observational and expected-decision evidence};
-\node[block,output,text width=128mm,below=of resource] (studies) {\textbf{Further independently evaluated studies}\\Declared hypotheses, held-out groups, baselines and bounded claims};
-\draw[arr](origin)--(review);\draw[arr](review)--(extension);\draw[arr](extension)--(resource);\draw[arr](resource)--(studies);
-\end{tikzpicture}
-\end{center}
-\textbf{How to cite the connection.} Cite the 2023 work when discussing lifecycle security, the review when discussing AI/XAI methods, and the relevant later article when adopting its method. Cite the dataset version for the specific public inputs used. Intellectual lineage and empirical provenance serve different purposes.
-
-\textbf{What this resource adds.} The collection assembles selected representations and fixtures with provenance, component licensing and reproducibility guidance. Demonstrating a new security capability requires a separately specified experiment. In particular, neither architectural relevance nor a related publication supplies missing incident labels or physical validation.
-
 \clearpage\section{Research question--data--evaluation matrix}
 Each question must be evaluated at the level supported by its evidence. An editable companion matrix is available in the repository at\newline \texttt{docs/RESEARCH\_QUESTIONS.md}.
 

@@ -43,31 +43,15 @@ Combine records through declared relationships and task interfaces. Do not conca
 
 See the [join-coverage report](../reports/join_coverage.json), [asset crosswalk](../metadata/asset_graph_crosswalk.csv), [connectivity report](../reports/graph_connectivity.json) and [typed relation rules](../metadata/graph_relation_rules.json). An identity match supports a declared join, not confirmation that an asset is exploitable.
 
+The workflows below read **left to right**. Colours match the guide: **blue** inputs, **amber** design or eligibility, **grey** baseline, **green** candidate method, **coral** abstention, **purple** evaluation and **teal** outputs. The SVG and PDF versions are drawn from the same source.
+
 ## 3. Workflow A: asset-aware threat-evidence retrieval
 
 **Use:** inventory + knowledge graph. This is the strongest immediately available connected task.
 
-```mermaid
-flowchart TD
-    A["Select inventory asset"] --> B["Match graph product ID"]
-    B --> C{"Released CVE links exist?"}
-    C -->|Yes| D["Retrieve CVE and CWE evidence"]
-    D --> E["Attach source paths and available mitigation IDs"]
-    E --> F["Return evidence for applicability review"]
-    C -->|No| G["Abstain: no supported reference link"]
-    F --> H["Score retrieval and unsupported claims"]
-    G --> H
-    classDef input fill:#D9EAF8,stroke:#245A81,color:#17344A;
-    classDef process fill:#CCEBE2,stroke:#087F8C,color:#17344A;
-    classDef decision fill:#FCE6BB,stroke:#A36A13,color:#17344A;
-    classDef limit fill:#F8D9D3,stroke:#A84838,color:#17344A;
-    classDef result fill:#E5DDF3,stroke:#70528D,color:#17344A;
-    class A,B input;
-    class D,E process;
-    class C decision;
-    class G limit;
-    class F,H result;
-```
+![Asset-aware threat-evidence retrieval: left-to-right research workflow](../assets/workflows/workflow-a.svg)
+
+*Workflow A. The same vector figure appears as Figure 12 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 The [implemented connected task](../evaluation/README.md#connected-task-and-independent-review) covers **94 assets**, including **33 with released CVE links** and **86 asset–CVE edges**. Retrieve source-linked identifiers, preserve evidence paths and abstain where links are missing. An absent link does not establish absence of vulnerability. Identifier-only mitigation nodes do not justify an operational recommendation, and retrieval does not authorize an action.
 
@@ -75,28 +59,9 @@ The [implemented connected task](../evaluation/README.md#connected-task-and-inde
 
 **Use:** training + knowledge graph, with a separately authored query test set. CTI benchmarks can add a distinct downstream evaluation.
 
-```mermaid
-flowchart TD
-    A["Compatible training queries and schema"] --> B["Develop prompting or adaptation method"]
-    C["New grouped query test set"] --> D["Freeze evaluation protocol"]
-    B --> D
-    D --> E["Generate candidate query"]
-    E --> F{"Schema and engine checks pass?"}
-    F -->|Yes| G["Compare returned results with reference answers"]
-    F -->|No| H["Record invalid query or execution failure"]
-    G --> I["Report correctness, coverage and failures"]
-    H --> I
-    classDef input fill:#D9EAF8,stroke:#245A81,color:#17344A;
-    classDef process fill:#CCEBE2,stroke:#087F8C,color:#17344A;
-    classDef decision fill:#FCE6BB,stroke:#A36A13,color:#17344A;
-    classDef limit fill:#F8D9D3,stroke:#A84838,color:#17344A;
-    classDef result fill:#E5DDF3,stroke:#70528D,color:#17344A;
-    class A,C input;
-    class B,D,E,G process;
-    class F decision;
-    class H limit;
-    class I result;
-```
+![Reliable cybersecurity query generation: left-to-right research workflow](../assets/workflows/workflow-b.svg)
+
+*Workflow B. The same vector figure appears as Figure 8 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 Use [`release_compatible.json`](training/release_compatible.json) for the minimized public schema. Keep related identifiers and query templates together when splitting data. Do not supply `expected_ids` to the model. The 66 queries have restricted-grammar and source-table validation; **Neo4j engine checks and independent query-test construction are further experimental steps**, not completed results implied by this flowchart. Adaptation and live-model evaluation also require actual execution.
 
@@ -104,29 +69,9 @@ Use [`release_compatible.json`](training/release_compatible.json) for the minimi
 
 **Use:** agent scenarios independently; add knowledge-graph evidence only through verified mappings. The integrated workflow below is a proposed research protocol.
 
-```mermaid
-flowchart TD
-    A["Scenario inputs and declared policy"] --> B["Baseline decision agent"]
-    A --> C{"Reviewed graph mapping available?"}
-    C -->|Yes| D["Retrieve relevant graph evidence"]
-    C -->|No| E["Evaluate original fixtures without graph claims"]
-    D --> F["Evidence-assisted agent with policy checks"]
-    B --> G["Compare decisions on held-out families"]
-    F --> G
-    E --> G
-    G --> H["Score tools, stopping, plans and evidence support"]
-    H --> I["Report failures and unscored semantic checks"]
-    classDef input fill:#D9EAF8,stroke:#245A81,color:#17344A;
-    classDef process fill:#CCEBE2,stroke:#087F8C,color:#17344A;
-    classDef decision fill:#FCE6BB,stroke:#A36A13,color:#17344A;
-    classDef limit fill:#F8D9D3,stroke:#A84838,color:#17344A;
-    classDef result fill:#E5DDF3,stroke:#70528D,color:#17344A;
-    class A input;
-    class B,D,F process;
-    class C decision;
-    class E limit;
-    class G,H,I result;
-```
+![Governed evidence-grounded agent reasoning: left-to-right research workflow](../assets/workflows/workflow-c.svg)
+
+*Workflow C. The same vector figure appears as Figure 11 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts for all 400 fixtures. Assertions needing reviewed topology or technique/target context remain explicitly unscored when that context is unavailable. Keep scenario families together; variations of one rule are not automatically independent observations. Use the [local-model runner](../evaluation/README.md#real-local-model-comparisons) to generate real predictions. The reference results describe deterministic experiments; use the runner to produce model-specific measurements. No attack tool or physical action is executed by this evaluation suite.
 
@@ -134,28 +79,9 @@ The [agent evaluator](../evaluation/README.md#agent-output-contract) accounts fo
 
 **Use:** operational traces independently. Contextual equipment interpretation is a separate extension requiring additional metadata.
 
-```mermaid
-flowchart TD
-    A["Operational traces and trace manifest"] --> B["Check missingness, timing and trace length"]
-    B --> C["Split whole traces into development and test groups"]
-    C --> D["Fit sequence model using development traces"]
-    D --> E["Score unusual patterns on held-out traces"]
-    E --> F{"Verified labels or injected events available?"}
-    F -->|Yes| G["Evaluate the declared labelled or injection task"]
-    F -->|No| H["Report exploratory flags and sequence statistics"]
-    G --> I["State evidence scope and uncertainty"]
-    H --> I
-    classDef input fill:#D9EAF8,stroke:#245A81,color:#17344A;
-    classDef process fill:#CCEBE2,stroke:#087F8C,color:#17344A;
-    classDef decision fill:#FCE6BB,stroke:#A36A13,color:#17344A;
-    classDef limit fill:#F8D9D3,stroke:#A84838,color:#17344A;
-    classDef result fill:#E5DDF3,stroke:#70528D,color:#17344A;
-    class A input;
-    class B,C,D,E process;
-    class F decision;
-    class H limit;
-    class G,I result;
-```
+![Exploratory event-sequence analysis: left-to-right research workflow](../assets/workflows/workflow-d.svg)
+
+*Workflow D. The same vector figure appears as Figure 10 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 Start with the [trace manifest](../metadata/trace_manifest.csv) and [operational semantics](../metadata/operational_semantics.json). Event spacing is not a verified uniform sensor-sampling interval. Short traces need explicit eligibility rules. Unusual transitions are not automatically cyberattacks. Injected events evaluate the injection protocol; they do not retrospectively label the original observations as malicious.
 
