@@ -2,6 +2,8 @@
 
 Use native modelling languages to represent the complementary parts of a cyber-physical digital twin. The [tank-and-pump example](tank_pump/README.md) combines physical equations, industrial controller logic, behavioural states and formal communication properties. No Python implementation is required by this example.
 
+**[Launch the public browser demonstrator](https://industrial-cps-model-lab.ahmadwaecu.chatgpt.site)** to explore the shared policy, adjust parameters, inject telemetry faults, replay all 12 sequential cases and export a trace. It is an educational browser implementation, not a substitute for native compiler, simulation or refinement-tool execution.
+
 | Language | Modelled concern | Example |
 |---|---|---|
 | Modelica | Physical dynamics and sampled controller interaction | [TankPump.mo](tank_pump/modelica/TankPump.mo) |

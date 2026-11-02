@@ -8,6 +8,10 @@
 
 A curated research collection for industrial cybersecurity graphs, synthetic protocol analysis, de-identified operational event analysis and offline digital-twin/agent evaluation. The collection includes de-identified inventory and observations, source-derived cybersecurity knowledge, synthetic data and expected-decision fixtures.
 
+## Interactive digital-twin demonstrator
+
+**[Launch the public Industrial CPS Model Lab](https://industrial-cps-model-lab.ahmadwaecu.chatgpt.site)** to simulate the shared tank-and-pump controller in a web browser, change plant and safety parameters, inject stale telemetry, replay the 12 published policy cases and export a trace. The demonstrator is a browser-side interpretation of the shared fixture; native Modelica, IEC 61131-3 Structured Text, SCXML and CSP_M sources remain authoritative for tool-specific analysis.
+
 
 ## Shift-left and shift-right security digital twins
 

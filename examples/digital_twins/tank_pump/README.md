@@ -2,6 +2,8 @@
 
 This example uses **Modelica, IEC 61131-3 Structured Text, SCXML and CSP_M** to model a shared tank/pump control policy. It is an offline, uncalibrated reference example for digital-twin development. Its parameters and scenarios are illustrative, not measurements of the repository's industrial or water testbeds. There are no hardware addresses, network clients or equipment-write operations.
 
+**[Open the public browser simulation](https://industrial-cps-model-lab.ahmadwaecu.chatgpt.site)** for interactive parameter exploration and a visual replay of the shared 12-case sequential fixture. The web implementation supports teaching and rapid inspection; use the native source files below for tool-specific execution and verification.
+
 ## Physical model and assumptions
 
 The Modelica plant represents a constant-area tank:
