@@ -1,4 +1,10 @@
-# Reproducible starter experiments
+# Research examples
+
+For cyber-physical model construction, start with the [native modelling-language examples](digital_twins/README.md): Modelica, IEC 61131-3 Structured Text, SCXML and CSP. They include a shared tank-and-pump policy, physical assumptions, native check models and input/output cases.
+
+The sections below describe separate data-analysis starter experiments.
+
+## Reproducible starter experiments
 
 Run from the repository root with Python 3.11 or later; no packages, model, API key or equipment are required:
 

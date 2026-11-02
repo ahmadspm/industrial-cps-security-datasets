@@ -102,6 +102,10 @@ The [related publications](../docs/RELATED_PUBLICATIONS.md) distinguish co-autho
 **Further documentation:** [Dataset card](../docs/DATASET_CARD.md) · [Schemas](../docs/SCHEMAS.md) · [Curation methods](../docs/METHODS.md) · [Validation](../docs/VALIDATION.md) · [File-level research map](../metadata/research_file_map.csv) · [Research methods](../docs/RESEARCH_METHODS.md) · [Runnable starters](../examples/README.md).
 
 
+## Digital-twin models in native modelling languages
+
+For model construction, use the [Modelica, Structured Text, SCXML and CSP examples](../examples/digital_twins/README.md). The shared tank-and-pump example represents physical dynamics, PLC-style controller scans, event-driven behaviour and formal communication properties. Its [shared cases and native checks](../examples/digital_twins/tank_pump/README.md#shared-cases-and-expected-outputs) support explicit cross-model comparisons. Model parameters and signal identities are illustrative; linking them to this collection requires independently established mappings and validation.
+
 ## Dataset citation
 
 Mohsin, A. (2026). *Industrial CPS Security Research Datasets: Curated Public Views* (Version 1.0.0) [Data set]. GitHub. https://github.com/ahmadspm/industrial-cps-security-datasets

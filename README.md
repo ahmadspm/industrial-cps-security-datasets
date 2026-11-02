@@ -63,6 +63,10 @@ The titles link to the article or its documented manuscript record. Research the
 
 Use the [research question–dataset matrix](docs/RESEARCH_QUESTIONS.md) to select inputs, methods and metrics. The [three runnable starter experiments](examples/README.md) include fixed group partitions and measured baselines for event rarity, graph mapping and expected agent decisions. The [archiving guide](docs/ARCHIVING.md) explains versioned citation and the remaining Zenodo DOI activation step.
 
+## Digital-twin modelling examples
+
+Develop cyber-physical reference models using [Modelica, IEC 61131-3 Structured Text, SCXML and CSP](examples/digital_twins/README.md). The [tank-and-pump example](examples/digital_twins/tank_pump/README.md) includes physical equations, sampled controller logic, behavioural statecharts, formal process properties and twelve shared decision cases. Native Modelica and ST checks and a CSP replay accompany the models. The example is illustrative and uncalibrated; it is not a reconstruction of the pseudonymous operational traces.
+
 ## Quick start
 
 Use Python 3.11 or later. Validation requires only the standard library:

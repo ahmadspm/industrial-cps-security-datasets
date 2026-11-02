@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" version="1.0"
+       name="TankPumpController" datamodel="ecmascript" initial="off">
+  <datamodel>
+    <data id="pumpOn" expr="false"/>
+    <data id="faultLatched" expr="false"/>
+  </datamodel>
+  <!-- Each tick supplies level (m), enabled, fresh and reset booleans.
+       Input events must satisfy ../scenarios/tick.schema.json before dispatch. -->
+  <state id="off">
+    <onentry><assign location="pumpOn" expr="false"/><assign location="faultLatched" expr="false"/></onentry>
+    <transition event="tick" cond="!_event.data.fresh || _event.data.level &gt;= 0.95" target="fault"/>
+    <transition event="tick" cond="_event.data.enabled &amp;&amp; _event.data.level &lt;= 0.30" target="filling"/>
+    <transition event="tick" target="off"/>
+  </state>
+  <state id="filling">
+    <onentry><assign location="pumpOn" expr="true"/><assign location="faultLatched" expr="false"/></onentry>
+    <transition event="tick" cond="!_event.data.fresh || _event.data.level &gt;= 0.95" target="fault"/>
+    <transition event="tick" cond="!_event.data.enabled || _event.data.level &gt;= 0.70" target="off"/>
+    <transition event="tick" target="filling"/>
+  </state>
+  <state id="fault">
+    <onentry><assign location="pumpOn" expr="false"/><assign location="faultLatched" expr="true"/></onentry>
+    <transition event="tick" cond="_event.data.fresh &amp;&amp; _event.data.level &lt; 0.95 &amp;&amp; _event.data.reset &amp;&amp; _event.data.enabled &amp;&amp; _event.data.level &lt;= 0.30" target="filling"/>
+    <transition event="tick" cond="_event.data.fresh &amp;&amp; _event.data.level &lt; 0.95 &amp;&amp; _event.data.reset" target="off"/>
+    <transition event="tick" target="fault"/>
+  </state>
+</scxml>
