@@ -2,6 +2,8 @@
 
 For cyber-physical model construction, start with the [native modelling-language examples](digital_twins/README.md): Modelica, IEC 61131-3 Structured Text, SCXML and CSP. They include a shared tank-and-pump policy, physical assumptions, native check models and input/output cases.
 
+Use the **[Smart Factory Digital Twin Experimental Workbench](https://ahmadspm.github.io/industrial-cps-security-datasets/)** for an interactive manufacturing twin, or inspect its [complete application source](../web/digital-twin-experimental-workbench/).
+
 The sections below describe separate data-analysis starter experiments.
 
 ## Reproducible starter experiments
