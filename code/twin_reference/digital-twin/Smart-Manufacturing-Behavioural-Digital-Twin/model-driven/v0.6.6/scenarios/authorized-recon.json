@@ -1,8 +1,0 @@
-{
-  "mission_id":"AOA-RECON-FT-001",
-  "authorized_assets":["plc_shadow","iot_gateway","txt_controller","mqtt_broker","digital_twin"],
-  "allowed_actions":["query_virtual_asset_catalogue","inspect_declared_service_metadata","inspect_topic_and_node_metadata","correlate_existing_evidence","prioritize_virtual_targets","generate_recon_report"],
-  "physical_access":false,
-  "active_scanning":false,
-  "writes":false
-}

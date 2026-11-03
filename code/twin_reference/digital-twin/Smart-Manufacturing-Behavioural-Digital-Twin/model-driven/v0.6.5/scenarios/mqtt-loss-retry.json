@@ -1,1 +1,0 @@
-{"name":"mqtt-loss-retry","fault_sequence":4,"fault_type":"mqtt_loss","recovery_policy":"retry_replay","fault_duration_ms":300.0,"retry_budget":2,"recovery_attempt":2}

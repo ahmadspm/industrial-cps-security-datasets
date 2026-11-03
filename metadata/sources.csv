@@ -1,5 +1,0 @@
-source_id,source_url,pinned_commit,release_role
-G1,https://github.com/ahmadspm/Industry-5.0--Intelligent-Threat-Analytics-KGs-and-LLMs,fd641bb3eb087ef34663e949c0a4ee34dc84c1e5,Pseudonymized synthetic records
-G2,https://github.com/ahmadspm/Nuero-RAG-GRAPh-CPS-Intelligence-Modelling,51b0ff462a542bcbf1e2913652e6eb31bfdb231f,Curated reference tasks and deduplicated training
-G3,https://github.com/ahmadspm/Digital-Twin-Ai-Agents-Cybersec-Research,6e425264bcf6676b4d99a4c60b08f2bf20de2ffd,Network-remapped offline reference implementation
-G4,https://github.com/ahmadspm/Digital-TwinAutonomous-CPS-Security-Testing,4737575dec9984a40221726e84239474579b3ae4,Expected-decision fixtures only

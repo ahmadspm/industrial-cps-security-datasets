@@ -1,7 +1,0 @@
-.secrets/
-evidence/*.jsonl
-evidence/*.pcap
-evidence/*.pcapng
-mosquitto/generated/
-__pycache__/
-*.pyc

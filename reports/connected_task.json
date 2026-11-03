@@ -1,9 +1,0 @@
-{
-  "asset_cve_edge_rows": 86,
-  "assets_with_cve_links": 33,
-  "boundary": "Source mapping is not proof that the physical asset is vulnerable. Mitigation nodes are identifiers only; no actionable control recommendation is inferred.",
-  "cases": 94,
-  "cases_with_cwe_evidence": 33,
-  "reference_basis": "Released source-table associations; automated consistency checks do not establish physical applicability or expert endorsement.",
-  "task": "inventory -> product -> source-linked CVE -> CWE -> mitigation identifier evidence"
-}

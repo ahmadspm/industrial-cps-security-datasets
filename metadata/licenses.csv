@@ -1,6 +1,0 @@
-path_scope,license,notes
-data/benchmarks/*,CC-BY-NC-SA-4.0,"CTIBench adaptation; retain original attribution, non-commercial and share-alike terms"
-code/*; scripts/*; evaluation/*.py; tests/*.py,MIT,Project code; dependency packages retain original licenses
-data/knowledge_graph/*,CC-BY-4.0 AND LicenseRef-Source-CTI-Terms,Original compilation plus applicable MITRE/CVE and other source notices
-other original data and documentation,CC-BY-4.0,Applies only to rights held by contributing authors
-examples/digital_twins/*,MIT,"Illustrative modelling-language source, fixtures and accompanying example documentation; see examples/digital_twins/tank_pump/LICENSE"

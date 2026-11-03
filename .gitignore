@@ -1,8 +1,0 @@
-__pycache__/
-*.py[cod]
-.venv/
-replay_output/
-.env
-.secrets/
-private_inputs/
-private_keys/

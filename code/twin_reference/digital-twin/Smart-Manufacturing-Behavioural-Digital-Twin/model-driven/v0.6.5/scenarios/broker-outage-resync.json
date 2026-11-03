@@ -1,1 +1,0 @@
-{"name":"broker-outage-resync","fault_sequence":5,"fault_type":"broker_outage","recovery_policy":"retained_snapshot","fault_duration_ms":900.0,"retry_budget":1,"recovery_attempt":1}

@@ -1,1 +1,0 @@
-{"name":"opcua-stale-recovery","fault_sequence":5,"fault_type":"opcua_stale","recovery_policy":"retry_replay","fault_duration_ms":280.0,"retry_budget":1,"recovery_attempt":1}
