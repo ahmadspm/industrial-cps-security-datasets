@@ -185,11 +185,13 @@ function Tabs({
   );
 }
 function Flow({ stations }: { stations: Station[] }) {
+  const images: Record<string,string> = {DSI:'station-dps-official.png',VGR:'station-vgr-official.jpg',HBW:'station-hbw-official.jpg',MPO:'station-mpo-official.jpg',SLD:'station-sld-official.jpg',DSO:'station-dps-official.png'};
   return (
     <div className="flow">
       {stations.map((s, i) => (
         <div className="flow-wrap" key={s.id}>
           <div className={`flow-node ${s.active ? "active" : ""}`}>
+            <img src={`assets/${images[s.id]}`} alt={s.name} style={{width:110,height:84,objectFit:'contain',background:'white',borderRadius:8,marginBottom:8}} />
             <b>{s.id}</b>
             <span>{s.role}</span>
           </div>
@@ -471,6 +473,10 @@ export default function Home() {
                 </i>
                 <strong>{progress}%</strong>
               </div>
+            </Panel>
+            <Panel title="Recorded operational trace dashboard" sub="Matplotlib animation · elapsed event timing · replay of released observations">
+              <img src="assets/operational-trace-replay.gif" alt="Animated recorded event counts and inter-event intervals" style={{width:'100%',height:'auto'}} />
+              <p style={{padding:'0 24px 18px',fontSize:12}}>Source: data/operational/event_features.jsonl.gz. Recorded event timing is replayed at an accelerated display rate. Station identities, physical units and production-cycle boundaries are unavailable in this release; this plot reports event activity only.</p>
             </Panel>
             <div className="columns">
               <Panel
