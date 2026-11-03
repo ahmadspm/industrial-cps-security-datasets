@@ -29,4 +29,4 @@ The production build is written to `github-dist/`. The Vite base path is configu
 
 ## Source provenance
 
-This GitHub version was migrated from version 18 of the Smart Factory Digital Twin Simulator and adapted to a static React/Vite deployment. The application logic, visual components and research views are retained; ChatGPT-specific hosting and authentication files are not required by this public build.
+This GitHub version was migrated from version 18 of the Smart Factory Digital Twin Simulator and adapted to a static React/Vite deployment. The application logic, visual components and research views are retained.
