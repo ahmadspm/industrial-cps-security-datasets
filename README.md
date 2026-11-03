@@ -12,9 +12,6 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 
 **[Launch the Smart Factory Digital Twin Experimental Workbench](https://ahmadspm.github.io/industrial-cps-security-datasets/)** for interactive behavioural monitoring, 3D twin views, station operations, engineering models, network-fidelity analysis, factory emulation, simulation science, cybersecurity assessment, agentic-AI experiments and evidence views. The complete maintainable source is included in [`web/digital-twin-experimental-workbench`](web/digital-twin-experimental-workbench/).
 
-For the complementary process-control example, **[launch the tank-and-pump model laboratory](https://ahmadspm.github.io/research-info/industrial-cps-model-lab/)** to adjust plant and safety parameters, inject stale telemetry, replay the 12 published policy cases and export a trace. Both applications are research demonstrators; they do not command physical equipment or replace native modelling-tool verification.
-
-
 ## Shift-left and shift-right security digital twins
 
 ![Security digital twins supporting design-time and runtime cybersecurity across smart critical systems](assets/shift-left-right-digital-twin.png)
