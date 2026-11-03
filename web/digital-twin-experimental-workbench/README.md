@@ -1,6 +1,6 @@
 # Digital Twin Experimental Workbench
 
-This is the browser-based smart-factory Digital Twin Experimental Workbench for the [Industrial CPS Security Research Datasets](https://github.com/ahmadspm/industrial-cps-security-datasets).
+This is smart-factory Digital Twin Experimental Workbench for the [Industrial CPS Security Research Datasets](https://github.com/ahmadspm/industrial-cps-security-datasets).
 
 ## Research capabilities
 
