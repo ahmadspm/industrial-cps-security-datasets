@@ -1,4 +1,4 @@
-# Author research articles and dataset connections
+# Related Resreach Articles
 
 This guide distinguishes **work co-authored by Ahmad Mohsin** from **third-party dataset sources**. CTIBench is by Alam and colleagues; it is not an article by the repository custodian. Its attribution remains necessary because the benchmark folder contains adapted CTIBench records.
 
