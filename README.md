@@ -30,6 +30,10 @@ A curated research collection for industrial cybersecurity graphs, synthetic pro
 | `data/agent_scenarios` | 400 expected-decision test cases in 20 scenarios | Expected decisions, not 400 newly executed agent outcomes |
 | `code/twin_reference` | Models, configurations, fixtures and tests needed for offline replay | Derived reference implementation |
 
+## Dataset metadata catalog
+
+Use the [dataset metadata CSV](metadata/dataset_catalog.csv) to filter all 108 record-bearing files by dataset family, record count and unit, format, stored size, fields, provenance, license scope, and research use. The catalog also documents interpretation limits, derived subsets, and files shared across dataset families. Counts are taken from the released files. CSV headers, blank rows, documentation, and license files are excluded.
+
 ## Research methods and evaluation
 
 Use the [research methods](docs/RESEARCH_METHODS.md) for compatible queries, graph connectivity, verified joins and trace metadata. The [evaluation suite](evaluation/README.md) provides fixture-field scoring, connected evidence-retrieval tasks, deterministic baselines, a local-model comparison runner and a reusable review worksheet. Scores in this repository describe the specified reference and fixture experiments; researchers generate model-specific results using their own declared configurations.
