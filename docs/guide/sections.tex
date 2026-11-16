@@ -82,6 +82,9 @@ Researchers may remove relations, introduce type-consistent false relations, or 
 
 Useful outcomes include degradation curves, false-evidence acceptance, abstention under contradiction and recovery after evidence removal. Results support a claim about the declared perturbation model, not about resistance to all adaptive adversaries.
 
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 222bp 0bp 192bp},clip]{images/figure-04.png}\caption{Controlled evidence manipulation. Blue: evidence; amber: design; grey/green: comparison; purple: evaluation; teal: reporting.}
+\end{figure}
+
 \clearpage\section{Cross-sector relevance and transfer limits}
 \begin{figure}[H]\centering
 \includegraphics[width=\linewidth,trim={19bp 18bp 19bp 30bp},clip]{images/figure-05.png}\caption{Evidence required for cross-sector transfer. }\end{figure}
@@ -158,6 +161,19 @@ An observed event is not automatically an attack. A synthetic risk score is an a
 Read data/README.md, the selected folder README, docs/SCHEMAS.md, docs/DATASET\_CARD.md and metadata/licenses.csv before selecting features. Use metadata/provenance.csv and \path{metadata/research_file_map.csv} to trace inputs and related research.
 
 \clearpage\section{Obtain, freeze and load the release}
+\noindent\textbf{Research resources.} Consult the
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/docs/RESEARCH_METHODS.md}{research methods guide}
+for study design and the
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/docs/METHODS.md}{data curation methodology}
+for how the release was assembled. Use the
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/metadata/dataset_catalog.csv}{dataset catalog CSV}
+to select files and check record counts. The
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/tree/main/metadata}{metadata directory}
+also contains the
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/metadata/provenance.csv}{provenance CSV},
+\href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/metadata/trace_manifest.csv}{trace manifest CSV},
+and \href{https://github.com/ahmadspm/industrial-cps-security-datasets/blob/main/metadata/asset_graph_crosswalk.csv}{asset crosswalk CSV}.
+
 \begin{Verbatim}[fontsize=\footnotesize,breaklines=true,frame=single,rulecolor=\color{rulegray},framesep=8pt]
 git clone https://github.com/ahmadspm/industrial-cps-security-datasets.git
 cd industrial-cps-security-datasets
@@ -198,6 +214,9 @@ Use group-based splits when records share a description, flow, trace, entity or 
 
 Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A technique association does not itself establish that an attack occurred. NIST CSF 2.0 can organize research outcomes; this dataset does not establish compliance [6].
 
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 303bp 0bp 216bp},clip]{images/figure-06.png}\caption{Evidence quality determines which evaluation claims are supportable.}
+\end{figure}
+
 \clearpage\section{Inventory: segmentation and exposure}
 \textbf{Research area.} Asset-centric exposure analysis\newline \textbf{Problem statement.} Incomplete knowledge of communication boundaries complicates the allocation of scarce monitoring resources.
 
@@ -220,8 +239,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Select one relation and a transductive or entity-disjoint task. Split before creating inverse edges, embeddings or derived features. Remove held-out facts and equivalent inverse/derived facts from training. Use type-correct candidates; document negative sampling.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={287bp 0bp 0bp 0bp},clip]{images/figure-08.png}\caption{Split construction precedes graph feature generation.}
-\end{figure}
 \textbf{Interpretation and limitations.} Report MRR and Hits@k with candidate counts, or precision/recall on a defined labeled task. Unknown edges are not verified negatives. Zero unmatched endpoints confirms structure only. CVSS/EPSS/KEV attributes are historical snapshots; they are not current risk advice. The graph lacks a full narrative corpus.
 
 \clearpage\section{CTI benchmarks: grounded answers}
@@ -233,8 +250,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Use metadata/benchmark\_split\_groups.csv to keep related descriptions together across files. Hide GT and any direct answer-bearing path from the model input and retrieval index. Freeze prompts and retrieval budget. Normalize output to declared identifier sets; score abstentions explicitly.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={2bp 120bp 1bp 127bp},clip]{images/figure-09.png}\caption{Retrieval gains must be measured independently from answer leakage. CTI category icons illustrate the analytical setting, not an inventory of released benchmark labels.}
-\end{figure}
 \textbf{Interpretation and limitations.} Report exact-set match and micro/macro label precision, recall and F1 as appropriate to the GT representation. Distinguish parsing failures, wrong mappings and unsupported claims. Thirteen records from five conflicting-description groups were excluded under the documented reference-group rule. Evaluate retained labels rather than assuming universal correctness. CTIBench terms include noncommercial/share-alike conditions.
 
 \clearpage\section{Training pairs: query generation}
@@ -246,10 +261,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Group near-duplicate instructions and query templates. Create train/dev/test groups and publish IDs. Reserve the test set before prompt engineering or adaptation. Compare a fixed base model with the adapted model on the same held-out prompts. Validate queries in a read-only sandbox if execution is part of the task.
 
-\begin{figure}[H]\centering
-\includegraphics[width=\linewidth]{workflows/workflow-b.pdf}
-\caption{Query-generation comparison with a frozen test set. The shared left-to-right workflow is also shown as Workflow B in the data README.}\label{fig:workflow-b}
-\end{figure}
 \textbf{Interpretation and limitations.} Report syntactic validity, schema validity, execution success and semantic correctness separately. Textual exact match alone may reject equivalent queries. The release does not supply a ready-made hosted database or tuning pipeline. State any external examples, compute budget and model license; test contamination remains a limitation.
 
 \clearpage\section{Synthetic data: controlled anomaly studies}
@@ -261,8 +272,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Inspect protocol-specific fields before harmonizing. Split by flow or generation/scenario group where supported. Add perturbations to a derived copy with a recorded seed and explicit injection labels. Keep training and test generation groups disjoint. Compare equal-threshold-budget methods.
 
-\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={0bp 230bp 0bp 185bp},clip]{images/figure-11.png}\caption{Labels introduced by the experiment stay separate from released values.}
-\end{figure}
 \textbf{Interpretation and limitations.} Give precision/recall, PR-AUC and false alarms per declared unit for the controlled task. Status/result fields are not universal malicious labels. ATTACKABLE controlStrength, pExploit, attackCost\_min and riskWeight are synthetic assumptions, not empirical compromise outcomes. Test whether a model merely reconstructs the formula used to create its target.
 
 \clearpage\section{Operational traces: sequence research}
@@ -274,10 +283,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Order within each trace using record\_index and relative time; inspect missing or repeated times. Split whole traces before creating windows. Fit encoders and thresholds on training traces only. If no independent attack labels exist, use descriptive anomaly analysis or separately labeled controlled perturbations.
 
-\begin{figure}[H]\centering
-\includegraphics[width=\linewidth]{workflows/workflow-d.pdf}
-\caption{Whole-trace analysis with label-dependent evaluation. The shared left-to-right workflow is also shown as Workflow D in the data README.}\label{fig:workflow-d}
-\end{figure}
 \textbf{Interpretation and limitations.} Report unusual-transition rates and review agreement for exploratory studies; use attack metrics only with justified labels. The ok field is not an attack label. Relative clocks are per trace. String values are state\_ pseudonyms; units and original signal semantics may be unavailable. Do not infer physical meaning or align cross-trace clocks without evidence.
 
 \clearpage\section{Agent scenarios: governed decisions}
@@ -289,10 +294,6 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Build a local fixture evaluator that reads tests and records actual outputs. Keep expected fields out of model prompts. Group by scenario family for held-out testing where feasible. Route proposals through tool-catalog, risk and stop checks before any simulated execution. Use deterministic mock tools for comparison.
 
-\begin{figure}[H]\centering
-\includegraphics[width=\linewidth]{workflows/workflow-c.pdf}
-\caption{Governed agent comparison. Graph evidence requires verified entity mappings; the shared workflow is also shown as Workflow C in the data README.}\label{fig:workflow-c}
-\end{figure}
 \textbf{Interpretation and limitations.} Report case-level agreement, unsafe-decision rate, stop-condition recall, invalid-tool rate and bounded termination. Specify denominators and oracle limitations. Relevant fixtures cover unavailable tools, hallucinated tools, risk thresholds, loop guards and simulation-only eligibility. Expected outputs are policy references, not evidence of live attacks or operational safety certification.
 
 \clearpage\section{Integrated study: evidence to review}
@@ -304,9 +305,7 @@ Use MITRE ATT\&CK for ICS as a vocabulary for analyst-reviewed mappings [7]. A t
 
 \textbf{Experimental design.} Create a mapping table with source keys, mapping rationale and confidence. Measure join coverage and unresolved records before fusion. Require supported joins for each evidence chain; retain unresolved records for review rather than guessing. Compare the same analyst tasks and time budget.
 
-\begin{figure}[H]\centering
-\includegraphics[width=\linewidth]{workflows/workflow-a.pdf}
-\caption{Asset-aware source-evidence retrieval with abstention. The shared workflow is also shown as Workflow A in the data README; associations do not establish physical vulnerability.}\label{fig:workflow-a}
+\begin{figure}[H]\centering\includegraphics[width=\linewidth,trim={2bp 233bp 2bp 156bp},clip]{images/figure-14.png}\caption{Evidence joins are an eligibility gate, not an assumption.}
 \end{figure}
 \textbf{Interpretation and limitations.} Report supported-join coverage, unsupported-claim rate, analyst agreement and review time with the study protocol. Blind reviewers to method where practical. Do not interpret a connected path as a confirmed attack chain. Explain how pseudonymization and missing semantics affect causal interpretation.
 

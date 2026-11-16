@@ -64,7 +64,7 @@ The [implemented connected task](../evaluation/README.md#connected-task-and-inde
 
 ![Reliable cybersecurity query generation: left-to-right research workflow](../assets/workflows/workflow-b.svg)
 
-*Workflow B. The same vector figure appears as Figure 9 in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
+*Workflow B. See the query-generation protocol in the [Researcher’s Guide](../RESEARCHERS_GUIDE.pdf).*
 
 Use [`release_compatible.json`](training/release_compatible.json) for the minimized public schema. Keep related identifiers and query templates together when splitting data. Do not supply `expected_ids` to the model. The 66 queries have restricted-grammar and source-table validation; **Neo4j engine checks and independent query-test construction are further experimental steps**, not completed results implied by this flowchart. Adaptation and live-model evaluation also require actual execution.
 
