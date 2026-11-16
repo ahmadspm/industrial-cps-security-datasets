@@ -1732,6 +1732,10 @@ export default function Home() {
             </div>
           </section>
         )}
+        <footer className="workbench-footer">
+          <span>Digital Twin Experimental Workbench</span>
+          <a href="https://github.com/ahmadspm/industrial-cps-security-datasets">Research dataset</a>
+        </footer>
       </main>
       {toast && (
         <div className="toast">

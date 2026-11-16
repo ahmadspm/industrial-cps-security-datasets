@@ -1,0 +1,72 @@
+.shell {
+  --chrome-blue: #14548b;
+  --chrome-navy: #103b65;
+  --chrome-light: #e8f4ff;
+  --chrome-border: #b5d6ef;
+  --chrome-ink: #143c60;
+}
+
+.shell > aside {
+  background: var(--chrome-navy);
+}
+
+.shell > aside .brand i {
+  background: #1768aa;
+}
+
+.shell > aside :is(.brand span, .source span, .source small, nav button) {
+  color: #d1e8fb;
+}
+
+.shell > aside nav button:is(:hover, .active) {
+  color: #fff;
+  background: var(--chrome-blue);
+}
+
+.shell > aside nav button.active {
+  box-shadow: inset 3px 0 #91d2ff;
+}
+
+.shell > main :is(.top, header, footer, aside, .physical-rail, .network-inspector, .inventory-legend) {
+  background: var(--chrome-light);
+  border-color: var(--chrome-border);
+  color: var(--chrome-ink);
+}
+
+.shell > main :is(.top, header) :is(h1, h2, h3),
+.shell > main .top > div > span {
+  color: var(--chrome-ink);
+}
+
+.shell > main :is(nav, .tabs, .network-tabs, .console-tabs, .agentic-nav, .security-subnav) {
+  background: var(--chrome-light);
+  border-color: var(--chrome-border);
+  color: var(--chrome-ink);
+}
+
+.shell > main :is(nav, .tabs, .network-tabs, .console-tabs, .agentic-nav, .security-subnav) button {
+  background: #d5eaff;
+  border-color: var(--chrome-border);
+  color: var(--chrome-ink);
+}
+
+.shell > main :is(nav, .tabs, .network-tabs, .console-tabs, .agentic-nav, .security-subnav) button:is(.active, [aria-selected="true"], :hover) {
+  background: var(--chrome-blue);
+  border-color: var(--chrome-blue);
+  color: #fff;
+}
+
+.shell > main .workbench-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px clamp(16px, 3vw, 32px);
+  border-top: 1px solid var(--chrome-border);
+  background: var(--chrome-navy);
+  color: #fff;
+}
+
+.workbench-footer a {
+  color: #d1e8fb;
+}
