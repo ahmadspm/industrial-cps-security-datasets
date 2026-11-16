@@ -1,0 +1,25 @@
+.trace-board{margin:0 0 22px;background:#fff;border:1px solid #d4e3ed;border-radius:12px;overflow:hidden;color:#163348}
+.trace-board header{padding:18px 22px;background:#e8f5fe;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.trace-board h2,.trace-board h3,.trace-board p{margin:0}
+.trace-board header p{margin-top:5px;color:#486276;font-size:.85rem}
+.trace-filters,.trace-metrics{display:flex;align-items:end;gap:12px;flex-wrap:wrap;padding:15px 20px;border-bottom:1px solid #d4e3ed}
+.trace-filters label{display:grid;gap:5px;font-size:.8rem;min-width:0}
+.trace-filters label:first-child{flex:1;min-width:180px}
+.trace-filters :is(input,select,button){height:36px;border:1px solid #a8c4d7;border-radius:5px;padding:0 9px;background:white;color:#163348;max-width:100%}
+.trace-metrics>div{flex:1;min-width:130px;background:#f2f9fe;padding:10px 14px}
+.trace-metrics strong{display:block;font-size:1.5rem;font-variant-numeric:tabular-nums}
+.trace-metrics span,.trace-note{font-size:.8rem;color:#486276}
+.trace-charts{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;padding:16px 20px}
+.trace-charts article{padding:12px;border:1px solid #d4e3ed;min-width:0}
+.trace-charts svg{width:100%;display:block;fill:#486276;font-size:12px;margin-top:10px}
+.trace-charts table{width:100%;font-size:.8rem;text-align:left;margin-top:8px}
+.trace-charts td{padding:4px 0}
+.trace-charts td button{background:none;border:0;text-align:left;padding:0;color:#1263a8;overflow-wrap:anywhere}
+.trace-bar{height:4px;background:#3987c7;margin-top:3px}
+.trace-board .trace-note{padding:0 20px 16px}
+.station-inspector{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:12px 0;padding:16px;background:#f0f8ff;border-radius:8px}
+.station-inspector h4{margin:0 0 6px}
+.station-inspector ul{margin:0;padding-left:18px}
+.flow .flow-node:focus-visible,.trace-board :is(button,input,select):focus-visible{outline:3px solid #1769aa;outline-offset:2px}
+.flow .flow-node[aria-pressed=true]{border-color:#1769aa;box-shadow:0 0 0 2px #b8dcfa}
+@media(max-width:800px){.trace-charts{grid-template-columns:1fr}}

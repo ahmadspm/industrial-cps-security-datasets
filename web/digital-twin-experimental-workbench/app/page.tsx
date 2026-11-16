@@ -4,7 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import PhotographicTwin from "./components/PhotographicTwin";
 import CyberPhysicalNetwork from "./components/CyberPhysicalNetwork";
 import FactoryEmulator from "./components/FactoryEmulator";
-import StationDiagnostics from "./components/StationDiagnostics";
+import StationDiagnostics, { DATA as stationHardware } from "./components/StationDiagnostics";
+import TraceDashboard from "./components/TraceDashboard";
 import StationIODashboard from "./components/StationIODashboard";
 import OperationsWorkspace from "./components/OperationsWorkspace";
 import {
@@ -185,22 +186,31 @@ function Tabs({
   );
 }
 function Flow({ stations }: { stations: Station[] }) {
-  const images: Record<string,string> = {DSI:'station-dps-official.png',VGR:'station-vgr-official.jpg',HBW:'station-hbw-official.jpg',MPO:'station-mpo-official.jpg',SLD:'station-sld-official.jpg',DSO:'station-dps-official.png'};
+  const [inspected, setInspected] = useState<string | null>(null);
+  const hardware = inspected ? stationHardware[inspected === "DSO" ? "DSI" : inspected] : null;
   return (
+    <>
     <div className="flow">
       {stations.map((s, i) => (
         <div className="flow-wrap" key={s.id}>
-          <div className={`flow-node ${s.active ? "active" : ""}`}>
-            <img src={`assets/${images[s.id]}`} alt={s.name} style={{width:110,height:84,objectFit:'contain',background:'white',borderRadius:8,marginBottom:8}} />
+          <button type="button" aria-pressed={inspected === s.id} onClick={() => setInspected(inspected === s.id ? null : s.id)} className={`flow-node ${s.active ? "active" : ""}`}>
+            <img src={stationHardware[s.id === "DSO" ? "DSI" : s.id].image} alt="" style={{width:110,height:84,objectFit:'contain',background:'white',borderRadius:8,marginBottom:8}} />
             <b>{s.id}</b>
             <span>{s.role}</span>
-          </div>
+          </button>
           {i < stations.length - 1 && (
             <i className={s.active ? "active" : ""}>→</i>
           )}
         </div>
       ))}
     </div>
+    {hardware && <section className="station-inspector" aria-label="Station hardware">
+      <div><h4>{inspected} · {hardware.name}</h4><p>{hardware.summary}</p>
+      <small>Reference hardware. DSI and DSO are views of the shared delivery and pickup module. <a href="https://www.fischertechnik.de/-/media/fischertechnik/rebrush/industrie-und-hochschulen/technische-dokumente/02-lernfabrik-4-0-24v/begleitmaterial-mit-txt-4-0-neu/en/training_factory_industry_40_24v-introduction.pdf">Manufacturer documentation ↗</a></small></div>
+      <div><h4>Sensors and inputs</h4><ul>{hardware.sensors.map(([name]) => <li key={name}>{name}</li>)}</ul>
+      <h4>Actuators and outputs</h4><ul>{hardware.actuators.filter(name => name !== "VGR request").map(name => <li key={name}>{name}</li>)}</ul></div>
+    </section>}
+    </>
   );
 }
 function StationCard({
@@ -384,6 +394,7 @@ export default function Home() {
 
         {page === "overview" && (
           <section className="content">
+            <TraceDashboard />
             <div className="hero">
               <div>
                 <p>
@@ -427,23 +438,23 @@ export default function Home() {
             </div>
             <div className="metrics">
               <Metric
-                label="Production status"
+                label="Simulated production status"
                 value={running ? "In progress" : "Stopped"}
                 note={`WP-024 · ${progress}% complete`}
                 tone="teal"
               />
               <Metric
-                label="Completed today"
+                label="Illustrative completed count"
                 value={String(38 + Math.floor(tick / 20))}
                 note="+6 compared with prior run"
               />
               <Metric
-                label="Mean cycle time"
+                label="Illustrative mean cycle time"
                 value="84.6 s"
                 note="3.2% within nominal"
               />
               <Metric
-                label="Communication"
+                label="Illustrative communication"
                 value="99.7%"
                 note="18 ms MQTT latency"
                 tone="teal"
@@ -451,7 +462,7 @@ export default function Home() {
             </div>
             <Panel
               title="Factory process"
-              sub="Active workpiece and station progression"
+              sub="Simulated station progression · Select a station to inspect its reference hardware"
               action={
                 <div className="legend">
                   <span>
@@ -480,9 +491,9 @@ export default function Home() {
             </Panel>
             <div className="columns">
               <Panel
-                title="Operational signals"
-                sub="Last 30 synchronization cycles"
-                action={<Badge>LIVE</Badge>}
+                title="Example operational indicators"
+                sub="Illustrative values from the workbench"
+                action={<Badge>DEMO</Badge>}
               >
                 <div className="signals">
                   {[
@@ -501,8 +512,8 @@ export default function Home() {
                 </div>
               </Panel>
               <Panel
-                title="Recent state evidence"
-                sub="Observed and inferred updates"
+                title="Example state evidence"
+                sub="Illustrative workbench event entries"
                 action={
                   <button className="link" onClick={() => setPage("evidence")}>
                     View all →

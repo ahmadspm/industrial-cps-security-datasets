@@ -1,6 +1,6 @@
 "use client";
 
-const DATA: Record<
+export const DATA: Record<
   string,
   {
     name: string;
