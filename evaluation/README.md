@@ -15,6 +15,20 @@ This suite evaluates declared output constraints and released reference relation
 
 Published baseline scores describe deterministic reference methods. They do not establish model performance, independent expert endorsement or physical applicability. Generate and report model-specific evidence for the method being evaluated.
 
+## Choosing a task and reporting results
+
+Use the [dataset metadata catalog](../metadata/dataset_catalog.csv) to record the files, record units, provenance, and interpretation limits behind each result. The [research methods](../docs/RESEARCH_METHODS.md) describe split and join design. The [research applications guide](../docs/RESEARCH_APPLICATIONS.md) distinguishes tasks supported by this suite from studies requiring a separate evaluator.
+
+| Evaluation track | Recommended comparison | Primary outputs |
+|---|---|---|
+| Connected evidence retrieval | Deterministic source lookup, always abstain, and the candidate method on the same 94 cases | Exact evidence-set agreement, missing and extra evidence, and abstention on the 61 cases without source-linked CVEs. Report supported and unsupported cases separately. |
+| Agent policy fixtures | Deterministic baseline and candidate models using the same inputs and available context | Per-family scores, evidence-dependent coverage, missing outputs, and stop/continue results on cases with explicit labels. Keep tool actions offline. |
+| CTI classification | Task-specific simple classifier and candidate models on the same held-out inputs | Accuracy and macro-F1 by task, plus accuracy at fixed coverage if abstention is enabled. The release supplies labels, while researchers supply the task evaluator. |
+| Query generation | Exact-ID/template baseline and candidate answers on grouped held-out examples | Schema validity and answer equivalence. Measure database execution separately using a pinned engine and the declared import schema. |
+| Trace and twin studies | Frequency, persistence, or rule baseline against the candidate model using matched traces or scenarios | Trace-level errors and timing metrics. Use independently mapped reference observations for claims about physical fidelity. |
+
+For each run, save the commit, input identifiers and exclusions, split definition, model/version, prompts and visible context, settings, per-case predictions, and scorer outputs. Compare methods using paired cases and report variability by the appropriate group. Keep source-table agreement, independent review, and physical validation as separate results. If comparing AI and digital-twin contributions, evaluate the method with each component removed in turn under matched conditions.
+
 ## Agent output contract
 
 Predictions are a JSON array. One record per case uses the original case `id`:

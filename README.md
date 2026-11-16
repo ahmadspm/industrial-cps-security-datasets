@@ -36,6 +36,8 @@ Use the [dataset metadata CSV](metadata/dataset_catalog.csv) to filter all 108 r
 
 ## Research methods and evaluation
 
+The [research applications guide](docs/RESEARCH_APPLICATIONS.md) maps all seven dataset families to research problems, use cases, AI methods, evaluation criteria, and digital-twin applications.
+
 Use the [research methods](docs/RESEARCH_METHODS.md) for compatible queries, graph connectivity, verified joins and trace metadata. The [evaluation suite](evaluation/README.md) provides fixture-field scoring, connected evidence-retrieval tasks, deterministic baselines, a local-model comparison runner and a reusable review worksheet. Scores in this repository describe the specified reference and fixture experiments; researchers generate model-specific results using their own declared configurations.
 
 ## Research guide
