@@ -1,0 +1,28 @@
+.purdue-view{--route:#126cb0;--ink:#123b60;color:var(--ink)}
+.purdue-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;margin-bottom:14px;background:#e8f4ff;border:1px solid #c4ddec;border-radius:8px;flex-wrap:wrap}
+.purdue-toolbar span,.purdue-level span{display:block;font-size:.8rem;margin-top:3px}
+.purdue-controls{display:flex;gap:8px}
+.purdue-controls button{padding:6px 10px;color:var(--ink);background:#fff;border:1px solid #abcbe2;border-radius:5px}
+.purdue-controls button:disabled{opacity:.5;cursor:default}
+.purdue-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:end}
+.purdue-grid ol{list-style:none;margin:0;padding:0}
+.purdue-level{display:flex;align-items:center;gap:12px;padding:9px 13px;border:1px solid #cddfea;border-radius:8px;background:#f7fbfe}
+.purdue-level>b{min-width:40px;background:#e0effa;text-align:center;padding:6px;border-radius:4px}
+.purdue-level.active{border-color:var(--route);background:#e8f4ff}
+.purdue-conduit{height:23px;position:relative;margin-left:33px;border-left:2px solid #b5cade}
+.purdue-conduit:is(.up,.down){border-color:var(--route)}
+.purdue-conduit span{font-size:.75rem;margin-left:12px;font-weight:650}
+.purdue-conduit:is(.up,.down) i{position:absolute;left:-5px;top:0;background:var(--route);width:8px;height:8px;border-radius:50%;animation:purdue-packet .62s linear infinite}
+.purdue-conduit.up i{animation-direction:reverse}
+@keyframes purdue-packet{to{transform:translateY(15px)}}
+.purdue-stations{align-self:end;padding:12px;background:#f3f9ff;border:1px solid #cddfea;border-radius:8px}
+.purdue-stations h4{margin:0 0 8px}
+.purdue-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.purdue-cards button{display:grid;justify-items:center;background:#fff;color:var(--ink);border:1px solid #cddfea;border-radius:6px;padding:4px}
+.purdue-cards button[aria-pressed=true]{outline:2px solid var(--route);outline-offset:-2px}
+.purdue-cards img{width:100%;height:65px;object-fit:contain}
+.purdue-cards span,.purdue-station-detail,.purdue-note{font-size:.75rem}
+.purdue-station-detail{margin-top:10px}
+.purdue-station-detail p{margin:4px 0 0}
+@media(max-width:750px){.purdue-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.purdue-conduit:is(.up,.down) i{animation:none}}

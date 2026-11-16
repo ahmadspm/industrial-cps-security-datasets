@@ -6,6 +6,7 @@ import CyberPhysicalNetwork from "./components/CyberPhysicalNetwork";
 import FactoryEmulator from "./components/FactoryEmulator";
 import StationDiagnostics, { DATA as stationHardware } from "./components/StationDiagnostics";
 import TraceDashboard from "./components/TraceDashboard";
+import PurdueTraffic from "./components/PurdueTraffic";
 import StationIODashboard from "./components/StationIODashboard";
 import OperationsWorkspace from "./components/OperationsWorkspace";
 import {
@@ -1050,32 +1051,10 @@ export default function Home() {
             {engTab === "Network" && (
               <Panel
                 title="Industrial communication topology"
-                sub="Live paths across Purdue levels L0–L4"
-                action={<Badge>99.7% RELIABLE</Badge>}
+                sub="Purdue levels L0–L4 · Simulated traffic"
+                action={<Badge tone="blue">SIMULATION</Badge>}
               >
-                <div className="network">
-                  {[
-                    ["L4 Enterprise", "ERPNext", "Kasm", "Analytics"],
-                    ["L3 DMZ", "Firewall", "Historian", "Jump host"],
-                    ["L2 Supervisory", "Digital Twin", "MQTT", "OPC UA"],
-                    ["L1 Control", "PLC", "TXT VGR", "IoT gateway"],
-                    ["L0 Process", "DSI", "VGR", "HBW", "MPO", "SLD", "DSO"],
-                  ].map((r, i) => (
-                    <div key={r[0]}>
-                      <label>{r[0]}</label>
-                      {r.slice(1).map((x) => (
-                        <span key={x}>{x}</span>
-                      ))}
-                      {i < 4 && <i />}
-                    </div>
-                  ))}
-                </div>
-                <div className="metrics mini">
-                  <Metric label="Messages" value={String(18420 + tick * 3)} />
-                  <Metric label="Mean latency" value="18 ms" />
-                  <Metric label="Jitter" value="3.2 ms" />
-                  <Metric label="Reliability" value="99.7%" />
-                </div>
+                <PurdueTraffic />
               </Panel>
             )}
             {engTab === "Behaviour" && (
