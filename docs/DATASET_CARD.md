@@ -4,7 +4,7 @@
 
 Offline research into typed cybersecurity graph relationships, synthetic protocol features, operational signal changes, retrieval/reference-label analysis, and governed agent behaviour in a digital-twin fixture environment.
 
-The custodian is Dr Ahmad Mohsin. Upstream repository revisions are pinned in `metadata/sources.csv`. Individual records and files are linked to their sources and transformations in `metadata/provenance.csv`.
+The custodian is Dr Ahmad Mohsin (Senior Research Fellow / Academic Scientist and Industry Fellow). Upstream repository revisions are pinned in `metadata/sources.csv`. Individual records and files are linked to their sources and transformations in `metadata/provenance.csv`.
 
 ## Representation and limitations
 

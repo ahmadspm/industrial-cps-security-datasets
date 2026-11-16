@@ -44,7 +44,7 @@ Use the [research methods](docs/RESEARCH_METHODS.md) for compatible queries, gra
 
 ## Research guide
 
-Read **Critical Infrastructure Cybersecurity Research: Digital Twins, AI and Knowledge Graphs**, by Dr Ahmad Mohsin (Research Fellow / Scientist), in the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for an academic guide.
+Read **Critical Infrastructure Cybersecurity Research: Digital Twins, AI and Knowledge Graphs**, by Dr Ahmad Mohsin (Senior Research Fellow / Academic Scientist and Industry Fellow), in the **[Researcher’s Guide (PDF)](RESEARCHERS_GUIDE.pdf)** for an academic guide.
 
 See the [data research guide](data/README.md) for the cybersecurity studies supported by each folder, research roles, suggested evaluation measures and links to [co-authored articles and third-party sources](docs/RELATED_PUBLICATIONS.md). Each of the seven dataset folders has its own README.
 
