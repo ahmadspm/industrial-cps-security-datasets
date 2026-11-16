@@ -302,6 +302,14 @@ export default function Home() {
     [toast, setToast] = useState("");
   const [wpColor, setWpColor] = useState("#1976d2"),
     [autoRotate, setAutoRotate] = useState(false);
+  const [experimentId, setExperimentId] = useState<string | null>(null);
+  const [snapshots, setSnapshots] = useState<Array<{
+    tick: number;
+    recorded_at: string;
+    playback_speed: number;
+    configured_workpieces: number;
+    stations: Station[];
+  }>>([]);
   useEffect(() => {
     if (!running && !sim) return;
     const t = setInterval(() => setTick((x) => x + 1), 2400 / speed);
@@ -340,6 +348,58 @@ export default function Home() {
   const station = stations.find((s) => s.id === selected) || stations[1],
     progress = Math.round(((tick % 24) / 23) * 100);
   const notify = (s: string) => setToast(s);
+
+  useEffect(() => {
+    if (!sim || !experimentId) return;
+    const snapshot = {
+      tick,
+      recorded_at: new Date().toISOString(),
+      playback_speed: speed,
+      configured_workpieces: workpieces,
+      stations,
+    };
+    setSnapshots(previous => previous.at(-1)?.tick === tick
+      ? previous
+      : [...previous, snapshot].slice(-2000));
+  }, [sim, experimentId, tick, speed, workpieces, stations]);
+
+  const artefacts = useMemo(() => {
+    if (!experimentId || snapshots.length === 0) return [];
+    const events = snapshots.flatMap((snapshot, index) =>
+      snapshot.stations.flatMap(station => {
+        const prior = snapshots[index - 1]?.stations.find(item => item.id === station.id);
+        if (prior?.state === station.state && prior.active === station.active) return [];
+        return [{ experiment_id: experimentId, source: "browser_simulation",
+          tick: snapshot.tick, recorded_at: snapshot.recorded_at, station_id: station.id,
+          previous_state: prior?.state ?? null, state: station.state, active: station.active }];
+      }));
+    return [
+      { name: "events.jsonl", description: "Simulated station state and activity changes",
+        content: events.map(event => JSON.stringify(event)).join("\n") + "\n",
+        mime: "application/x-ndjson" },
+      { name: "factory_snapshots.json", description: "Recorded browser simulation snapshots",
+        content: JSON.stringify({ experiment_id: experimentId, source: "browser_simulation", snapshots }, null, 2) + "\n",
+        mime: "application/json" },
+      { name: "experiment_manifest.json", description: "Run provenance, sample coverage and settings",
+        content: JSON.stringify({
+          experiment_id: experimentId, source: "browser_simulation", exported_at: new Date().toISOString(),
+          samples_retained: snapshots.length, retention_limit: 2000, events: events.length,
+          first_tick: snapshots[0].tick, last_tick: snapshots.at(-1)?.tick,
+          timestamp_basis: "Browser wall clock", settings_location: "Per snapshot in factory_snapshots.json",
+        }, null, 2) + "\n", mime: "application/json" },
+    ];
+  }, [experimentId, snapshots]);
+
+  function downloadArtefact(artefact: typeof artefacts[number]) {
+    const url = URL.createObjectURL(new Blob([artefact.content], { type: artefact.mime }));
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = artefact.name;
+    document.body.append(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
 
   return (
     <div className="shell">
@@ -1342,6 +1402,10 @@ export default function Home() {
                 <button
                   className={sim ? "danger full" : "primary full"}
                   onClick={() => {
+                    if (!sim) {
+                      setSnapshots([]);
+                      setExperimentId(new Date().toISOString());
+                    }
                     setSim(!sim);
                     setRunning(!sim);
                     setMode("Agent Simulation");
@@ -1681,32 +1745,25 @@ export default function Home() {
             <div className="columns">
               <Panel title="Generated artefacts">
                 <div className="files">
-                  {[
-                    ["mqtt_20260821.pcap", "Network capture", "4.8 MB"],
-                    ["events.jsonl", "Canonical observations", "1.2 MB"],
-                    ["opcua.jsonl", "OPC UA changes", "480 KB"],
-                    ["factory_snapshots.json", "Twin revisions", "2.1 MB"],
-                    [
-                      "experiment_manifest.json",
-                      "Configuration & hashes",
-                      "8 KB",
-                    ],
-                  ].map((x) => (
-                    <div key={x[0]}>
+                  {!artefacts.length && <p>Start an experiment in <button type="button" className="link" onClick={() => setPage("simulation")}>Simulation</button> to generate downloads.</p>}
+                  {artefacts.map((artefact) => (
+                    <div key={artefact.name}>
                       <i>▤</i>
-                      <p>
-                        <b>{x[0]}</b>
-                        <span>{x[1]}</span>
-                      </p>
-                      <small>{x[2]}</small>
                       <button
-                        onClick={() => notify(`${x[0]} download simulated`)}
+                        type="button"
+                        className="link"
+                        style={{ textAlign: "left" }}
+                        onClick={() => downloadArtefact(artefact)}
                       >
-                        ↓
+                        <b>{artefact.name}</b>
+                        <span style={{display: "block"}}>{artefact.description}</span>
                       </button>
+                      <small>{new TextEncoder().encode(artefact.content).length.toLocaleString()} bytes</small>
+                      <button type="button" aria-label={`Download ${artefact.name}`} onClick={() => downloadArtefact(artefact)}>↓</button>
                     </div>
                   ))}
                 </div>
+                <p>Exports contain the latest experiment in this browser tab. MQTT packet captures and OPC UA logs are unavailable in browser simulation.</p>
               </Panel>
               <Panel title="Fidelity summary">
                 <div className="fidelity">
